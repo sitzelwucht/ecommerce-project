@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=New+Tegomin&display=swap');
+
+div {
+  font-family: 'Montserrat';
+  font-weight: 300
+}
+
+h3 {
+  font-weight: 500;
+}
