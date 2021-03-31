@@ -27,7 +27,8 @@ const handleSignup = (e) => {
     lastName: e.target.lastName.value, 
     email: e.target.email.value, 
     password: e.target.password.value, 
-    password2: e.target.password2.value }
+    password2: e.target.password2.value 
+  }
   axios.post(`${config.API_URL}/api/signup`, newUser)
   .then(response => setLoggedInUser(response.data))
   .catch(err => setError(err))

@@ -11,6 +11,7 @@ export default function SignupForm(props) {
     
     const passwordRef = useRef()
 
+    // check if password matches requirements
     const handlePasswordInput = (e) => {
         let regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
         let input = e.target.value
@@ -20,12 +21,13 @@ export default function SignupForm(props) {
         else setPasswordMessage(null)
     } 
 
+    // check if passwords match
     const handlePasswordConfirmation = (e) => {
         let input = e.target.value
         if (input !== passwordRef.current.value) {
             setPasswordConfMessage('passwords do not match')
         }
-        else passwordConfMessage(null)
+        else setPasswordConfMessage(null)
     } 
 
     useEffect(() => {
