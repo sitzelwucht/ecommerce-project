@@ -10,8 +10,10 @@ module.exports = (app) => {
             origin: process.env.ORIGIN || 'http://localhost:3000'
         })
     )
+
+    app.use(express.json())
+    app.use(express.urlencoded({extended: false}))
+    app.use(cookieParser())
+
 }
 
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(cookieParser())

@@ -61,3 +61,6 @@ router.post('/login', (req, res) => {
         return
     })
 })
+
+
+module.exports = router

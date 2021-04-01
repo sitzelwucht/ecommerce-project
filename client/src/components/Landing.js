@@ -31,9 +31,9 @@ export default function Landing(props) {
                 <Button variant="light" onClick={handleShowSignup}>Signup</Button>
             </div>
 
-        { showLogin && <LoginForm onLogin={props.onLogin} /> }
+        { showLogin && <LoginForm onLogin={props.onLogin} errorMsg={props.errorMsg} /> }
 
-        { showSignup && <SignupForm onSignup={props.onSignup} /> }
+        { showSignup && <SignupForm onSignup={props.onSignup} errorMsg={props.errorMsg} /> }
                 
         </div>
     )

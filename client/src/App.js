@@ -17,7 +17,12 @@ function App() {
     const user = { 
       email: e.target.email.value, 
       password: e.target.password.value }
-    console.log(user)
+    
+      axios.post(`${config.API_URL}/api/login`, user, {withCredentials: true})
+      .then(response => {
+        setLoggedInUser(response.data)
+      })
+      .catch(err => setError(err.response.data[0]))
 }
 
 const handleSignup = (e) => {
@@ -31,11 +36,11 @@ const handleSignup = (e) => {
   }
   axios.post(`${config.API_URL}/api/signup`, newUser)
   .then(response => setLoggedInUser(response.data))
-  .catch(err => setError(err))
+  .catch(err => setError(err.response.data[0]))
 }
 
   return (
-    <Landing onLogin={handleLogin} onSignup={handleSignup}/>
+    <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error}/>
   );
 }
 
