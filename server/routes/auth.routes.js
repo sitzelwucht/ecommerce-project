@@ -43,7 +43,8 @@ router.post('/login', (req, res) => {
         .then(isMatch => {
             if (isMatch) {
                 userData.password = '****'
-                req.session.loggedInUser = userDatares.status(200).json(userData)
+                req.session.loggedInUser = userData
+                res.status(200).json(userData)
             }
             else {
                 res.status(500).json({ errorMsg: 'Login details incorrect'})
@@ -61,5 +62,26 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.post('/logout', (req, res) => {
+    req.session.destroy()
+    res.status(204).json({})
+})
+
+
+const isLoggedIn = (req, res, next) => {
+    if (req.session.loggedInUser) {
+        next()
+    }
+    else {
+        res.status(401).json({
+            message: 'Unauthorized',
+            code: 401
+        })
+    }
+}
+
+router.get('/user', isLoggedIn, (req, res, next) => {
+    res.status(200).json(req.session.loggedInUser)
+})
 
 module.exports = router

@@ -29,8 +29,8 @@ export default function Landing(props) {
             </Jumbotron>
 
                 <div className="mx-auto" style={{width: "200px"}}>
-                    <Button className="m-3" variant="info" onClick={handleShowLogin}>Login</Button>
-                    <Button variant="light" onClick={handleShowSignup}>Signup</Button>
+                    <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in</Button>
+                    <Button variant="light" onClick={handleShowSignup}>Sign up</Button>
                 </div>
 
             { showLogin && <LoginForm onLogin={props.onLogin} errorMsg={props.errorMsg} /> }

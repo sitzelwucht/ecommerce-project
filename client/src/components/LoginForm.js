@@ -7,7 +7,7 @@ export default function LoginForm(props) {
     return (
             
              <Form className="w-50 mx-auto my-5" onSubmit={props.onLogin}>
-            <h3>LOGIN</h3>
+            <h3>LOG IN</h3>
             { props.errorMsg && <Alert>{props.errorMsg}</Alert>}
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

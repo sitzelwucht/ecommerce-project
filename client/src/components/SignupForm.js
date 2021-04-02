@@ -43,14 +43,14 @@ export default function SignupForm(props) {
     return (
        
              <Form className="w-50 mx-auto my-5" onSubmit={props.onSignup}>
-            <h3>SIGNUP</h3>
+            <h3>SIGN UP</h3>
             { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert> }
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formBasicName">
                     <Form.Label>First name</Form.Label>
                     <Form.Control type="text" name="firstName" placeholder="first name" />
        
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicLastname">
                     <Form.Label>Last name</Form.Label>
                     <Form.Control type="text" name="lastName" placeholder="last name" />
 
