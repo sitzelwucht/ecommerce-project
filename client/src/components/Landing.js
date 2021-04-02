@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
-
+import Home from './Home'
 
 export default function Landing(props) {
 
@@ -21,20 +21,27 @@ export default function Landing(props) {
     }
 
     return (
+        <>
+    {!props.user &&
         <div>
-        <Jumbotron className="m-5 h-100">
-            <p>Welcome to random eCommerce Website</p>
-        </Jumbotron>
+            <Jumbotron className="m-5 h-100">
+                <p>Welcome to random eCommerce Website</p>
+            </Jumbotron>
 
-            <div className="mx-auto" style={{width: "200px"}}>
-                <Button className="m-3" variant="info" onClick={handleShowLogin}>Login</Button>
-                <Button variant="light" onClick={handleShowSignup}>Signup</Button>
+                <div className="mx-auto" style={{width: "200px"}}>
+                    <Button className="m-3" variant="info" onClick={handleShowLogin}>Login</Button>
+                    <Button variant="light" onClick={handleShowSignup}>Signup</Button>
+                </div>
+
+            { showLogin && <LoginForm onLogin={props.onLogin} errorMsg={props.errorMsg} /> }
+
+            { showSignup && <SignupForm onSignup={props.onSignup} errorMsg={props.errorMsg} /> }
+                    
             </div>
+    }
 
-        { showLogin && <LoginForm onLogin={props.onLogin} errorMsg={props.errorMsg} /> }
+    { props.user && <Home user={props.user}/> }
 
-        { showSignup && <SignupForm onSignup={props.onSignup} errorMsg={props.errorMsg} /> }
-                
-        </div>
+        </>
     )
 }

@@ -1,14 +1,16 @@
 
 import React, { useState } from 'react'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Landing from './components/Landing'
+import Home from './components/Home'
 import axios from 'axios'
 import config from './config'
 
 function App() {
   
-  const [loggedInUser, setLoggedInUser] = useState()
+  const [loggedInUser, setLoggedInUser] = useState(null)
   const [error, setError] = useState()
   
 
@@ -22,7 +24,7 @@ function App() {
       .then(response => {
         setLoggedInUser(response.data)
       })
-      .catch(err => setError(err.response.data[0]))
+      .catch(err => setError(Object.values(err.response.data[0])))
 }
 
 const handleSignup = (e) => {
@@ -36,11 +38,22 @@ const handleSignup = (e) => {
   }
   axios.post(`${config.API_URL}/api/signup`, newUser)
   .then(response => setLoggedInUser(response.data))
-  .catch(err => setError(err.response.data[0]))
+  .catch(err => setError(Object.values(err.response.data)[0]))
 }
 
   return (
-    <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error}/>
+    <Switch>
+
+      <Route exact path="/" render={() => {
+        return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
+      }} />
+
+      <Route path="/home" render={() => {
+        return <Home user={loggedInUser} />
+      }} />
+
+    </Switch>
+    
   );
 }
 
