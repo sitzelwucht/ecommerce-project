@@ -21,6 +21,11 @@ export default function LoginForm(props) {
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="remember me" />
                 </Form.Group>
+
+                <Form.Group controlId="admin">
+                <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
+                </Form.Group>
+
                 <Button variant="dark" type="submit">
                     Submit
                 </Button>

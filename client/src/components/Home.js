@@ -1,12 +1,18 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Button, Card, Accordion } from 'react-bootstrap'
+import { Button, Card, Accordion, Form, InputGroup, FormControl } from 'react-bootstrap'
 
 export default function Home(props) {
     return (
         <div className="container">
 
-        <h2> Home page </h2>
+        <h2>  
+                <Form inline>
+                <InputGroup>
+                    <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
+                    <InputGroup.Append><Button type="submit">Submit</Button></InputGroup.Append>
+                    </InputGroup>
+                </Form> </h2>
         { !props.user && <Redirect to={'/'} /> }
        
 

@@ -42,7 +42,7 @@ export default function SignupForm(props) {
     
     return (
        
-             <Form className="w-50 mx-auto my-5" onSubmit={props.onSignup}>
+             <Form className="w-50 mx-auto my-3" onSubmit={props.onSignup}>
             <h3>SIGN UP</h3>
             { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert> }
             <Form.Group controlId="formBasicName">
@@ -71,9 +71,13 @@ export default function SignupForm(props) {
 
                 <Form.Group controlId="formBasicPassword2">
                     <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" name="password2" placeholder="Confirm Password" onChange={handlePasswordConfirmation}/>
+                    <Form.Control type="password" name="password2" placeholder="confirm password" onChange={handlePasswordConfirmation}/>
                     <Form.Text className="text-muted">                    
                     { passwordConfMessage && <Alert  variant="warning">{passwordConfMessage}</Alert> }</Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="admin">
+                <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">

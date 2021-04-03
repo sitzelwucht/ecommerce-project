@@ -5,7 +5,7 @@ const UserModel = require('../models/User.model')
 
 
 router.post('/signup', (req, res) => {
-    const { firstName, lastName, email, password, password2 } = req.body
+    const { firstName, lastName, email, password, password2, isAdmin } = req.body
  
     if (!firstName || !lastName || !email || !password || !password2) {
         res.status(500).json({errorMessage: 'Please fill out all fields'})
@@ -18,7 +18,7 @@ router.post('/signup', (req, res) => {
     let salt = bcrypt.genSaltSync(10)
     let hashPw = bcrypt.hashSync(password, salt)
 
-    UserModel.create({ firstName, lastName, email, password: hashPw })
+    UserModel.create({ firstName, lastName, email, isAdmin, password: hashPw })
     .then(user => { res.status(200).json(user) })
     .catch(err => {
         if (err.code === 11000) {
@@ -35,7 +35,7 @@ router.post('/signup', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    const { email, password } = req.body
+    const { email, password, isAdmin } = req.body
 
     UserModel.findOne({ email })
     .then(userData => {
@@ -61,6 +61,44 @@ router.post('/login', (req, res) => {
         return
     })
 })
+
+
+
+
+router.post('/admin-login', (req, res) => {
+    const { email, password, isAdmin } = req.body
+
+    if (!isAdmin) {
+        res.status(500).json({ errorMsg: 'This user does not have admin access' })
+        return
+    }
+
+    UserModel.findOne({ email })
+    .then(userData => {
+        bcrypt.compare(password, userData.password)
+        .then(isMatch => {
+            if (isMatch) {
+                userData.password = '****'
+                req.session.loggedInUser = userData
+                res.status(200).json(userData)
+            }
+            else {
+                res.status(500).json({ errorMsg: 'Login details incorrect'})
+                return
+            }
+        })
+        .catch(() => {
+            res.status(500).json({ errorMsg: 'Invalid email format' })
+            return
+        })
+    })
+    .catch(err => {
+        res.status(500).json({ errorMsg: 'Email not registered' })
+        return
+    })
+})
+
+
 
 router.post('/logout', (req, res) => {
     req.session.destroy()

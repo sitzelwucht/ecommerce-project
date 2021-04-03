@@ -8,6 +8,7 @@ import Home from './components/Home'
 import NavBar from './components/NavBar'
 import axios from 'axios'
 import config from './config'
+import Admin from './components/Admin';
 
 function App(props) {
   
@@ -28,6 +29,24 @@ function App(props) {
       .catch(err => setError(Object.values(err.response.data[0])))
 }
 
+
+  const handleAdminLogin = (e) => {
+      e.preventDefault()
+      const user = {
+        email: e.target.email.value,
+        password: e.target.password.value,
+        isAdmin: e.target.isAdmin.value
+      }
+
+      axios.post.apply(`${config.API_URL}/api/admin-login`, user, { withCredentials: true })
+      .then(response => {
+        setLoggedInUser(response.data)
+      })
+      .catch(err => setError(Object.values(err.reponse.data[0])))
+  }
+
+
+
   const handleSignup = (e) => {
     e.preventDefault()
     const newUser = { 
@@ -35,17 +54,20 @@ function App(props) {
       lastName: e.target.lastName.value, 
       email: e.target.email.value, 
       password: e.target.password.value, 
-      password2: e.target.password2.value 
+      password2: e.target.password2.value,
+      isAdmin: e.target.isAdmin.value 
     }
     axios.post(`${config.API_URL}/api/signup`, newUser)
     .then(response => setLoggedInUser(response.data))
     .catch(err => setError(Object.values(err.response.data)[0]))
   }
 
+
   const handleLogout = () => {
     axios.post(`${config.API_URL}/api/logout`, {}, { withCredentials: true })
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
+
 
   useEffect(() => {
     if (!loggedInUser) {
@@ -56,11 +78,15 @@ function App(props) {
   })
 
 
+
   return (
+    <>
+    {console.log(loggedInUser)}
+   {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
+
     <Switch>
 
-      {loggedInUser && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
-
+     
       <Route exact path="/" render={() => {
         return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
       }} />
@@ -69,7 +95,13 @@ function App(props) {
         return <Home user={loggedInUser} />
       }} />
 
+      <Route path="/admin" render={() => {
+        return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} />
+      }} />
+
     </Switch>
+
+    </>
     
   );
 }
