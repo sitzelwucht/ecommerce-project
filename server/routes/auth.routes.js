@@ -34,6 +34,8 @@ router.post('/signup', (req, res) => {
     })
 })
 
+
+
 router.post('/login', (req, res) => {
     const { email, password, isAdmin } = req.body
 
@@ -68,22 +70,18 @@ router.post('/login', (req, res) => {
 router.post('/admin-login', (req, res) => {
     const { email, password, isAdmin } = req.body
 
-    if (!isAdmin) {
-        res.status(500).json({ errorMsg: 'This user does not have admin access' })
-        return
-    }
 
     UserModel.findOne({ email })
     .then(userData => {
         bcrypt.compare(password, userData.password)
         .then(isMatch => {
-            if (isMatch) {
+            if (isMatch && userData.isAdmin) {
                 userData.password = '****'
                 req.session.loggedInUser = userData
                 res.status(200).json(userData)
             }
             else {
-                res.status(500).json({ errorMsg: 'Login details incorrect'})
+                res.status(500).json({ errorMsg: 'Login details incorrect or user not admin'})
                 return
             }
         })

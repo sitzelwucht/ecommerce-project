@@ -5,7 +5,11 @@
 div {
   font-family: 'Montserrat';
   font-weight: 300;
-  font-size: 12px;
+  font-size: 14px;
+}
+
+.nav {
+  background: rgba(34,98, 54, .6)
 }
 
 .form-control {
@@ -15,5 +19,9 @@ div {
 
 h3 {
   font-weight: 500;
+}
+
+header {
+  background: rgba(60,60,60,.4)
 }
 

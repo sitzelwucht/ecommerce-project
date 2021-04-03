@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
+import AdminHome from './AdminHome'
 import { Button } from 'react-bootstrap'
 
 export default function Admin(props) {
@@ -20,25 +21,29 @@ export default function Admin(props) {
     }
 
     return (
-        <div>
-            { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
+        <>
+            <div>
+                { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
 
-            { !props.user && 
-                <>
-               
-                <div className="mx-auto" style={{width: "200px"}}>
-                <h2 className="m-5">ADMIN</h2>
-                    <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in</Button>
-                    <Button variant="light" onClick={handleShowSignup}>Sign up</Button>
-                </div>
+                { !props.user && 
+                    <>
+                    <header className="border w-100" ><h2 className="m-5">ADMIN</h2></header>
+                    <div className="mx-auto" style={{width: "400px"}}>
+                        <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in as admin</Button>
+                        <Button variant="light" onClick={handleShowSignup}>New admin user</Button>
+                    </div>
 
-            { showLogin && <LoginForm onLogin={props.onLogin} isAdmin="true" errorMsg={props.errorMsg} /> }
+                { showLogin && <LoginForm onLogin={props.onLogin} isAdmin="true" errorMsg={props.errorMsg} /> }
 
-            { showSignup && <SignupForm onSignup={props.onSignup} isAdmin="true"  errorMsg={props.errorMsg} /> }
-                </>
-            
-            }
+                { showSignup && <SignupForm onSignup={props.onSignup} isAdmin="true"  errorMsg={props.errorMsg} /> }
+                    </>
+                
+                }
 
-        </div>
+            </div>
+
+
+            { props.user && props.user.isAdmin && <AdminHome user={props.user}/> }
+        </>
     )
 }

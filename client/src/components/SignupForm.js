@@ -8,6 +8,7 @@ export default function SignupForm(props) {
     const [passwordMessage, setPasswordMessage] = useState()
     const [passwordConfMessage, setPasswordConfMessage] = useState()
     const [showMsg, setShowMsg] = useState(false)
+
     
     const passwordRef = useRef()
 
@@ -44,7 +45,7 @@ export default function SignupForm(props) {
        
              <Form className="w-50 mx-auto my-3" onSubmit={props.onSignup}>
             <h3>SIGN UP</h3>
-            { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert> }
+            { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }
             <Form.Group controlId="formBasicName">
                     <Form.Label>First name</Form.Label>
                     <Form.Control type="text" name="firstName" placeholder="first name" />

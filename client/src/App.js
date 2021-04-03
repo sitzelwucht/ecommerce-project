@@ -9,6 +9,7 @@ import NavBar from './components/NavBar'
 import axios from 'axios'
 import config from './config'
 import Admin from './components/Admin';
+import AdminHome from './components/AdminHome';
 
 function App(props) {
   
@@ -26,7 +27,7 @@ function App(props) {
       .then(response => {
         setLoggedInUser(response.data)
       })
-      .catch(err => setError(Object.values(err.response.data[0])))
+      .catch(err => setError(err.response.data.errorMsg))
 }
 
 
@@ -38,11 +39,11 @@ function App(props) {
         isAdmin: e.target.isAdmin.value
       }
 
-      axios.post.apply(`${config.API_URL}/api/admin-login`, user, { withCredentials: true })
+      axios.post(`${config.API_URL}/api/admin-login`, user, { withCredentials: true })
       .then(response => {
-        setLoggedInUser(response.data)
+       setLoggedInUser(response.data)
       })
-      .catch(err => setError(Object.values(err.reponse.data[0])))
+      .catch(err => setError(err.response.data.errorMsg))
   }
 
 
@@ -62,11 +63,14 @@ function App(props) {
     .catch(err => setError(Object.values(err.response.data)[0]))
   }
 
+  
 
   const handleLogout = () => {
     axios.post(`${config.API_URL}/api/logout`, {}, { withCredentials: true })
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
+
+
 
 
   useEffect(() => {
@@ -81,7 +85,7 @@ function App(props) {
 
   return (
     <>
-    {console.log(loggedInUser)}
+
    {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
 
     <Switch>
@@ -96,7 +100,12 @@ function App(props) {
       }} />
 
       <Route path="/admin" render={() => {
-        return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} />
+        return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />
+      }} />
+
+
+      <Route path="admin-home" render={() => {
+        return <AdminHome />
       }} />
 
     </Switch>

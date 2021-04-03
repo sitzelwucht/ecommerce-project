@@ -4,7 +4,7 @@ import { Nav, Button, Form, FormControl, InputGroup } from 'react-bootstrap'
 export default function NavBar(props) {
     return (
         <div>
-        <Nav fill className="justify-content-center p-4" activeKey="/home">
+        <Nav fill className="justify-content-center p-4" >
           <Nav.Item>
           {props.user.email}
           </Nav.Item>
@@ -20,7 +20,7 @@ export default function NavBar(props) {
                 <Form inline>
                 <InputGroup>
                     <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
-                    <InputGroup.Append><Button type="submit">Submit</Button></InputGroup.Append>
+                    <InputGroup.Append><Button type="submit" variant="outline-dark">Go</Button></InputGroup.Append>
                     </InputGroup>
                 </Form>
                 
