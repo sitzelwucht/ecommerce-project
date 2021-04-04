@@ -4,12 +4,13 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import Home from './Home'
+import AdminHome from './AdminHome'
 
 export default function Landing(props) {
 
     const [showSignup, setShowSignup] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
-
+   
     const handleShowSignup = () => {
         setShowSignup(true)
         setShowLogin(false)
@@ -22,6 +23,10 @@ export default function Landing(props) {
 
     return (
         <>
+            { props.user && props.user.isAdmin && <AdminHome user={props.user} />}
+
+            { props.user && !props.user.isAdmin && <Home user={props.user}/> }
+
             { !props.user &&
                 <div>
                     <Jumbotron className="m-5 h-100">
@@ -44,14 +49,9 @@ export default function Landing(props) {
                         bottom: '0'
                         }}>
                         <a href="/admin"><Button variant="link">admin</Button></a>
-                    </div>
-
-                            
-                    </div>
+                    </div>     
+                </div>
             }
-
-    { props.user && <Home user={props.user}/> }
-
 
         </>
     )

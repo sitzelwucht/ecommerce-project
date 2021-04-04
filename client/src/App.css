@@ -8,10 +8,6 @@ div {
   font-size: 14px;
 }
 
-.nav {
-  background: rgba(34,98, 54, .6)
-}
-
 .form-control {
   background: rgb(234, 244, 250)!important;
   border: none!important
@@ -22,6 +18,28 @@ h3 {
 }
 
 header {
-  background: rgba(60,60,60,.4)
+  background: rgba(60,60,60,.2)
 }
 
+.admin-nav {
+  background: rgba(88, 125, 180, 0.4);
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.user-nav {
+  background: rgba(34,98, 54, .6);
+}
+
+.nav-link {
+  font-size: 20px;
+  color: rgba(20,20,20,.7);
+  font-weight: 400
+}
+
+.nav-link:hover {
+  font-size: 20px;
+  color: rgba(20,20,20,.9);
+  font-weight: bold
+}

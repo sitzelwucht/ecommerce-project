@@ -1,9 +1,12 @@
 import React from 'react'
+import { Button, Nav } from 'bootstrap-react'
 
-export default function AdminHome() {
+export default function AdminHome(props) {
+
     return (
         <div>
-            hello this is admin home page
+            <h3>admin home page</h3>
+
         </div>
     )
 }

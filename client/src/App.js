@@ -66,6 +66,7 @@ function App(props) {
   
 
   const handleLogout = () => {
+    alert('hello')
     axios.post(`${config.API_URL}/api/logout`, {}, { withCredentials: true })
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
@@ -87,25 +88,23 @@ function App(props) {
     <>
 
    {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
-
+   {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
     <Switch>
 
-     
       <Route exact path="/" render={() => {
         return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
-      }} />
-
-      <Route path="/home" render={() => {
-        return <Home user={loggedInUser} />
       }} />
 
       <Route path="/admin" render={() => {
         return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />
       }} />
 
-
-      <Route path="admin-home" render={() => {
-        return <AdminHome />
+      <Route path="/home" render={() => {
+        return <Home user={loggedInUser} />
+      }} />
+      
+      <Route path="/adminhome" render={() => {
+        return <AdminHome onLogout={handleLogout} user={loggedInUser} />
       }} />
 
     </Switch>
