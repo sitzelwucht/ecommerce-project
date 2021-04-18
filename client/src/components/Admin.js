@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import AdminHome from './AdminHome'
@@ -27,7 +28,10 @@ export default function Admin(props) {
 
                 { !props.user && 
                     <>
-                    <header className="border w-100" ><h2 className="m-5">ADMIN</h2></header>
+                    <header className="border w-100 d-flex justify-content-between" >
+                        <h2 className="m-5">ADMIN</h2>
+                       <Link to="/"><Button variant="outlined-dark" className="m-5">back</Button></Link>
+                    </header>
                     <div className="mx-auto" style={{width: "400px"}}>
                         <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in as admin</Button>
                         <Button variant="light" onClick={handleShowSignup}>New admin user</Button>

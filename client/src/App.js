@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
 import Landing from './components/Landing'
 import Home from './components/Home'
 import NavBar from './components/NavBar'
@@ -66,7 +66,6 @@ function App(props) {
   
 
   const handleLogout = () => {
-    alert('hello')
     axios.post(`${config.API_URL}/api/logout`, {}, { withCredentials: true })
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
