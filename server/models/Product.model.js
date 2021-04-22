@@ -1,8 +1,15 @@
 const { Schema, model } = require('mongoose')
-const mongoose = require('mongoose')
 
 let ProductSchema = new Schema({
     title: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     },

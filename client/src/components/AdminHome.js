@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button, Form, FormControl, InputGroup, Accordion } from 'react-bootstrap'
+import AddForm from './AddForm'
 
 export default function AdminHome(props) {
 
@@ -14,29 +15,24 @@ export default function AdminHome(props) {
                 <Card>
                     <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                        Add
+                        Add product
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
                     <Card.Body>
-                    add form goes here</Card.Body>
+                    
+                    
+                    <AddForm />
+                    
+                    </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
-                    <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                        Edit
-                    </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                    <Card.Body>edit form goes here</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
+    
 
                 <Card>
                     <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                        search
+                        search products
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="2">

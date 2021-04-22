@@ -31,6 +31,9 @@ app.use('/api', allRoutes)
 const authRoutes = require('./routes/auth.routes')
 app.use('/api', authRoutes)
 
+const productRoutes = require('./routes/product.routes')
+app.use('/api', productRoutes)
+
 app.use((req, res, next) => {
     res.sendFile(__dirname + '/public.index.html')
 })
