@@ -11,5 +11,10 @@ router.post('/newproduct', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
+router.get('/categories', (req, res) => {
+    ProductModel.find()
+    .then(categories)
+})
+
 
 module.exports = router

@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose')
+require('./Category.model.js')
 
 let ProductSchema = new Schema({
     title: {
@@ -6,8 +8,8 @@ let ProductSchema = new Schema({
         required: true
     },
     category: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
     description: {
         type: String,

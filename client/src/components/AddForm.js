@@ -34,15 +34,17 @@ export default function AddForm(props) {
         { showSuccessAlert && <Alert variant="success">Product added</Alert> }
         { showErrorAlert && <Alert variant="danger">Could not add product</Alert> }
             <Form onSubmit={handleAdd}>
-            <Form.Group controlId="formBasicProductName">
-                <Form.Label>name</Form.Label>
-                <Form.Control type="text" name="title" placeholder="Enter product name" />
-            </Form.Group>
 
             <Form.Group controlId="formBasicProductCategory">
                 <Form.Label>category</Form.Label>
                 <Form.Control type="text" name="category" placeholder="Enter product category" />
             </Form.Group>
+
+            <Form.Group controlId="formBasicProductName">
+                <Form.Label>name</Form.Label>
+                <Form.Control type="text" name="title" placeholder="Enter product name" />
+            </Form.Group>
+
             <Form.Group controlId="formBasicDescription">
                 <Form.Label>description</Form.Label>
                 <Form.Control type="text" name="description" placeholder="Product description" />

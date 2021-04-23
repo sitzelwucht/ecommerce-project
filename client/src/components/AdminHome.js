@@ -27,7 +27,22 @@ export default function AdminHome(props) {
                     </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-    
+
+                <Card>
+                    <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                        Browse by category
+                    </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="1">
+                    <Card.Body>
+                    
+                    categories go here
+                    
+                    
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
 
                 <Card>
                     <Card.Header>
