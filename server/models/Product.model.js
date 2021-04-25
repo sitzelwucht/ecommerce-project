@@ -8,7 +8,8 @@ let ProductSchema = new Schema({
         required: true
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'Category'
     },
     description: {
