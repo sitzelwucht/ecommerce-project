@@ -50,4 +50,19 @@ router.get('/productsearch/', (req, res) => {
 })
 
 
+router.delete('/products/:prodId', (req, res) => {
+    const id = req.params.prodId
+    ProductModel.findByIdAndDelete(id)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: 'Problem occurred while deleting',
+            message: err
+        })
+    })
+})
+
+
 module.exports = router

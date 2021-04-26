@@ -11,7 +11,7 @@ export default function NavBar(props) {
                     props.admin ? 
                     <>
                     <Nav.Item>
-                        <Badge variant="success"><h6>{props.user.email}</h6></Badge>
+                        <Badge variant="dark"><h6>{props.user.email}</h6></Badge>
                     </Nav.Item>
                     <Nav.Item>
                         <h6>admin</h6>

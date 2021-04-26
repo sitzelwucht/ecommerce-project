@@ -10,6 +10,7 @@ import axios from 'axios'
 import config from './config'
 import Admin from './components/Admin';
 import AdminHome from './components/AdminHome';
+import ProductsByCategory from './components/ProductsByCategory'
 
 function App(props) {
   
@@ -105,6 +106,10 @@ function App(props) {
       <Route path="/adminhome" render={() => {
         return <AdminHome onLogout={handleLogout} user={loggedInUser} />
       }} />
+
+       <Route path="/bycategory/:category" render={(routeProps) => {
+        return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} />
+      }} /> 
 
     </Switch>
 

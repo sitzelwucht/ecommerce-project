@@ -46,9 +46,68 @@ header {
   font-weight: 400
 }
 
+.btn-link {
+  color: rgb(219, 219, 219);
+  letter-spacing: .4em;
+}
+
+.btn-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-link:active {
+  color: rgb(22, 22, 22);
+}
+
+.btn:focus, .btn-link:focus {
+  border: none!important;
+  outline: none!important;
+  text-decoration: none;
+  box-shadow: none;
+}
+
 .nav-link:hover {
   font-size: 20px;
   color: rgba(20,20,20,.9);
   font-weight: bold
 }
 
+.dark-bg {
+  background: rgb(40,40,40);
+  font: white;
+  min-height: 100vh;
+}
+
+.orange-bg {
+  background: rgb(185, 81, 81);
+  font: white;
+}
+
+.orange-bg-light {
+  background: rgba(197, 130, 130, .6);
+  font: white;
+}
+
+
+.blue-bg {
+  background: rgb(48, 139, 139);
+  font: white;
+}
+
+.blue-bg-light {
+  background: rgba(116, 175, 175, .6);
+  font: white;
+}
+
+
+.red-bg {
+  background: rgb(211, 166, 82);
+  font: white;
+}
+
+
+.red-bg-light {
+  background: rgba(201, 176, 130, .6);
+  font: white;
+}
