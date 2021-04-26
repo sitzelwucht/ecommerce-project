@@ -1,13 +1,15 @@
 import React, { useState, useEffect} from 'react'
+import { withRouter } from 'react-router-dom'
 import { Form, Button, Alert, InputGroup, FormControl } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 
-export default function AddForm(props) {
+function AddForm(props) {
 
     const [showSuccessAlert, setShowSuccessAlert] = useState(false)
     const [showErrorAlert, setShowErrorAlert] = useState(false)
-    const [categs, setCategs] = useState(props.categories)
+    const [categs, setCategs] = useState([])
+    const [updatedCategs, setUpdatedCategs] = useState(null)
 
 
     // display alert for 1.5 seconds
@@ -26,6 +28,16 @@ export default function AddForm(props) {
     }
 
 
+    async function getCategories() {
+        const response = await axios.get(`${config.API_URL}/api/categories`)
+        const categories = await response.data
+        const names = categories.map((item) => {
+            return item.name
+        })
+        return names
+    }
+
+
     const handleAddCategory = (e) => {
         e.preventDefault()
         const newCategory = {
@@ -33,9 +45,13 @@ export default function AddForm(props) {
          }
        
         axios.post(`${config.API_URL}/api/newcategory`, newCategory)
-        .then(response => setCategs(prevCategs => {
-            return [response, ...prevCategs]
-        }))
+        .then(response => {
+            handleSuccessAlert()
+            setUpdatedCategs(() => {
+                getCategories().then(result => setUpdatedCategs(result))
+            })
+            props.history.push('/')
+        })
         .catch(err => handleErrorAlert())
     }
 
@@ -61,8 +77,18 @@ export default function AddForm(props) {
 
 
     useEffect(() => {
-        setCategs(categs)
-    }, [categs])
+        getCategories().then(result => {
+            setCategs(result)
+        })
+    }, [])
+
+
+    useEffect(() => {
+        getCategories().then(result => {
+            setCategs(result)
+        })
+    }, [updatedCategs])
+
 
     return (
         <div>
@@ -85,7 +111,7 @@ export default function AddForm(props) {
                 <Form.Control as="select" name="categorySelect" default="select product category" >
                 <option selected disabled hidden>select product category</option>
                 {
-                    props.categories.map((item, i) => {
+                    categs && categs.map((item, i) => {
                         return <option key={i}>{item}</option>
                     })
                 }
@@ -123,3 +149,5 @@ export default function AddForm(props) {
         </div>
     )
 }
+
+export default withRouter(AddForm)

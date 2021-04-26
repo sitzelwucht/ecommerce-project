@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import config from '../config'
 import { Link } from 'react-router-dom'
@@ -31,11 +32,12 @@ function ProductsByCategory(props) {
         .catch(err => console.log(err))
     }
 
+    
     useEffect(() => {
         getProducts().then(result => setProducts(result))
     }, [])
 
-    
+
     useEffect(() => {
         getProducts().then(result => setProducts(result))
     }, [updatedProducts])

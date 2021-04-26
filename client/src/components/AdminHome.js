@@ -11,6 +11,7 @@ export default function AdminHome(props) {
     const [categories, setCategories] = useState([])
     const [searchResults, setSearchResults] = useState([])
 
+
     // fetch categories
     const getCategories = async () => {
         const response = await axios.get(`${config.API_URL}/api/categories`)
@@ -20,6 +21,7 @@ export default function AdminHome(props) {
         })
         return names
     }
+
 
 
     const handleKeywordSearch = async (e) => {
@@ -59,7 +61,7 @@ export default function AdminHome(props) {
                     <Accordion.Collapse eventKey="0">
                         <Card.Body className="blue-bg-light">
                     
-                            <AddForm categories={categories}/>
+                            <AddForm categories={categories} />
                     
                         </Card.Body>
                     </Accordion.Collapse>
