@@ -29,4 +29,16 @@ router.get('/categories', (req, res) => {
 })
 
 
+router.get('/productsearch/', (req, res) => {
+    const queryStr = req.query.input
+    ProductModel.find({ title: new RegExp(queryStr, 'i')})
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json({msg: 'no results'})
+    })
+})
+
+
 module.exports = router
