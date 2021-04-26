@@ -28,6 +28,15 @@ router.get('/categories', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
+router.get('/bycategory/:category', (req, res) => {
+    const categoryQuery = req.params.category
+    ProductModel.find({ category: categoryQuery })
+    .then(results => {
+        res.status(200).json(results)
+    })
+    .catch(err => console.log(err))
+    
+})
 
 router.get('/productsearch/', (req, res) => {
     const queryStr = req.query.input
