@@ -96,7 +96,7 @@ export default function AdminHome(props) {
                 <Card className="dark-bg">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                            search products
+                            Search products
                         </Accordion.Toggle>
                     </Card.Header>
 

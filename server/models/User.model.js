@@ -19,6 +19,15 @@ let UserSchema = new Schema({
         type: String,
         required: true
     },
+    address: {
+        type: String,
+    },
+    postCode: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
     isAdmin: {
         type: Boolean,
         required: true
