@@ -64,5 +64,26 @@ router.delete('/products/:prodId', (req, res) => {
     })
 })
 
+router.patch('/products/:prodId', (req, res) => {
+    const id = req.params.prodId
+    const { title, description, price, stock, category } = req.body
+
+    ProductModel.findByIdAndUpdate(id, {$set: {
+        title: title,
+        description: description,
+        price: price,
+        stock: stock,
+        category: category
+    }}, {new: true})
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: 'Problem occured while updating',
+            message: err
+        })
+    })
+})
 
 module.exports = router

@@ -76,22 +76,22 @@ header {
 .dark-bg {
   background: rgb(40,40,40);
   font: white;
-  min-height: 100vh;
+  border: 1px solid white;
 }
 
 .orange-bg {
-  background: rgb(185, 81, 81);
+  background: rgb(179, 160, 160);
   font: white;
 }
 
 .orange-bg-light {
-  background: rgba(197, 130, 130, .6);
+  background: rgba(151, 117, 117, 0.6);
   font: white;
 }
 
 
 .blue-bg {
-  background: rgb(48, 139, 139);
+  background: rgb(133, 148, 148);
   font: white;
 }
 
@@ -102,7 +102,7 @@ header {
 
 
 .red-bg {
-  background: rgb(211, 166, 82);
+  background: rgb(160, 153, 141);
   font: white;
 }
 

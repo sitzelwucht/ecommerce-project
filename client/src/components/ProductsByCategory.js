@@ -5,11 +5,13 @@ import axios from 'axios'
 import config from '../config'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
+import EditModal from './EditModal'
 
 function ProductsByCategory(props) {
 
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
+    const [modalShow, setModalShow] = useState(false);
 
     // fetch products
     const getProducts = async () => {
@@ -33,6 +35,8 @@ function ProductsByCategory(props) {
     }
 
     
+
+
     useEffect(() => {
         getProducts().then(result => setProducts(result))
     }, [])
@@ -65,10 +69,10 @@ function ProductsByCategory(props) {
                                     item.stock > 50 && item.stock < 100 && <span> Some available</span>
                                 }
                                 {
-                                    item.stock > 20 && item.stock < 50 && <span> Few Available</span>
+                                    item.stock > 20 && item.stock <= 50 && <span> Few Available</span>
                                 }
                                 {
-                                    item.stock < 20 && <span> Low stock</span>
+                                    item.stock <= 20 && <span> Low stock</span>
                                 }
                                 {
                                     item.stock <= 0 && <span> Out of stock</span>
@@ -77,8 +81,18 @@ function ProductsByCategory(props) {
                                 <div className="d-flex flex-row bd-highlight mx-auto mt-5">
                                    
                                    <Button variant="danger" className="m-1" onClick={() => {handleDelete(item._id)}}>delete</Button>
-                                   <Button variant="success" className="m-1">edit</Button>
-                                   
+                                   <Button variant="success" onClick={() => setModalShow(true)}>
+                                    edit
+                                </Button>
+                               
+                                <EditModal show={modalShow} onHide={() => setModalShow(false)} 
+                                    title={item.title}
+                                    description={item.description}
+                                    price={item.price}
+                                    stock={item.stock}
+                                    category={props.category}
+                                    id={item._id}
+                                />
                                </div>
                             </div>
                 })
@@ -87,6 +101,8 @@ function ProductsByCategory(props) {
         </div>
     )
 }
+
+
 
 
 export default withRouter(ProductsByCategory)

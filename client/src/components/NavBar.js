@@ -4,7 +4,7 @@ import { Nav, Button, Badge } from 'react-bootstrap'
 export default function NavBar(props) {
     return (
         <div>
-            <Nav fill className={props.admin ? "justify-content-center p-4 admin-nav" : "justify-content-center p-4 user-nav"} >
+            <Nav className={props.admin ? "d-flex justify-content-between p-4 admin-nav" : "justify-content-center p-4 user-nav"} >
 
            
                   {

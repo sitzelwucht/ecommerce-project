@@ -51,7 +51,7 @@ export default function AdminHome(props) {
             <Card className="w-75 mx-auto">
 
              <Accordion className="w-100">
-                <Card className="blue-bg">
+                <Card className="dark-bg">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
                             Add product
@@ -67,7 +67,7 @@ export default function AdminHome(props) {
                     </Accordion.Collapse>
                 </Card>
 
-                <Card className="orange-bg mx-auto">
+                <Card className="dark-bg mx-auto">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="1">
                             Browse by category
@@ -93,7 +93,7 @@ export default function AdminHome(props) {
                     </Accordion.Collapse>
                 </Card>
 
-                <Card className="red-bg">
+                <Card className="dark-bg">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="2">
                             search products
