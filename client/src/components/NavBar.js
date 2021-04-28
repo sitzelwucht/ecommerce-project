@@ -23,7 +23,7 @@ export default function NavBar(props) {
                     <Badge variant="warning"><h5>{props.user.email}</h5></Badge>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/home">Categories</Nav.Link>
+                    <Nav.Link href="/categories">Categories</Nav.Link>
                 </Nav.Item>
                 
                 <Nav.Item>

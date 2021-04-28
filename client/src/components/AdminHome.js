@@ -116,8 +116,11 @@ export default function AdminHome(props) {
                                     <h4 key={i}>{item.title}</h4>
                                     <div key={i}>{item.description}</div>
                                     </div>
+                                    
                             })
+
                         }
+    
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>

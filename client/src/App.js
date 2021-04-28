@@ -11,6 +11,7 @@ import config from './config'
 import Admin from './components/Admin';
 import AdminHome from './components/AdminHome';
 import ProductsByCategory from './components/ProductsByCategory'
+import BrowseCategories from './components/BrowseCategories';
 
 function App(props) {
   
@@ -109,6 +110,10 @@ function App(props) {
 
        <Route path="/bycategory/:category" render={(routeProps) => {
         return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} />
+      }} /> 
+
+      <Route path="/categories" render={(routeProps) => {
+        return <BrowseCategories user={loggedInUser} />
       }} /> 
 
     </Switch>

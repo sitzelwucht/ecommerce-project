@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import { Nav, Container } from 'react-bootstrap'
 
 export default function Home(props) {
+
+    
     return (
         <div className="container">
         { !props.user && <Redirect to={'/'} /> }

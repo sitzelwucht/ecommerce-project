@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import EditModal from './EditModal'
 
+
 function ProductsByCategory(props) {
 
     const [products, setProducts] = useState([])
@@ -34,8 +35,6 @@ function ProductsByCategory(props) {
         .catch(err => console.log(err))
     }
 
-    
-
 
     useEffect(() => {
         getProducts().then(result => setProducts(result))
@@ -50,81 +49,77 @@ function ProductsByCategory(props) {
     return (
         <div>
         
-        <Link to={'/'}><Button variant="outlined-link">back</Button></Link>
-        <h1 className="mt-5 mx-auto w-25">{props.category}</h1>
+            <Link to={'/'}><Button variant="outlined-link">back</Button></Link>
+            <h1 className="mt-5 mx-auto w-25">{props.category}</h1>
         
-        <div className="d-flex">
-            {
+            <div className="d-flex">
+                {
                 !products ? <div>no results</div> : products.map((item, i) => {
 
-                    return <div className="border m-3 p-3 w-25">
-       
-                            <h3>{item.title}</h3>
-                            <h6>{item.description}</h6>
-                            <h5>{item.price} EUR</h5>
-                            <div>Stock:
-                            {
-                                item.stock > 100 && <span> Available</span>
-                            }
-                            {
-                                item.stock > 50 && item.stock < 100 && <span> Some available</span>
-                            }
-                            {
-                                item.stock > 20 && item.stock <= 50 && <span> Few Available</span>
-                            }
-                            {
-                                item.stock <= 20 && <span> Low stock</span>
-                            }
-                            {
-                                item.stock <= 0 && <span> Out of stock</span>
-                            }
-                            </div>
-                               
-
-                                
-                                <div className="d-flex flex-row bd-highlight mx-auto mt-5">
-                                {
-                                props.user && props.user.isAdmin && 
-                                    <>
-                                    <Button variant="danger" className="m-1" onClick={() => {handleDelete(item._id)}}>delete</Button>
-                                    <Button variant="success" onClick={() => setModalShow(true)}>edit</Button>
-                                
-                                    <EditModal show={modalShow} onHide={() => setModalShow(false)} 
-                                        title={item.title}
-                                        description={item.description}
-                                        price={item.price}
-                                        stock={item.stock}
-                                        category={props.category}
-                                        id={item._id}
-                                    />
-                                    </>
-                                }
-                                {
-                                props.user && !props.user.isAdmin && 
-                                    <>
-                                    <Form.Group className="m-1">
-                                        <Form.Control as="select" name="categorySelect" >
-                                            <option selected disabled hidden>qty</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Button variant="info" className="m-1" onClick={() => {handleDelete(item._id)}}>to cart</Button>
-                                    </>
-                                }
-                                </div>
-                           </div>
-                })
-            }
-            </div>
+                    return (<div className="border m-3 p-3 w-25">
+        
+                        <h3>{item.title}</h3>
+                        <h6>{item.description}</h6>
+                        <h5>{item.price} EUR</h5>
+                        <div>Stock:
+                        {
+                            item.stock > 100 && <span> Available</span>
+                        }
+                        {
+                            item.stock > 50 && item.stock < 100 && <span> Some available</span>
+                        }
+                        {
+                            item.stock > 20 && item.stock <= 50 && <span> Few Available</span>
+                        }
+                        {
+                            item.stock <= 20 && <span> Low stock</span>
+                        }
+                        {
+                            item.stock <= 0 && <span> Out of stock</span>
+                        }
+                        </div>
+                                        
+                        <div className="d-flex flex-row bd-highlight mx-auto mt-5">
+                        {
+                        props.user && props.user.isAdmin && 
+                            <>
+                            <Button variant="danger" className="m-1" onClick={() => {handleDelete(item._id)}}>delete</Button>
+                            <Button variant="success" onClick={() => setModalShow(true)}>edit</Button>
+                        
+                            <EditModal show={modalShow} onHide={() => setModalShow(false)} 
+                                title={item.title}
+                                description={item.description}
+                                price={item.price}
+                                stock={item.stock}
+                                category={props.category}
+                                id={item._id}
+                            />
+                            </>
+                        }
+                        {
+                        props.user && !props.user.isAdmin && 
+                            <>
+                            <Form.Group className="m-1">
+                                <Form.Control as="select" name="categorySelect" >
+                                    <option selected disabled hidden>qty</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Button variant="info" className="m-1" onClick={() => {handleDelete(item._id)}}>to cart</Button>
+                            </>
+                        }
+                        </div>
+                        </div>)
+                    })
+                }
+                </div>
         </div>
     )
 }
-
-
 
 
 export default withRouter(ProductsByCategory)
