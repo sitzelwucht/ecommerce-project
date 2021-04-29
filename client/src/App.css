@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=New+Tegomin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;1,400&display=swap');
 
 body, html {
   margin: 0;
@@ -6,7 +7,6 @@ body, html {
 }
 
 div {
-  font-family: 'Montserrat';
   font-weight: 300;
   font-size: 14px;
 }
@@ -29,13 +29,40 @@ header {
   background: rgba(30,90,160,.2)
 }
 
+/* user page */
+
 .user-nav {
-  background: rgba(34,98, 54, .6);
+  background: rgba(36, 98, 34, 0.6);
+  font-family: 'Source Sans Pro';
 }
 
-.container {
-  display: flex;
+.home-navbar {
+  font-family: 'Source Sans Pro';
+  background: rgb(183, 197, 166);
+  min-width: 15%;
+  max-width: 15%;
+  border-radius: 7px;
 }
+
+.user-frontpage-header {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 25px;
+}
+
+.home-navbar a:hover {
+  letter-spacing: .03em;
+}
+
+.user-page-container {
+  font-family: 'Source Sans Pro';
+  display: flex;
+  width: 85%;
+  margin: auto;
+  background: rgb(218, 218, 218);
+}
+
 
 /* admin page */
 
@@ -75,8 +102,7 @@ header {
 
 .nav-link:hover {
   font-size: 20px;
-  color: rgba(20,20,20,.9);
-  font-weight: bold
+  color: rgba(131, 131, 131, 0.9);
 }
 
 .dark-bg {
@@ -91,7 +117,7 @@ header {
 }
 
 .orange-bg-light {
-  background: rgba(151, 117, 117, 0.6);
+  background: rgba(207, 160, 160, 0.6);
   font: white;
 }
 
@@ -102,7 +128,7 @@ header {
 }
 
 .blue-bg-light {
-  background: rgba(116, 175, 175, .6);
+  background: rgba(145, 180, 180, 0.733);
   font: white;
 }
 
@@ -114,6 +140,6 @@ header {
 
 
 .red-bg-light {
-  background: rgba(201, 176, 130, .6);
+  background: rgba(223, 200, 157, 0.6);
   font: white;
 }
