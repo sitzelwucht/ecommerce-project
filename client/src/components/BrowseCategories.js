@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 
@@ -26,7 +28,9 @@ export default function BrowseCategories() {
             <div className="m-10 mt-5 mx-auto w-50 p-3 border">
             {
                 categories.map((item, i) => {
-                    return <div className="" key={i}><h4>{item}</h4></div>
+                    return <div className="categories-user" key={i}>
+                                <Link to={`/bycategory/${item}`}><Button variant="link">{item}</Button></Link>
+                            </div>
                 })
             }
 

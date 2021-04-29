@@ -27,7 +27,6 @@ export default function Home(props) {
         <div className="user-page-container">
         { !props.user && <Redirect to={'/'} /> }
 
-
             <Nav className="flex-column m-5 border home-navbar">
                 <Nav.Link eventKey="link-0" onClick={handleShowSettings}> User settings</Nav.Link>
                 <Nav.Link eventKey="link-1">Link</Nav.Link>

@@ -50,7 +50,7 @@ export default function UserSettings(props) {
         })
     }, [])
 
-    
+
     return (
         <div>
         { console.log(props.user)}
@@ -156,7 +156,7 @@ export default function UserSettings(props) {
             </Form.Group>
 
             <Button variant="dark" type="submit">
-                Submit
+                Save
             </Button>
         </Form>
 

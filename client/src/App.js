@@ -12,6 +12,8 @@ import Admin from './components/Admin';
 import AdminHome from './components/AdminHome';
 import ProductsByCategory from './components/ProductsByCategory'
 import BrowseCategories from './components/BrowseCategories';
+import CartProvider from './contexts/CartProvider'
+
 
 function App(props) {
   
@@ -86,40 +88,40 @@ function App(props) {
 
 
   return (
-    <>
+        
+      <CartProvider>
 
-   {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
-   {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
-    <Switch>
+        <>
+        {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
+        {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
+          <Switch>
+            <Route exact path="/" render={() => {
+              return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
+            }} />
 
-      <Route exact path="/" render={() => {
-        return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
-      }} />
+            <Route path="/admin" render={() => {
+              return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />
+            }} />
 
-      <Route path="/admin" render={() => {
-        return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />
-      }} />
+            <Route path="/home" render={() => {
+              return <Home user={loggedInUser} />
+            }} />
+            
+            <Route path="/adminhome" render={() => {
+              return <AdminHome onLogout={handleLogout} user={loggedInUser} />
+            }} />
 
-      <Route path="/home" render={() => {
-        return <Home user={loggedInUser} />
-      }} />
-      
-      <Route path="/adminhome" render={() => {
-        return <AdminHome onLogout={handleLogout} user={loggedInUser} />
-      }} />
+            <Route path="/bycategory/:category" render={(routeProps) => {
+              return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} />
+            }} /> 
 
-       <Route path="/bycategory/:category" render={(routeProps) => {
-        return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} />
-      }} /> 
+            <Route path="/categories" render={(routeProps) => {
+              return <BrowseCategories user={loggedInUser} />
+            }} /> 
+          </Switch>
 
-      <Route path="/categories" render={(routeProps) => {
-        return <BrowseCategories user={loggedInUser} />
-      }} /> 
-
-    </Switch>
-
-    </>
-    
+        </>
+      </CartProvider>
   );
 }
 

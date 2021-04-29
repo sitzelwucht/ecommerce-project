@@ -1,18 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import config from '../config'
-import { Link } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import EditModal from './EditModal'
-
+import { useCart } from '../contexts/CartProvider'
 
 function ProductsByCategory(props) {
+
+    const history = useHistory();
+    const { addToCart } = useCart()
 
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
     const [modalShow, setModalShow] = useState(false);
+
 
     // fetch products
     const getProducts = async () => {
@@ -26,6 +29,7 @@ function ProductsByCategory(props) {
     }
 
 
+    // admin product deletion
     const handleDelete = (id) => {
         axios.delete(`${config.API_URL}/api/products/${id}`)
         .then(() => {
@@ -34,6 +38,7 @@ function ProductsByCategory(props) {
         })
         .catch(err => console.log(err))
     }
+
 
 
     useEffect(() => {
@@ -48,11 +53,12 @@ function ProductsByCategory(props) {
 
     return (
         <div>
+      
+            <Button variant="outlined-link" onClick={() => history.goBack()}>back</Button>
+
+            <h1 className="mt-5 mx-auto w-25 category-title">{props.category}</h1>
         
-            <Link to={'/'}><Button variant="outlined-link">back</Button></Link>
-            <h1 className="mt-5 mx-auto w-25">{props.category}</h1>
-        
-            <div className="d-flex">
+            <div className="d-flex border m-5">
                 {
                 !products ? <div>no results</div> : products.map((item, i) => {
 
@@ -109,13 +115,15 @@ function ProductsByCategory(props) {
                                     <option>5</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Button variant="info" className="m-1" onClick={() => {handleDelete(item._id)}}>to cart</Button>
+                            <Button variant="info" className="m-1" onClick={() => {addToCart(props.user._id, item._id)}}>to cart</Button>
+                            <Button variant="danger" className="m-1" onClick={() => {handleDelete(item._id)}}>to favorites</Button>
                             </>
                         }
                         </div>
                         </div>)
                     })
                 }
+                { products.length <= 0 && <div className="p-3">No products in this category</div>}
                 </div>
         </div>
     )
