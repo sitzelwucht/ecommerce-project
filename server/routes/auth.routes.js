@@ -97,6 +97,40 @@ router.post('/admin-login', (req, res) => {
 })
 
 
+router.patch('/edituser/:id', (req, res) => {
+    const id = req.params.id
+    const { email, firstName, lastName, phone, address, postCode, city } = req.body
+
+    UserModel.findByIdAndUpdate(id, {$set: {
+        email: email,
+        firstName: firstName, 
+        lastName: lastName,
+        phone: phone,
+        address: address,
+        postCode: postCode,
+        city: city
+    }}, {new: true})
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: 'Problem occurred while updating',
+            message: err
+        })
+    })
+})
+
+router.get(('/getuser/:id', (req, res) => {
+    const id = req.params.id
+    UserModel.findById(id)
+    .then(response => {
+        console.log(response)
+        res.status(200).json(response)
+    })
+}))
+
+
 
 router.post('/logout', (req, res) => {
     req.session.destroy()
