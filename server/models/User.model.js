@@ -19,6 +19,9 @@ let UserSchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: Number,
+    },
     address: {
         type: String,
     },
