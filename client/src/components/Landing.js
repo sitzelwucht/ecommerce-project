@@ -45,7 +45,7 @@ export default function Landing(props) {
                     <div className="text-center p-3 w-100" 
                         style={{
                         background: 'rgba(60,60,60, .4)',
-                        position: 'absolute',
+                        position: 'fixed',
                         bottom: '0'
                         }}>
                         <a href="/admin"><Button variant="link">admin</Button></a>

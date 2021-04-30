@@ -15,9 +15,12 @@ export default function NavBar(props) {
     const [items, setItems] = useState(cartItems)
 
 
+    // show cart items of logged in user only
     useEffect(() => {
-        setItems(cartItems)
-    }, [setItems])
+        setItems(cartItems.filter(elem => {
+            return elem.user === props.user._id
+        }))
+    }, [])
 
 
     return (
@@ -70,7 +73,7 @@ export default function NavBar(props) {
                         </Nav.Link>
                     </Nav.Item>
                     
-                    <Cart show={cartModalShow} onHide={() => setCartModalShow(false)} />
+                    <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />
                 </>
             } 
                 

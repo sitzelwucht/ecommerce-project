@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Landing from './components/Landing'
 import Home from './components/Home'
 import NavBar from './components/NavBar'
+import AnonymousNav from './components/AnonymousNav'
 import axios from 'axios'
 import config from './config'
 import Admin from './components/Admin';
@@ -13,6 +14,8 @@ import AdminHome from './components/AdminHome';
 import ProductsByCategory from './components/ProductsByCategory'
 import BrowseCategories from './components/BrowseCategories';
 import CartProvider from './contexts/CartProvider'
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 
 function App(props) {
@@ -30,6 +33,8 @@ function App(props) {
       axios.post(`${config.API_URL}/api/login`, user, {withCredentials: true})
       .then(response => {
         setLoggedInUser(response.data)
+        props.history.push('/')
+
       })
       .catch(err => setError(err.response.data.errorMsg))
 }
@@ -74,9 +79,6 @@ function App(props) {
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
 
-
-
-
   useEffect(() => {
     if (!loggedInUser) {
       axios.get(`${config.API_URL}/api/user`, { withCredentials: true })
@@ -92,12 +94,21 @@ function App(props) {
       <CartProvider>
 
         <>
+        {!loggedInUser && <AnonymousNav /> }
         {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
         {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
           <Switch>
             <Route exact path="/" render={() => {
               return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
             }} />
+            
+            <Route path="/login" render={(routeProps) => {
+              return <LoginForm onLogin={handleLogin} isAdmin="false" errorMsg={props.errorMsg}  />
+            }} /> 
+            
+            <Route path="/signup" render={(routeProps) => {
+              return <SignupForm onSignup={handleSignup} isAdmin="false"  errorMsg={props.errorMsg}  />
+            }} /> 
 
             <Route path="/admin" render={() => {
               return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />

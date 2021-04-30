@@ -10,7 +10,7 @@ import { useCart } from '../contexts/CartProvider'
 function ProductsByCategory(props) {
 
     const history = useHistory();
-    const { addToCart, removeFromCart, cartItems } = useCart()
+    const { addToCart, cartItems } = useCart()
 
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
@@ -105,6 +105,7 @@ function ProductsByCategory(props) {
                         {
                         props.user && !props.user.isAdmin && 
                             <>
+                            <Form>
                             <Form.Group className="m-1">
                                 <Form.Control as="select" name="categorySelect" >
                                     <option selected disabled hidden>qty</option>
@@ -115,8 +116,12 @@ function ProductsByCategory(props) {
                                     <option>5</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Button variant="info" className="m-1" onClick={() => {addToCart(props.user._id, item.title, item.price)}}>to cart</Button>
-                            <Button variant="danger" className="m-1" onClick={() => {handleDelete(cartItems, props.user._id, item.prodName)}}>to favorites</Button>
+                            
+                            </Form>
+                            <Button variant="info" className="m-1" 
+                            onClick={() => {addToCart(props.user._id, item.title, item.price)}}>to cart</Button>
+                            <Button variant="danger" className="m-1" 
+                            onClick={() => {handleDelete(cartItems, props.user._id, item.prodName)}}>to favorites</Button>
                             </>
                         }
                         </div>
