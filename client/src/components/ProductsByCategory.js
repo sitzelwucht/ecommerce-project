@@ -10,7 +10,7 @@ import { useCart } from '../contexts/CartProvider'
 function ProductsByCategory(props) {
 
     const history = useHistory();
-    const { addToCart } = useCart()
+    const { addToCart, removeFromCart, cartItems } = useCart()
 
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
@@ -54,7 +54,7 @@ function ProductsByCategory(props) {
     return (
         <div>
       
-            <Button variant="outlined-link" onClick={() => history.goBack()}>back</Button>
+            <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
 
             <h1 className="mt-5 mx-auto w-25 category-title">{props.category}</h1>
         
@@ -115,8 +115,8 @@ function ProductsByCategory(props) {
                                     <option>5</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Button variant="info" className="m-1" onClick={() => {addToCart(props.user._id, item._id)}}>to cart</Button>
-                            <Button variant="danger" className="m-1" onClick={() => {handleDelete(item._id)}}>to favorites</Button>
+                            <Button variant="info" className="m-1" onClick={() => {addToCart(props.user._id, item.title, item.price)}}>to cart</Button>
+                            <Button variant="danger" className="m-1" onClick={() => {handleDelete(cartItems, props.user._id, item.prodName)}}>to favorites</Button>
                             </>
                         }
                         </div>

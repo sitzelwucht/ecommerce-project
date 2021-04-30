@@ -36,6 +36,31 @@ header {
   font-family: 'Source Sans Pro';
 }
 
+.product-count {
+  background: rgb(255, 153, 0);
+  font-weight: 600;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-table {
+  width: 100%;
+
+}
+.cart-table tr {
+  font-size: 15px;
+  text-align: center;
+}
+
+.highlighted {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
 .home-navbar {
   font-family: 'Source Sans Pro';
   background: rgb(183, 197, 166);
