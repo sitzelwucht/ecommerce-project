@@ -27,7 +27,7 @@ export default function NavBar(props) {
         <div>
             <Nav className={props.admin ? 
             "d-flex justify-content-between p-4 admin-nav" : 
-            "d-flex justify-content-between p-4 user-nav"} >
+            "d-flex justify-content-around p-4 pt-5 user-nav"} >
 
             {
                 props.admin ? 
@@ -40,37 +40,37 @@ export default function NavBar(props) {
                     </Nav.Item>
                 </> : 
                 <>
-                    <Nav.Item>
+                    <Nav.Item >
                         <Nav.Link href="/">
-                        <img src="/geometric.svg" height="35" alt="home" title="home" />
+                        <img src="/logo.svg" height="50" alt="home" title="home" />
                         </Nav.Link>
                     </Nav.Item>
                     
-                    <Nav.Item>
+                    <Nav.Item className="m-1">
                         <Badge variant="warning"><h5>{props.user.email}</h5></Badge>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/categories">Categories</Nav.Link>
+                        <Nav.Link href="/categories"><Button variant="outline-light">Categories</Button></Nav.Link>
                     </Nav.Item>
                 
-                    <Nav.Item>
+                    <Nav.Item className="d-flex">
                         <Nav.Link eventKey="link-2" onClick={() => setFavoriteModalShow(true)}>
-                        <img src="/favorite.svg" height="35" alt="cart" title="your cart" />
-                        {/* {
-                        items && <div className="product-count">{items.length}</div>    
-                        } */}
+                        <img src="/favorite.svg" height="35" alt="cart" title="your favorites" />
+                        
                         </Nav.Link>
-                    </Nav.Item>
 
-                    <Favorites show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
-                
-                    <Nav.Item>
                         <Nav.Link eventKey="link-1" onClick={() => setCartModalShow(true)}>
                         <img src="/shopping-cart.svg" height="35" alt="cart" title="your cart" />
                         {
                         items && items.length > 0 && <div className="product-count">{items.length}</div>    
                         }
                         </Nav.Link>
+                    </Nav.Item>
+
+                    <Favorites show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
+                
+                    <Nav.Item>
+                     
                     </Nav.Item>
                     
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />

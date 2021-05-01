@@ -25,14 +25,11 @@ h3 {
   font-weight: 500;
 }
 
-header {
-  background: rgba(30,90,160,.2)
-}
 
 /* user page */
 
 .user-nav {
-  background: rgba(36, 98, 34, 0.6);
+  background: rgba(63, 128, 119, 0.6);
   font-family: 'Source Sans Pro';
 }
 
@@ -63,7 +60,7 @@ header {
 
 .home-navbar {
   font-family: 'Source Sans Pro';
-  background: rgb(183, 197, 166);
+  background: rgb(166, 197, 187);
   min-width: 15%;
   max-width: 15%;
   border-radius: 7px;

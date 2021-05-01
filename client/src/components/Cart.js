@@ -22,8 +22,9 @@ export default function Cart(props) {
     return (
         <div>
             <Modal {...props } size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
-                <Modal.Header>
+                <Modal.Header className="d-flex justify-content-between">
                     <h2>Cart</h2>
+                    <Button variant="light" onClick={props.onHide}>close</Button>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -59,7 +60,6 @@ export default function Cart(props) {
 
                 <Modal.Footer>
                     <Button>Go to checkout</Button>
-                    <Button variant="light" onClick={props.onHide}>Cancel</Button>
                 </Modal.Footer>
             </Modal>            
         </div>

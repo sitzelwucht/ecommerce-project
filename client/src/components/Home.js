@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Nav, Container } from 'react-bootstrap'
 import UserSettings from './UserSettings'
+import Clock from './Clock'
 
 export default function Home(props) {
 
-    const [time, setTime] = useState()
     const [showWelcome, setShowWelcome] = useState(true)
     const [showSettings, setShowSettings] = useState(false)
 
@@ -15,13 +15,6 @@ export default function Home(props) {
         setShowSettings(true) 
     }
 
-
-    // show current date
-    useEffect(() => {
-        const date = new Date()
-        setTime(date)
-    }, [])
-    
 
     return (
         <div className="user-page-container">
@@ -40,7 +33,7 @@ export default function Home(props) {
                 showWelcome &&
                 <header className="user-frontpage-header">
                     <h3>Welcome, {props.user.firstName}</h3>
-                    <h5>{time && time.toLocaleString()}</h5>
+                    <Clock />
                 </header>
                }
 

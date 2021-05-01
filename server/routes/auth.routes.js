@@ -121,14 +121,16 @@ router.patch('/edituser/:id', (req, res) => {
     })
 })
 
-router.get(('/getuser/:id', (req, res) => {
+router.get('/getuser/:id', (req, res) => {
     const id = req.params.id
     UserModel.findById(id)
     .then(response => {
-        console.log(response)
         res.status(200).json(response)
     })
-}))
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
 
 
 

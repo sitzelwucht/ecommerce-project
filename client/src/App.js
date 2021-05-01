@@ -34,7 +34,6 @@ function App(props) {
       .then(response => {
         setLoggedInUser(response.data)
         props.history.push('/')
-
       })
       .catch(err => setError(err.response.data.errorMsg))
 }
