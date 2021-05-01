@@ -25,6 +25,7 @@ export default function BrowseCategories() {
 
     return (
         <div>
+        <h2 className="mx-auto border text-center w-50 m-3 p-3">Product Categories</h2>
             <div className="m-10 mt-5 mx-auto w-50 p-3 border">
             {
                 categories.map((item, i) => {

@@ -8,18 +8,18 @@ import AdminHome from './AdminHome'
 
 export default function Landing(props) {
 
-    const [showSignup, setShowSignup] = useState(false)
-    const [showLogin, setShowLogin] = useState(false)
+    // const [showSignup, setShowSignup] = useState(false)
+    // const [showLogin, setShowLogin] = useState(false)
    
-    const handleShowSignup = () => {
-        setShowSignup(true)
-        setShowLogin(false)
-    }
+    // const handleShowSignup = () => {
+    //     setShowSignup(true)
+    //     setShowLogin(false)
+    // }
 
-    const handleShowLogin = () => {
-        setShowLogin(true)
-        setShowSignup(false)
-    }
+    // const handleShowLogin = () => {
+    //     setShowLogin(true)
+    //     setShowSignup(false)
+    // }
 
     return (
         <>
@@ -29,19 +29,20 @@ export default function Landing(props) {
 
             { !props.user &&
                 <div>
-                    <Jumbotron className="m-5 h-100">
+                <img src="/logo4.png" className="frontpage-img" alt="" />
+                    <Jumbotron className="mt-5">
                         <p>Welcome to random eCommerce Website</p>
                     </Jumbotron>
 
-                        <div className="mx-auto" style={{width: "200px"}}>
+                        {/* <div className="mx-auto" style={{width: "200px"}}>
                             <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in</Button>
                             <Button variant="light" onClick={handleShowSignup}>Sign up</Button>
-                        </div>
-
+                        </div> */}
+{/* 
                     { showLogin && <LoginForm onLogin={props.onLogin} isAdmin="false" errorMsg={props.errorMsg} /> }
 
                     { showSignup && <SignupForm onSignup={props.onSignup} isAdmin="false"  errorMsg={props.errorMsg} /> }
-                            
+                             */}
                     <div className="text-center p-3 w-100" 
                         style={{
                         background: 'rgba(60,60,60, .4)',

@@ -38,13 +38,15 @@ export default function UserSettings(props) {
         axios.patch(`${config.API_URL}/api/edituser/${props.user._id}`, updatedInfo)
         .then(() => {
             handleShowAlert()
+            axios.get(`${config.API_URL}/api/getuser/${props.user._id}`)
+            .then(result => {
+                setUpdatedUser(result.data)
+            })
+        
+
         })
 
-        const user = axios.get(`${config.API_URL}/api/getuser/${props.user._id}`)
-        .then(result => {
-            setUpdatedUser(result.data)
-        })
-    
+
     }
 
     const handleShowAlert = () => {
@@ -55,14 +57,15 @@ export default function UserSettings(props) {
     }
 
 
-    useEffect(() => {
-        console.log(updatedUser)
-    }, [updatedUser])
+    // useEffect(() => {
+    //     console.log(updatedUser)
+    // }, [updatedUser])
 
 
     return (
         <div>
-
+    {console.log(props.user)}
+    {console.log(updatedUser)}
             <div className="d-flex justify-content-align-items p-3">
                 <h2>User information</h2>
                {

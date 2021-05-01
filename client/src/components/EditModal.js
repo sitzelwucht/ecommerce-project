@@ -39,7 +39,7 @@ function EditModal(props) {
 
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Edit product
+          Edit product {props.title}
         </Modal.Title>
       </Modal.Header>
       
@@ -66,13 +66,12 @@ function EditModal(props) {
             </Form.Group>
 
             <Button variant="dark" type="submit">
-                Submit
+                Save
             </Button>
         </Form>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="light" onClick={props.onHide}>Cancel</Button>
       </Modal.Footer>
 
     </Modal>

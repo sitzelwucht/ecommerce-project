@@ -25,7 +25,18 @@ h3 {
   font-weight: 500;
 }
 
+.frontpage-img {
+  z-index: 0;
+  position: absolute;
+  margin-left: 30%;
+}
+ .jumbo {
+   z-index: 5;
+   background: rgba(200,200,200,.7);
+   position: absolute;
+    top: 10;
 
+ }
 /* user page */
 
 .user-nav {
@@ -110,7 +121,7 @@ td {
 }
 
 .categories-user .btn-link:hover {
-  color: rgb(158, 121, 121);
+  background: rgb(158, 121, 121);
 }
 
 .bold {
