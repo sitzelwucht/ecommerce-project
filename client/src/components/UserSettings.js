@@ -42,11 +42,8 @@ export default function UserSettings(props) {
             .then(result => {
                 setUpdatedUser(result.data)
             })
-        
-
         })
-
-
+        setShowEditing(false)
     }
 
     const handleShowAlert = () => {
@@ -57,15 +54,13 @@ export default function UserSettings(props) {
     }
 
 
-    // useEffect(() => {
-    //     console.log(updatedUser)
-    // }, [updatedUser])
+    useEffect(() => {
+        setUpdatedUser(updatedUser)
+    }, [updatedUser])
 
 
     return (
         <div>
-    {console.log(props.user)}
-    {console.log(updatedUser)}
             <div className="d-flex justify-content-align-items p-3">
                 <h2>User information</h2>
                {
@@ -79,6 +74,7 @@ export default function UserSettings(props) {
         {
             !showEditing && 
             <table>
+                <tbody>
                 <tr>
                     <td className="bold">Email</td>
                     <td>{updatedUser.email}</td>
@@ -87,12 +83,10 @@ export default function UserSettings(props) {
                     <td className="bold">Firstname</td>
                     <td>{updatedUser.firstName}</td>
                 </tr>
-        
                 <tr>
                     <td className="bold">Lastname</td>
                     <td>{updatedUser.lastName}</td>
                 </tr>
-
                 <tr>
                     <td className="bold">Phone</td>
                     {
@@ -100,7 +94,6 @@ export default function UserSettings(props) {
                         <Button variant="success">add</Button>
                     }   
                 </tr>
-
                 <tr>
                     <td className="bold">Street Address</td>
                     {
@@ -108,7 +101,6 @@ export default function UserSettings(props) {
                         <Button variant="success">add</Button>
                     }  
                 </tr>
-
                 <tr>
                     <td className="bold">Post Code</td>
                     {
@@ -116,7 +108,6 @@ export default function UserSettings(props) {
                         <Button variant="success">add</Button>
                     }  
                 </tr>
-
                 <tr>
                     <td className="bold">City</td>
                     {
@@ -124,11 +115,10 @@ export default function UserSettings(props) {
                         <Button variant="success">add</Button>
                     }  
                 </tr>
+                </tbody>
             </table>
-
         }
             
-
         {
             showEditing && 
 

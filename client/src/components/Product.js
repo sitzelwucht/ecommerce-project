@@ -10,35 +10,35 @@ export default function Product(props) {
 
     return (
         <>
-            <div className="border m-3 p-3 w-25">
-                        <h3>{props.title}</h3>
+            <div className="border m-3 p-3 w-25 product-box">
+                        <h3 className="product-title">{props.title}</h3>
                         <h6>{props.description}</h6>
-                        <h5>{props.price} EUR</h5>
-                        <div>Stock:
+                        <h5 className="text-right">{props.price} EUR</h5>
+                        <div className="text-right">Stock:
                         {
-                            props.stock > 100 && <span> {props.user && props.user.isAdmin && props.stock} -- Available</span> 
+                            props.stock > 100 && <h6> {props.user && props.user.isAdmin && props.stock} — In Stock</h6> 
                         }
                         {
-                            props.stock > 50 && props.stock <= 100 && <span> {props.user && props.user.isAdmin && props.stock} -- Some available </span>
+                            props.stock > 50 && props.stock <= 100 && <h6> {props.user && props.user.isAdmin && props.stock} — Available </h6>
                         }
                         {
-                            props.stock > 20 && props.stock <= 50 && <span> {props.user && props.user.isAdmin && props.stock} -- Few Available </span>
+                            props.stock > 20 && props.stock <= 50 && <h6> {props.user && props.user.isAdmin && props.stock} — Some Available </h6>
                         }
                         {
-                            props.stock <= 20 && <span> {props.user && props.user.isAdmin && props.stock} -- Low stock </span>
+                            props.stock <= 20 && <h6> {props.user && props.user.isAdmin && props.stock} — Low stock </h6>
                         }
                         {
-                            props.stock <= 0 && <span> {props.user && props.user.isAdmin && props.stock} --  Out of stock </span>
+                            props.stock <= 0 && <h6> {props.user && props.user.isAdmin && props.stock} —  Out of stock </h6>
                         }
                         </div>
 
      
-            <div className="d-flex flex-row bd-highlight mx-auto mt-5">
+            <div className="d-flex flex-row bd-highlight mx-auto mt-2">
                         {
                         props.user && props.user.isAdmin && 
                             <>
                             <Button variant="danger" className="m-1" onClick={() => {props.onDelete(props._id)}}>delete</Button>
-                            <Button variant="success" onClick={() => setModalShow(true)}>edit</Button>
+                            <Button variant="success" className="m-1" onClick={() => setModalShow(true)}>edit</Button>
                             <EditModal show={modalShow} onHide={() => setModalShow(false)} 
                                 title={props.title}
                                 description={props.description}

@@ -10,13 +10,14 @@ export default function Clock() {
 
 
     useEffect(() => {
-        setInterval(() => 
-            updateTime(), 1000)
-    }, [])
+        const timer = setInterval(() => {
+          updateTime();
+        }, 1000);
+        return () => clearInterval(timer);
+      }, []);
 
 
-    
-
+      
     return (
         <div>
             <h5>{time.toLocaleString()}</h5>

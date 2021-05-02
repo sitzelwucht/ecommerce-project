@@ -56,13 +56,14 @@ function ProductsByCategory(props) {
             <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
 
             <h1 className="mt-5 mx-auto w-25 category-title">{props.category}</h1>
-        
+    
             <div className="d-flex border m-5">
                 {
-                    !products ? 
-                    <div>no results</div> : 
+                    !products.length ? 
+                    <div className="p-3">no results</div> : 
                     products.map((item, i) => {
                     return <Product 
+                            key={i}
                             user={props.user}
                             title={item.title}
                             description={item.description}
@@ -77,7 +78,7 @@ function ProductsByCategory(props) {
                     })
                 }
 
-                </div>
+            </div>
         </div>
     )
 }

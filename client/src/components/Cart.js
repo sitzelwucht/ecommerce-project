@@ -29,10 +29,13 @@ export default function Cart(props) {
 
                 <Modal.Body>
                     <table className="cart-table">
+                        <thead>
                                 <tr>
                                     <th>Product name</th>
                                     <th>Price</th>
                                 </tr>
+                        </thead>
+                        <tbody>
                             {
                                 items && items.map((elem, i) => {
                                     return <tr className="m-3 product-line" key={i}>
@@ -54,6 +57,7 @@ export default function Cart(props) {
                                             return elem + acc}, 0)
                                     }€</td>
                                 </tr>
+                                </tbody>
                     </table>
               
                 </Modal.Body>
