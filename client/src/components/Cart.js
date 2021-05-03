@@ -16,7 +16,11 @@ export default function Cart(props) {
         }))
     }, [])
 
-
+    useEffect(() => {
+        setItems(cartItems.filter(elem => {
+            return elem.user === props.user._id
+        }))
+    }, [cartItems])
 
 
     return (
@@ -43,7 +47,7 @@ export default function Cart(props) {
                                             <td>{elem.prodPrice}€ </td>
                                             <td>{
                                                 <Button variant="warning" className="m-1" 
-                                                onClick={() => {removeFromCart(cartItems, props.user._id, elem.title)}}>X</Button>
+                                                onClick={() => {removeFromCart(cartItems, props.user._id, elem.prodName)}}>X</Button>
                                             }</td>
                                         </tr>
                                 })

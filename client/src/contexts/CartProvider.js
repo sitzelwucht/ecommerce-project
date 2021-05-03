@@ -21,10 +21,11 @@ export default function CartProvider({children}) {
 
     const removeFromCart = (cartArray, user, product) => {
         const updatedCart = cartArray.filter(elem => {
-            return elem.user !== user && elem.user !== product
+            return elem.user === user && elem.prodName !== product
         })
-        // setCartItems(updatedCart)
-        console.log(updatedCart)
+  
+       setCartItems(updatedCart)
+    
     }
 
 

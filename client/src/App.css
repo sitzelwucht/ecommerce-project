@@ -130,6 +130,11 @@ td {
 
 /* Product view */
 
+.product-box {
+  border-radius: 12px;
+}
+
+
 .product-box > * {
   padding: 10px;
 }
@@ -137,6 +142,7 @@ td {
 .product-title {
   background: rgb(217, 230, 217);
   padding: 7px;
+  border-radius: 8px;
 }
 
 /* admin page */

@@ -23,6 +23,13 @@ export default function NavBar(props) {
     }, [])
 
 
+    useEffect(() => {
+        setItems(cartItems.filter(elem => {
+            return elem.user === props.user._id
+        }))
+    }, [cartItems])
+
+    
     return (
         <div>
             <Nav className={props.admin ? 
