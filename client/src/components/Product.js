@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
-
+import { useCart } from '../contexts/CartProvider'
 
 export default function Product(props) {
 
     const [editMode, setEditMode] = useState(false);
+    const { addToCart, cartItems } = useCart()
 
     const [title, setTitle] = useState(props.title)
     const [description, setDescription] = useState(props.description)
@@ -15,7 +16,10 @@ export default function Product(props) {
     const [stock, setStock] = useState(props.stock)
     const [updatedProduct, setUpdatedProduct] = useState({...props})
 
+    const [quantity, setQuantity] = useState(null)
 
+
+    // product editing for admins
     const handleEdit = (e) => {
       e.preventDefault()
       const editedProduct = {
@@ -36,6 +40,11 @@ export default function Product(props) {
         setEditMode(false)
       })
 
+    }
+
+    const handleAdd = (e) => {
+        e.preventDefault()
+      addToCart(props.user._id, props.title, props.price, quantity)
     }
 
     return (
@@ -107,25 +116,25 @@ export default function Product(props) {
                         }
                         {
                         props.user && !props.user.isAdmin && 
-                            <>
-                            <Form>
-                            <Form.Group className="m-1">
-                                <Form.Control as="select" name="categorySelect" >
-                                    <option selected disabled hidden>qty</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </Form.Control>
-                            </Form.Group>
-                            
+                            <div className="d-flex flex-column mx-auto">
+                            <Form className="d-flex">
+                                <Form.Group className="m-1">
+                                    <Form.Control as="select" onChange={(e) => {setQuantity(e.target.value)}} name="qtySelect" >
+                                        <option defaultValue disabled hidden>qty</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Button variant="info" className="m-1" 
+                                onClick={handleAdd}>to cart</Button>
                             </Form>
-                            <Button variant="info" className="m-1" 
-                            onClick={() => {props.onAdd(props.user._id, props.title, props.price)}}>to cart</Button>
+
                             <Button variant="danger" className="m-1" 
                             onClick={() => {props.onDelete(props.items, props.user._id, props.prodName)}}>to favorites</Button>
-                            </>
+                            </div>
                         }
                         </div>
                     </div>

@@ -16,7 +16,6 @@ function ProductsByCategory(props) {
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
 
-
     // fetch products
     const getProducts = async () => {
         const response = await axios.get(`${config.API_URL}/api/bycategory/${props.category}`)

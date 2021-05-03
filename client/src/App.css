@@ -64,9 +64,10 @@ h3 {
   text-align: center;
 }
 
-.highlighted {
-  font-size: 1.4em;
+.highlighted * {
+  font-size: 1.8em;
   font-weight: bold;
+  padding: 15px;
 }
 
 .home-navbar {

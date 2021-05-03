@@ -8,7 +8,35 @@ export default function Cart(props) {
     const { cartItems, removeFromCart } = useCart()
     const [items, setItems] = useState(cartItems)
 
+    const [counts, setCounts] = useState({})
 
+
+
+    // get an array of unique product names with number of their occurrences
+    const getQuantities = () => {
+        const countsArr = []
+        const cartProducts = items.map(elem => {
+            const product = {
+                name: elem.prodName,
+                price: elem.prodPrice,
+                count: 0
+            }
+            return product
+        })
+
+        cartProducts.forEach(item => {
+            for (let i = 0; i < countsArr.length; i++) {
+                if (item.name === countsArr[i].name) {
+                    countsArr[i].count += 1
+                    return
+                }
+            }
+            item.count = 1
+            countsArr.push(item)
+        })
+          setCounts(countsArr)
+    }
+    
 
     useEffect(() => {
         setItems(cartItems.filter(elem => {
@@ -20,6 +48,8 @@ export default function Cart(props) {
         setItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))
+
+        getQuantities()
     }, [cartItems])
 
 
@@ -37,23 +67,27 @@ export default function Cart(props) {
                                 <tr>
                                     <th>Product name</th>
                                     <th>Price</th>
+                                    <th>Quantity</th>
                                 </tr>
                         </thead>
                         <tbody>
                             {
-                                items && items.map((elem, i) => {
+                                !counts ?
+                                <div>loading...</div> :
+                                 counts.map((item, i) => {
                                     return <tr className="m-3 product-line" key={i}>
-                                            <td>{elem.prodName}</td>
-                                            <td>{elem.prodPrice}€ </td>
-                                            <td>{
-                                                <Button variant="warning" className="m-1" 
-                                                onClick={() => {removeFromCart(cartItems, props.user._id, elem.prodName)}}>X</Button>
-                                            }</td>
-                                        </tr>
+                                            <td>{item.name}</td>
+                                            <td>{item.price}</td>
+                                            <td>
+                                            <Button variant="light" className="m-1">+</Button>
+                                            {item.count}
+                                            <Button variant="light" className="m-1">-</Button>
+                                            </td>
+                                            </tr>
                                 })
                             }
                                 <tr className="highlighted">
-                                    <td>total</td>
+                                    <td>Total</td>
                                     <td>{
                                         items.map(el => {
                                             return parseInt(el.prodPrice)
