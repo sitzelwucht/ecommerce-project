@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { withRouter, useHistory } from 'react-router-dom'
@@ -45,14 +46,9 @@ function ProductsByCategory(props) {
     }, [])
 
 
-    useEffect(() => {
-        getProducts().then(result => setProducts(result))
-    }, [updatedProducts])
-
 
     return (
         <div>
-      
             <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
 
             <h1 className="mt-5 mx-auto w-25 category-title">{props.category}</h1>
@@ -64,6 +60,7 @@ function ProductsByCategory(props) {
                     products.map((item, i) => {
                     return <Product 
                             key={i}
+                            category={props.category}
                             user={props.user}
                             title={item.title}
                             description={item.description}

@@ -26,7 +26,7 @@ export default function NavBar(props) {
     return (
         <div>
             <Nav className={props.admin ? 
-            "d-flex justify-content-between p-4 admin-nav" : 
+            "d-flex justify-content-between p-4 pt-5 admin-nav" : 
             "d-flex justify-content-around p-4 pt-5 user-nav"} >
 
             {

@@ -86,4 +86,17 @@ router.patch('/products/:prodId', (req, res) => {
     })
 })
 
+
+router.get('/getproduct/:prodId', (req, res) => {
+    const id = req.params.prodId
+    ProductModel.findById(id)
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+
 module.exports = router

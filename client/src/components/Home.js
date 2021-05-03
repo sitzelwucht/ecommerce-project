@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Nav, Container } from 'react-bootstrap'
 import UserSettings from './UserSettings'
