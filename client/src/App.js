@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Landing from './components/Landing'

@@ -44,7 +44,7 @@ export default function Product(props) {
 
     const handleAdd = (e) => {
         e.preventDefault()
-      addToCart(props.user._id, props.title, props.price, quantity)
+        addToCart(props.user._id, props.title, props.price, quantity)
     }
 
     return (
@@ -104,7 +104,6 @@ export default function Product(props) {
                     </Form>
             }
                        
-
      
             <div className="d-flex flex-row bd-highlight mx-auto mt-2">
                         {
@@ -119,8 +118,8 @@ export default function Product(props) {
                             <div className="d-flex flex-column mx-auto">
                             <Form className="d-flex">
                                 <Form.Group className="m-1">
-                                    <Form.Control as="select" onChange={(e) => {setQuantity(e.target.value)}} name="qtySelect" >
-                                        <option defaultValue disabled hidden>qty</option>
+                                    <Form.Control as="select" onChange={(e) => {setQuantity(parseInt(e.target.value))}} name="qtySelect" >
+                                        <option defaultValue >qty</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>

@@ -17,26 +17,38 @@ export default function CartProvider({children}) {
     const addToCart = (user, prodName, prodPrice, quantity) => {
         const addedProducts = []
         for (let i = 0; i < quantity; i++) {
-            addedProducts.push({user, prodName, prodPrice})
+            addedProducts.push({user, prodName, prodPrice, quantity})
         }
         setCartItems(prevCart => {
             return [...prevCart, ...addedProducts]
         })
     }
 
-    const removeFromCart = (cartArray, user, product) => {
-        for (let i = 0; i < cartArray.length; i++) {
-            if (cartArray[i].user === user && cartArray[i].prodName === product) {
-                cartArray.splice(i, 1)
-                break;
+    // add/remove product from cart
+    const updateProductQty = (cartArray, user, product, price, bool) => {
+        if (bool) {
+            const newProduct = {
+                user: user,
+                prodName: product,
+                prodPrice: price
+            }
+            cartArray.splice(0, 0, newProduct)
+        }
+        else {
+            for (let i = 0; i < cartArray.length; i++) {
+                if (cartArray[i].user === user && cartArray[i].prodName === product) {
+                    cartArray.splice(i, 1)
+                    break;
+                }
             }
         }
-       setCartItems(cartArray)
+
+        setCartItems(cartArray)
     }
 
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, updateProductQty }}>
             {children}
         </CartContext.Provider>
     )

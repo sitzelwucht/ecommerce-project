@@ -27,7 +27,7 @@ export default function NavBar(props) {
         setItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))
-        return () => console.log('hello')
+        return () => console.log('')
     }, [cartItems])
 
 
