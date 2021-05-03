@@ -24,10 +24,12 @@ export default function NavBar(props) {
 
 
     useEffect(() => {
-        setItems(cartItems.filter(elem => {
+        // setItems(cartItems.filter(elem => {
+        //     return elem.user === props.user._id
+        // }))
+        return setItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))
-        return () => console.log('')
     }, [cartItems])
 
 
@@ -35,40 +37,38 @@ export default function NavBar(props) {
         <div>
             <Nav className={props.admin ? 
             "d-flex justify-content-between p-4 pt-5 admin-nav" : 
-            "d-flex justify-content-around p-4 pt-5 user-nav"} >
+            "d-flex justify-content-around p-4 user-nav nav"} >
 
             {
                 props.admin ? 
                 <>
-                    <Nav.Item>
-                        <Badge variant="dark"><h6>{props.user.email}</h6></Badge>
+                    <Nav.Item className="d-flex align-items-center">
+                        <Badge variant="info" className="p-1"><h6>{props.user.email}</h6></Badge>
                     </Nav.Item>
                     <Nav.Item>
-                        <h6>admin</h6>
+                        <h6>ADMIN</h6>
                     </Nav.Item>
                 </> : 
                 <>
-                    <Nav.Item >
+                    <Nav.Item className="d-flex align-items-center" >
                         <Nav.Link href="/">
-                        <img src="/logo.svg" height="50" alt="home" title="home" />
+                        <img src="/logo.svg" height="85" alt="home" className="m-1 " title="home" />
+                        <Badge variant="info" className="m-3"><h5>{props.user.email}</h5></Badge>
                         </Nav.Link>
                     </Nav.Item>
-                    
-                    <Nav.Item className="m-1">
-                        <Badge variant="warning"><h5>{props.user.email}</h5></Badge>
-                    </Nav.Item>
-                    <Nav.Item>
+       
+                    <Nav.Item className="d-flex align-items-center">
                         <Nav.Link href="/categories"><Button variant="outline-light">Categories</Button></Nav.Link>
                     </Nav.Item>
                 
-                    <Nav.Item className="d-flex">
+                    <Nav.Item className="d-flex pt-4">
                         <Nav.Link eventKey="link-2" onClick={() => setFavoriteModalShow(true)}>
-                        <img src="/favorite.svg" height="35" alt="cart" title="your favorites" />
+                        <img src="/favorite.svg" className="svg-icon" height="40" alt="favorites" title="your favorites" />
                         
                         </Nav.Link>
 
                         <Nav.Link eventKey="link-1" onClick={() => setCartModalShow(true)}>
-                        <img src="/shopping-cart.svg" height="35" alt="cart" title="your cart" />
+                        <img src="/shopping-cart.svg" className="svg-icon" height="40" alt="cart" title="your cart" />
                         {
                         items && items.length > 0 && <div className="product-count">{items.length}</div>    
                         }
@@ -85,7 +85,7 @@ export default function NavBar(props) {
                 </>
             } 
                 
-                    <Nav.Item>
+                    <Nav.Item className="d-flex align-items-center">
                         <Button variant="dark" onClick={props.onLogout} >Log out</Button>
                     </Nav.Item>  
             </Nav>

@@ -73,7 +73,7 @@ export default function UserSettings(props) {
             { showAlert && <Alert variant="success">Information updated</Alert> }
         {
             !showEditing && 
-            <table>
+            <table className="m-4">
                 <tbody>
                 <tr>
                     <td className="bold">Email</td>
@@ -122,7 +122,7 @@ export default function UserSettings(props) {
         {
             showEditing && 
 
-            <Form onSubmit={editInfo}>
+            <Form className="p-4" onSubmit={editInfo}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" name="email" defaultValue={updatedUser.email} onChange={(e) => setEmail(e.target.value)} />

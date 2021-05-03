@@ -1,13 +1,15 @@
 import React from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 export default function LoginForm(props) {
 
 
-
     return (
-            
-             <Form className="w-50 mx-auto my-5" onSubmit={props.onLogin}>
+            <>
+            { props.user && <Redirect to={'/'} /> }
+            <div className="login-bg">
+             <Form className="w-50 mx-auto p-5 form" onSubmit={props.onLogin}>
             <h3>LOG IN</h3>
             { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>} 
             
@@ -33,6 +35,7 @@ export default function LoginForm(props) {
                     Submit
                 </Button>
                 </Form>
-       
+            </div>
+        </>
     )
 }

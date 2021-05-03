@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
-
+import { Redirect } from 'react-router-dom'
 
 export default function SignupForm(props) {
 
@@ -41,9 +41,10 @@ export default function SignupForm(props) {
 
 
     
-    return (
-       
-             <Form className="w-50 mx-auto my-3" onSubmit={props.onSignup}>
+    return (<>
+            { props.user && <Redirect to={'/'} /> }
+        <div className="signup-bg">
+            <Form className="w-50 mx-auto p-5 form" onSubmit={props.onSignup}>
             <h3>SIGN UP</h3>
             { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }
             <Form.Group controlId="formBasicName">
@@ -85,6 +86,7 @@ export default function SignupForm(props) {
                     Submit
                 </Button>
                 </Form>
-        
+            </div>
+        </>
     )
 }

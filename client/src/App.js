@@ -102,11 +102,11 @@ function App(props) {
             }} />
             
             <Route path="/login" render={(routeProps) => {
-              return <LoginForm onLogin={handleLogin} isAdmin="false" errorMsg={props.errorMsg}  />
+              return <LoginForm user={loggedInUser} onLogin={handleLogin} isAdmin="false" errorMsg={props.errorMsg}  />
             }} /> 
             
             <Route path="/signup" render={(routeProps) => {
-              return <SignupForm onSignup={handleSignup} isAdmin="false"  errorMsg={props.errorMsg}  />
+              return <SignupForm user={loggedInUser} onSignup={handleSignup} isAdmin="false"  errorMsg={props.errorMsg}  />
             }} /> 
 
             <Route path="/admin" render={() => {

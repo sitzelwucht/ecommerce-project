@@ -47,10 +47,10 @@ export default function AdminHome(props) {
 
 
     return (
-        <div>
-            <Card className="w-75 mx-auto">
+        <div className="admin-bg">
+            <Card className="w-75 mx-auto transparent">
 
-             <Accordion className="w-100">
+             <Accordion className="w-100 transparent">
                 <Card className="dark-bg">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">

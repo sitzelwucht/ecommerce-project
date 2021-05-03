@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Badge } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 import { useCart } from '../contexts/CartProvider'
@@ -44,7 +44,13 @@ export default function Product(props) {
 
     const handleAdd = (e) => {
         e.preventDefault()
-        addToCart(props.user._id, props.title, props.price, quantity)
+        if (quantity) {
+            addToCart(props.user._id, props.title, props.price, quantity)
+        }
+       else {
+        alert('Please select quantity')
+       }
+        
     }
 
     return (
@@ -53,24 +59,34 @@ export default function Product(props) {
             {
                 !editMode ? 
                     <>
-                        <h3 className="product-title">{updatedProduct.title}</h3>
-                        <h6>{updatedProduct.description}</h6>
+                        <div className="product-title text-center">{updatedProduct.title}</div>
+                        <div>{updatedProduct.description}</div>
                         <h5 className="text-right">{updatedProduct.price} EUR</h5>
-                        <div className="text-right">Stock:
+                        <div className="text-right"><div>Stock:</div>
                         {
-                            updatedProduct.stock > 100 && <h6> {props.user && props.user.isAdmin && updatedProduct.stock} — In Stock</h6> 
+                            updatedProduct.stock > 100 && 
+                            <Badge className="stock darkgreen"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                            In Stock</Badge> 
                         }
                         {
-                            updatedProduct.stock > 50 && updatedProduct.stock <= 100 && <h6> {props.user && props.user.isAdmin && updatedProduct.stock} — Available </h6>
+                            updatedProduct.stock > 50 && updatedProduct.stock <= 100 && 
+                            <Badge className="stock green"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                            Available </Badge>
                         }
                         {
-                            updatedProduct.stock > 20 && updatedProduct.stock <= 50 && <h6> {props.user && props.user.isAdmin && updatedProduct.stock} — Some Available </h6>
+                            updatedProduct.stock > 20 && updatedProduct.stock <= 50 && 
+                            <Badge className="stock yellow"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>}  
+                            Some Available </Badge>
                         }
                         {
-                            updatedProduct.stock <= 20 && <h6> {props.user && props.user.isAdmin && updatedProduct.stock} — Low stock </h6>
+                            updatedProduct.stock <= 20 && 
+                            <Badge className="stock orange"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                            Low stock </Badge>
                         }
                         {
-                            updatedProduct.stock <= 0 && <h6> {props.user && props.user.isAdmin && updatedProduct.stock} —  Out of stock </h6>
+                            updatedProduct.stock <= 0 && 
+                            <Badge className="stock red"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                            Out of stock </Badge>
                         }
                         </div>
                     </> :
@@ -131,7 +147,7 @@ export default function Product(props) {
                                 onClick={handleAdd}>to cart</Button>
                             </Form>
 
-                            <Button variant="danger" className="m-1" 
+                            <Button variant="secondary" className="m-1" 
                             onClick={() => {props.onDelete(props.items, props.user._id, props.prodName)}}>to favorites</Button>
                             </div>
                         }

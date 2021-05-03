@@ -17,6 +17,7 @@ export default function Home(props) {
 
 
     return (
+        <div className="user-page-bg">
         <div className="user-page-container">
         { !props.user && <Redirect to={'/'} /> }
 
@@ -27,7 +28,7 @@ export default function Home(props) {
             </Nav>
  
 
-            <Container className="m-5 border">
+            <Container className="m-5 border blur-bg">
                {
                 showWelcome &&
                 <header className="user-frontpage-header">
@@ -38,7 +39,7 @@ export default function Home(props) {
                         hours >= 12 && hours < 18 && 'Good afternoon'
                     }
                     {
-                        hours >= 18 && hours < 23 && 'Good evening'
+                        hours >= 18 && hours <= 23 && 'Good evening'
                     }
                     {
                         hours < 6 && 'Good night'
@@ -52,6 +53,7 @@ export default function Home(props) {
                }
 
             </Container>
+        </div>
         </div>
     )
 }
