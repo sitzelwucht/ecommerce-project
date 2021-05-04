@@ -45,7 +45,7 @@ h3 {
  }
  .anon-nav {
    background: rgb(20,20,20);
-   
+   height: 20vh;
  }
 
  .form {
@@ -251,18 +251,23 @@ td {
   color: white;
 }
 .admin-bg {
-  background-image: url('pexels-harrison-candlin-2441454.jpg');
+  background-image: url('pexels-henry-&-co-2455166.jpg');
   min-height: 90vh;
   margin: 0;
   background-attachment: fixed;
-  background-position: right top;
+  background-position: left bottom;
 }
 .nav-link {
   font-size: 20px;
   color: rgba(20,20,20,.7);
   font-weight: 400
 }
-
+.category-button {
+  background: rgb(73, 73, 73)
+}
+.category-button:hover {
+  background: rgb(43, 43, 43)
+}
 .btn-link {
   color: rgb(219, 219, 219);
   letter-spacing: .4em;
@@ -288,24 +293,19 @@ td {
   font-size: 20px;
   color: rgba(131, 131, 131, 0.9);
 }
-
+div.card {
+  background: rgba(117, 117, 117, 0)
+}
+div.card-body  {
+  background: rgba(220,220,220, .7);
+  margin: 35px!important
+}
+.card-header {
+  border-radius: 15px!important;
+  margin: 35px;
+  background: rgba(34, 34, 34, 0.8);
+}
 .dark-bg {
   background: rgb(40,40,40);
-  font: white;
-  border: 1px solid white;
-}
-
-.orange-bg-light {
-  background: rgba(207, 160, 160, 0.6);
-  font: white;
-}
-
-.blue-bg-light {
-  background: rgba(145, 180, 180, 0.733);
-  font: white;
-}
-
-.red-bg-light {
-  background: rgba(223, 200, 157, 0.6);
   font: white;
 }

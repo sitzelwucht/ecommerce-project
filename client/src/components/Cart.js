@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
+import { Link, withRouter} from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import { useCart } from '../contexts/CartProvider'
 
-export default function Cart(props) {
+function Cart(props) {
 
     const { cartItems, updateProductQty } = useCart()
     const [userItems, setUserItems] = useState(cartItems)
@@ -30,16 +31,14 @@ export default function Cart(props) {
         return countsArr
     }
     
-
-    useEffect(() => {
-        setUserItems(cartItems.filter(elem => {
-            return elem.user === props.user._id
-        }))
-        setCounts(getQuantities())
-    }, [])
+    // proceed to checkout page and close modal
+    const goToCheckout = () => {
+        props.history.push('/checkout')
+        props.onHide()
+    }
 
 
-
+    // filter localstorage for logged in user's items and get array for cart
     useEffect(() => {
         setUserItems(cartItems.filter(elem => {
             return elem.user === props.user._id
@@ -59,6 +58,7 @@ export default function Cart(props) {
                 </Modal.Header>
 
                 <Modal.Body>
+                    { !userItems.length ? <div>Your cart is empty</div> : 
                     <table className="cart-table">
                         <thead>
                                 <tr>
@@ -96,13 +96,16 @@ export default function Cart(props) {
                                 </tr>
                             </tbody>
                     </table>
-              
+                }
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={getQuantities}>Go to checkout</Button>
+                    <Button onClick={goToCheckout}>Go to checkout</Button>
                 </Modal.Footer>
             </Modal>            
         </div>
     )
 }
+
+
+export default withRouter(Cart)

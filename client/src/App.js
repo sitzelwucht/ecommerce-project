@@ -16,6 +16,7 @@ import BrowseCategories from './components/BrowseCategories';
 import CartProvider from './contexts/CartProvider'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import Checkout from './components/Checkout';
 
 
 function App(props) {
@@ -127,6 +128,10 @@ function App(props) {
 
             <Route path="/categories" render={(routeProps) => {
               return <BrowseCategories user={loggedInUser} />
+            }} /> 
+
+            <Route path="/checkout" render={(routeProps) => {
+              return <Checkout user={loggedInUser} />
             }} /> 
           </Switch>
 

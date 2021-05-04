@@ -24,9 +24,6 @@ export default function NavBar(props) {
 
 
     useEffect(() => {
-        // setItems(cartItems.filter(elem => {
-        //     return elem.user === props.user._id
-        // }))
         return setItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))

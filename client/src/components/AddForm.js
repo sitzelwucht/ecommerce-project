@@ -106,7 +106,7 @@ function AddForm(props) {
             <Form onSubmit={handleAdd} className="border p-3">
 
             <Form.Group controlId="formBasicProductCategory">
-                <Form.Label>category</Form.Label>
+                <Form.Label className="font-weight-bold">category</Form.Label>
 
                 <Form.Control as="select" name="categorySelect" default="select product category" >
                 <option selected disabled hidden>select product category</option>
@@ -123,22 +123,22 @@ function AddForm(props) {
             </Form.Group>
 
             <Form.Group controlId="formBasicProductName">
-                <Form.Label>name</Form.Label>
+                <Form.Label className="font-weight-bold">name</Form.Label>
                 <Form.Control type="text" name="title" placeholder="Enter product name" />
             </Form.Group>
 
             <Form.Group controlId="formBasicDescription">
-                <Form.Label>description</Form.Label>
+                <Form.Label className="font-weight-bold">description</Form.Label>
                 <Form.Control type="text" name="description" placeholder="Product description" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPrice">
-                <Form.Label>price</Form.Label>
+                <Form.Label className="font-weight-bold">price</Form.Label>
                 <Form.Control type="number" name="price" placeholder="Product price" />
             </Form.Group>
 
             <Form.Group controlId="formBasicStock">
-                <Form.Label>stock</Form.Label>
+                <Form.Label className="font-weight-bold">stock</Form.Label>
                 <Form.Control type="number" name="stock" placeholder="Product stock" />
             </Form.Group>
 

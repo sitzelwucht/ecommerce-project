@@ -59,7 +59,7 @@ export default function AdminHome(props) {
                     </Card.Header>
 
                     <Accordion.Collapse eventKey="0">
-                        <Card.Body className="blue-bg-light">
+                        <Card.Body>
                     
                             <AddForm categories={categories} />
                     
@@ -75,14 +75,14 @@ export default function AdminHome(props) {
                     </Card.Header>
 
                     <Accordion.Collapse eventKey="1">
-                        <Card.Body className="orange-bg-light">
+                        <Card.Body>
                     
                         <ul className="border p-3 mb-3">
                             {
                                 categories.map((item, i) => {
                                     return <Link to={`/bycategory/${item}`}>
                                                 <Button variant="link">
-                                                <li className=" list-group-item orange-bg-light" key={i}>{item}</li>
+                                                <li className="list-group-item category-button" key={i}>{item}</li>
                                                 </Button>
                                             </Link>
                                 })
@@ -101,7 +101,7 @@ export default function AdminHome(props) {
                     </Card.Header>
 
                     <Accordion.Collapse eventKey="2">
-                        <Card.Body className="red-bg-light">
+                        <Card.Body>
                     
                         <Form inline onSubmit={handleKeywordSearch}>
                                 <InputGroup>
@@ -128,7 +128,6 @@ export default function AdminHome(props) {
 
             </Card>
 
-    
         </div>
     )
 }
