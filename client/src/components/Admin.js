@@ -37,9 +37,9 @@ export default function Admin(props) {
                         <Button variant="light" onClick={handleShowSignup}>New admin user</Button>
                     </div>
 
-                { showLogin && <LoginForm onLogin={props.onLogin} isAdmin="true" errorMsg={props.errorMsg} /> }
+                { showLogin && <LoginForm onLogin={props.onLogin} isAdmin errorMsg={props.errorMsg} /> }
 
-                { showSignup && <SignupForm onSignup={props.onSignup} isAdmin="true"  errorMsg={props.errorMsg} /> }
+                { showSignup && <SignupForm onSignup={props.onSignup} isAdmin errorMsg={props.errorMsg} /> }
                     </>
                 
                 }

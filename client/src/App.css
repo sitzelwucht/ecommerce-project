@@ -125,27 +125,37 @@ h3 {
   background-attachment: fixed;
   background-position: right top;
 }
-.user-page-container {
+/* .user-page-container {
   font-family: 'Source Sans Pro';
   display: flex;
+  justify-content: space-between;
   width: 85%;
   margin: auto;
   background: rgba(230,230,230, .5);
   backdrop-filter: blur(6px);
+} */
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+  font-family: 'Source Sans Pro';
 }
 .home-navbar {
   font-family: 'Source Sans Pro';
-  background: rgba(172, 166, 197, .6);
-  min-width: 15%;
-  max-width: 15%;
-  border-radius: 7px;
-  transition: all .5s ease-in
+  background: rgba(172, 166, 197, .4);
+  min-width: 20%;
+  max-width: 20%;
+  transition: all .5s ease-in;
 }
-.home-navbar a {
-  transition: all .5s ease-in
+
+.home-nav-btn * {
+  font-size: 1.6em;
+  margin: 15px;
 }
-.home-navbar a:hover {
-  letter-spacing: .03em;
+.welcome {
+  background: rgba(230,230,230, .3);
+  backdrop-filter: blur(6px);
 }
 .user-frontpage-header {
   display: flex;
@@ -269,10 +279,9 @@ td {
   background: rgb(43, 43, 43)
 }
 .btn-link {
-  color: rgb(219, 219, 219);
-  letter-spacing: .4em;
+  color: rgb(235, 235, 235);
+  letter-spacing: .04em;
 }
-
 .btn-link:hover {
   color: white;
   text-decoration: none;

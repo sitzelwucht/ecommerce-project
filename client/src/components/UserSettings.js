@@ -124,37 +124,37 @@ export default function UserSettings(props) {
 
             <Form className="p-4" onSubmit={editInfo}>
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className="font-weight-bold">Email</Form.Label>
                 <Form.Control type="email" name="email" defaultValue={updatedUser.email} onChange={(e) => setEmail(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicFirstName">
-                <Form.Label>First Name</Form.Label>
+                <Form.Label className="font-weight-bold">First Name</Form.Label>
                 <Form.Control type="text" name="firstName" defaultValue={updatedUser.firstName} onChange={(e) => setFirstName(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicLastName">
-                <Form.Label>Last Name</Form.Label>
+                <Form.Label className="font-weight-bold">Last Name</Form.Label>
                 <Form.Control type="text" name="lastName" defaultValue={updatedUser.lastName} onChange={(e) => setLastName(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicPhone">
-                <Form.Label>Phone</Form.Label>
+                <Form.Label className="font-weight-bold">Phone</Form.Label>
                 <Form.Control type="text" name="phone" defaultValue={updatedUser.phone} onChange={(e) => setPhone(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicAddress">
-                <Form.Label>Address</Form.Label>
+                <Form.Label className="font-weight-bold">Address</Form.Label>
                 <Form.Control type="text" name="address" defaultValue={updatedUser.address} onChange={(e) => setAddress(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicPostcode">
-                <Form.Label>Post Code</Form.Label>
+                <Form.Label className="font-weight-bold">Post Code</Form.Label>
                 <Form.Control type="text" name="postCode" defaultValue={updatedUser.postCode} onChange={(e) => setPostCode(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicCity">
-                <Form.Label>City</Form.Label>
+                <Form.Label className="font-weight-bold">City</Form.Label>
                 <Form.Control type="text" name="city" defaultValue={updatedUser.city} onChange={(e) => setCity(e.target.value)} />
             </Form.Group>
 
