@@ -125,15 +125,7 @@ h3 {
   background-attachment: fixed;
   background-position: right top;
 }
-/* .user-page-container {
-  font-family: 'Source Sans Pro';
-  display: flex;
-  justify-content: space-between;
-  width: 85%;
-  margin: auto;
-  background: rgba(230,230,230, .5);
-  backdrop-filter: blur(6px);
-} */
+
 .wrapper {
   display: flex;
   justify-content: space-between;
@@ -154,6 +146,8 @@ h3 {
   margin: 15px;
 }
 .welcome {
+  display: flex;
+  justify-content: center;
   background: rgba(230,230,230, .3);
   backdrop-filter: blur(6px);
 }
@@ -166,7 +160,16 @@ h3 {
 
 .blur-bg {
   background: rgba(220, 220, 220, 0.3);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+}
+
+.quote {
+  background: rgba(209, 209, 209, 0.089);
+  width: 70%;
+  margin: 60px!important;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
 }
 
 tr {
