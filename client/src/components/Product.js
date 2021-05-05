@@ -62,8 +62,8 @@ export default function Product(props) {
         isFavorite ? setIsFavorite(false) : setIsFavorite(true)
 
         isFavorite ? 
-        updateFavorites(props.user._id, favoriteItems, props.title, false) :
-        updateFavorites(props.user._id, favoriteItems, props.title, true) 
+        updateFavorites(props.user._id, favoriteItems, props.title, props.price, false) :
+        updateFavorites(props.user._id, favoriteItems, props.title, props.price, true) 
     }
 
 

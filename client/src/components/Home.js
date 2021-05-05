@@ -54,6 +54,7 @@ export default function Home(props) {
                 <Container className="m-5 w-75 blur-bg">
                 {
                     showWelcome &&
+                    <>
                     <header className="user-frontpage-header">
                         <h3>{
                             hours >= 6 && hours < 12 && 'Good morning'
@@ -69,17 +70,23 @@ export default function Home(props) {
                         }
                         , {props.user.firstName}</h3>
                         <Clock />
+
                     </header>
+                    <div>
+                        { quote &&
+                        <div className="quote">
+                        <div className="font-italic">{quote.quote}</div>
+                        <div className="font-weight-bold">- { quote.author ? quote.author : 'anonymous'}</div>
+                        </div>
+                        }
+                    </div>
+                    </>
                 }
+
                     {
                     showSettings && <UserSettings user={props.user}/>
                 }
-                { quote &&
-                    <div className="quote">
-                        <div className="font-italic">{quote.quote}</div>
-                    <div className="font-weight-bold">- { quote.author ? quote.author : 'anonymous'}</div>
-                    </div>
-                }
+ 
                 </Container>
         
             </div>

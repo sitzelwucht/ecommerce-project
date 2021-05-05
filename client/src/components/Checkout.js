@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useCart } from '../contexts/CartProvider'
+import StripeComponent from './StripeComponent'
 
 export default function Checkout(props) {
 
@@ -44,6 +45,7 @@ export default function Checkout(props) {
                     </tbody>
                 </table>
   
-        </div>
+               <StripeComponent />
+        </div>  
     )
 }

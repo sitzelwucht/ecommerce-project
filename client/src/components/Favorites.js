@@ -11,6 +11,7 @@ export default function Favorites(props) {
     const { addToCart } = useCart()
 
     useEffect(() => {
+        console.log(props.user._id)
         props.user && setFavoriteItems(favoriteItems.filter(elem => {
             return elem.user === props.user._id
         }))
@@ -19,13 +20,13 @@ export default function Favorites(props) {
 
     return (
         <div>
+        {console.log(favoriteItems)}
             <Modal {...props } size="lg" aria-labelledby="contained-modal-title-vcenter"
         centered >
                 <Modal.Header className="d-flex justify-content-between">
                     <h2>Favorites</h2>
                     <Button variant="light" onClick={props.onHide}>x</Button>
                 </Modal.Header>
-
                 <Modal.Body>
                     { !favoriteItems.length ?
                         <div>No favorites</div>:

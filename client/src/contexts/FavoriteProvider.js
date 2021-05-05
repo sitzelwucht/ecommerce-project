@@ -14,7 +14,6 @@ export default function FavoriteProvider({children}) {
     
 
     const updateFavorites = (user, favoritesArray, prodName, prodPrice, bool) => {
-
         if (bool) {
             const addedProduct = {
                 user: user,

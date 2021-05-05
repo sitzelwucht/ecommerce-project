@@ -38,7 +38,6 @@ function Cart(props) {
                     <h2>Cart</h2>
                     <Button variant="light" onClick={props.onHide}>close</Button>
                 </Modal.Header>
-
                 <Modal.Body>
                     { !userItems.length ? <div>Your cart is empty</div> : 
                     <table className="cart-table">
