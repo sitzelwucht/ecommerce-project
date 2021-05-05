@@ -4,30 +4,34 @@ import { Nav, Button, Badge } from 'react-bootstrap'
 import Cart from './Cart'
 import Favorites from './Favorites'
 import { useCart } from '../contexts/CartProvider'
+import { useFavorites } from '../contexts/FavoriteProvider'
 
 
 export default function NavBar(props) {
 
     const { cartItems } = useCart()
+    const { favorites } = useFavorites()
 
     const [cartModalShow, setCartModalShow] = useState(false);
     const [favoriteModalShow, setFavoriteModalShow] = useState(false);
     const [items, setItems] = useState(cartItems)
+    const [favoriteItems, setFavoriteItems] = useState(favorites)
 
 
-    // show cart items of logged in user only
+
     useEffect(() => {
-        setItems(cartItems.filter(elem => {
+        return setFavoriteItems(favorites.filter(elem => {
             return elem.user === props.user._id
         }))
-    }, [])
+        
+    }, [favorites])
 
 
     useEffect(() => {
         return setItems(cartItems.filter(elem => {
-            return elem.user === props.user._id
-        }))
-    }, [cartItems])
+           return elem.user === props.user._id
+       }))
+   }, [cartItems])
 
 
     return (
@@ -60,23 +64,21 @@ export default function NavBar(props) {
                 
                     <Nav.Item className="d-flex pt-4">
                         <Nav.Link eventKey="link-2" onClick={() => setFavoriteModalShow(true)}>
-                        <img src="/favorite.svg" className="svg-icon" height="40" alt="favorites" title="your favorites" />
-                        
+                            <img src="/favorite.svg" className="svg-icon" height="40" alt="favorites" title="your favorites" />
+                            {
+                            favoriteItems && favoriteItems.length > 0 && <div className="product-count favorite-count">{favoriteItems.length}</div>    
+                            }
                         </Nav.Link>
 
                         <Nav.Link eventKey="link-1" onClick={() => setCartModalShow(true)}>
-                        <img src="/shopping-cart.svg" className="svg-icon" height="40" alt="cart" title="your cart" />
-                        {
-                        items && items.length > 0 && <div className="product-count">{items.length}</div>    
-                        }
+                            <img src="/shopping-cart.svg" className="svg-icon" height="40" alt="cart" title="your cart" />
+                            {
+                            items && items.length > 0 && <div className="product-count cart-count">{items.length}</div>    
+                            }
                         </Nav.Link>
                     </Nav.Item>
 
                     <Favorites user={props.user} show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
-                
-                    <Nav.Item>
-                     
-                    </Nav.Item>
                     
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />
                 </>

@@ -13,12 +13,13 @@ export default function FavoriteProvider({children}) {
     const [favorites, setFavorites] = useLocalStorage('favorites', [])
     
 
-    const updateFavorites = (user, favoritesArray, prodName, bool) => {
+    const updateFavorites = (user, favoritesArray, prodName, prodPrice, bool) => {
 
         if (bool) {
             const addedProduct = {
                 user: user,
-                prodName: prodName
+                prodName: prodName,
+                prodPrice: prodPrice
             }
             
             if (!favoritesArray.some(elem => elem.prodName === prodName)) {
@@ -26,9 +27,7 @@ export default function FavoriteProvider({children}) {
                 return [...prevFavorites, addedProduct]
                 })
             }
-            else (console.log('already included'))
         }
-        
         else {
             for (let i = 0; i < favoritesArray.length; i++) {
                 if (favoritesArray[i].user === user && favoritesArray[i].prodName === prodName) {
@@ -41,8 +40,6 @@ export default function FavoriteProvider({children}) {
         }
 
     }
-
-
 
 
     return (

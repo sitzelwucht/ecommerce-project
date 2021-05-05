@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useFavorites } from '../contexts/FavoriteProvider'
+import { useCart } from '../contexts/CartProvider'
 
 export default function Favorites(props) {
 
-    const { favorites, removefromFavorites } = useFavorites()
+    const { favorites, updateFavorites } = useFavorites()
     const [favoriteItems, setFavoriteItems] = useState(favorites)
 
+    const { addToCart } = useCart()
 
     useEffect(() => {
-        setFavoriteItems(favoriteItems.filter(elem => {
+        props.user && setFavoriteItems(favoriteItems.filter(elem => {
             return elem.user === props.user._id
         }))
     }, [])
@@ -25,24 +27,38 @@ export default function Favorites(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Product</td>
-                                <td></td>
-                            </tr>
-                        </thead>
+                    { !favoriteItems.length ?
+                        <div>No favorites</div>:
+                    
+                        <table className="cart-table">
+                            <thead>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>Price</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                        {
+                        !favoriteItems ? <div>Loading...</div> :
+                        favoriteItems.map((item, i) => {
+                            return <tr key={i}>
+                                    <td>{item.prodName}</td>
+                                    <td>{item.prodPrice}</td>
+                                    <td><Button variant="light" 
+                                    onClick={() => updateFavorites(props.user._id, favoriteItems, item.prodName, false)}>x</Button></td>
+                                    <td><Button variant="light"
+                                    onClick={() => addToCart(props.user._id, item.prodName, item.prodPrice, 1)}>Add to cart</Button></td>
+                                </tr>
+                        })
+                        }
                         </tbody>
                     </table>
+                    }
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button>Go to checkout</Button>
                 </Modal.Footer>
             </Modal>            
         </div>
