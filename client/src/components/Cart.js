@@ -7,30 +7,12 @@ import { useCart } from '../contexts/CartProvider'
 
 function Cart(props) {
 
-    const { cartItems, updateProductQty } = useCart()
+    const { cartItems, updateProductQty, getQuantities } = useCart()
     const [userItems, setUserItems] = useState(cartItems)
 
     const [counts, setCounts] = useState([])
 
 
-
-    // get an array of unique product names with number of their occurrences
-    const getQuantities = () => {
-        const countsArr = []
-
-        userItems.forEach(item => {
-            for (let i = 0; i < countsArr.length; i++) {
-                if (item.prodName === countsArr[i].prodName) {
-                    countsArr[i].quantity += 1
-                    return
-                }
-            }
-            item.quantity = 1
-            countsArr.push(item)
-        })
-        return countsArr
-    }
-    
     // proceed to checkout page and close modal
     const goToCheckout = () => {
         props.history.push('/checkout')
@@ -43,7 +25,7 @@ function Cart(props) {
         setUserItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))
-        setCounts(getQuantities())
+        setCounts(getQuantities(userItems))
     }, [cartItems])
 
 
@@ -100,7 +82,7 @@ function Cart(props) {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={goToCheckout}>Go to checkout</Button>
+                   { userItems.length > 0 && <Button onClick={goToCheckout}>Go to checkout</Button> }
                 </Modal.Footer>
             </Modal>            
         </div>

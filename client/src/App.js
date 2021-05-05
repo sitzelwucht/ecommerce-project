@@ -17,6 +17,7 @@ import CartProvider from './contexts/CartProvider'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Checkout from './components/Checkout';
+import FavoriteProvider from './contexts/FavoriteProvider';
 
 
 function App(props) {
@@ -92,7 +93,7 @@ function App(props) {
   return (
         
       <CartProvider>
-
+      <FavoriteProvider>
         <>
         {!loggedInUser && <AnonymousNav /> }
         {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
@@ -136,6 +137,7 @@ function App(props) {
           </Switch>
 
         </>
+        </FavoriteProvider>
       </CartProvider>
   );
 }

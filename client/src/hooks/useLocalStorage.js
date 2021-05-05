@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 
-const PREFIX = 'cart'
+const PREFIX = 'ecommerce'
 
 export default function useLocalStorage(key, initialValue) {
     

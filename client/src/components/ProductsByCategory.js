@@ -6,12 +6,14 @@ import axios from 'axios'
 import config from '../config'
 import { Button } from 'react-bootstrap'
 import { useCart } from '../contexts/CartProvider'
+import { useFavorites } from '../contexts/FavoriteProvider'
 import Product from './Product'
 
 function ProductsByCategory(props) {
 
     const history = useHistory();
     const { addToCart, cartItems } = useCart()
+    const { favorites } = useFavorites()
 
     const [products, setProducts] = useState([])
     const [updatedProducts, setUpdatedProducts] = useState(products)
@@ -69,6 +71,7 @@ function ProductsByCategory(props) {
                             onDelete={handleDelete}
                             onAdd={addToCart}
                             items={cartItems}
+                            favorites={favorites}
                             />
                  
                     })

@@ -72,7 +72,7 @@ export default function NavBar(props) {
                         </Nav.Link>
                     </Nav.Item>
 
-                    <Favorites show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
+                    <Favorites user={props.user} show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
                 
                     <Nav.Item>
                      

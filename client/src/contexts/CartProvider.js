@@ -46,9 +46,26 @@ export default function CartProvider({children}) {
         setCartItems(cartArray)
     }
 
+    // get an array of unique product names with number of their occurrences
+    const getQuantities = (arr) => {
+        const countsArr = []
+
+        arr.forEach(item => {
+            for (let i = 0; i < countsArr.length; i++) {
+                if (item.prodName === countsArr[i].prodName) {
+                    countsArr[i].quantity += 1
+                    return
+                }
+            }
+            item.quantity = 1
+            countsArr.push(item)
+        })
+        return countsArr
+    }
+
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, updateProductQty }}>
+        <CartContext.Provider value={{ cartItems, addToCart, updateProductQty, getQuantities }}>
             {children}
         </CartContext.Provider>
     )

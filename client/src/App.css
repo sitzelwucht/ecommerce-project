@@ -254,6 +254,13 @@ td {
 .darkgreen {
   background: rgba(0, 128, 0, 0.7);
 }
+.favorite {
+  margin-top: 20px;
+}
+
+.favorite:hover {
+  cursor: pointer;
+}
 
 /* admin page */
 

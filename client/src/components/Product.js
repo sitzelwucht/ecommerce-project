@@ -1,14 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form, Badge } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 import { useCart } from '../contexts/CartProvider'
+import { useFavorites } from '../contexts/FavoriteProvider'
+
 
 export default function Product(props) {
 
     const [editMode, setEditMode] = useState(false);
     const { addToCart, cartItems } = useCart()
+    const { favorites, updateFavorites } = useFavorites()
+    const [favoriteItems, setFavoriteItems] = useState(favorites)
 
     const [title, setTitle] = useState(props.title)
     const [description, setDescription] = useState(props.description)
@@ -17,6 +21,7 @@ export default function Product(props) {
     const [updatedProduct, setUpdatedProduct] = useState({...props})
 
     const [quantity, setQuantity] = useState(null)
+    const [isFavorite, setIsFavorite] = useState(false)
 
 
     // product editing for admins
@@ -52,6 +57,22 @@ export default function Product(props) {
        }
         
     }
+
+    const toggleFavorite = () => {
+        isFavorite ? setIsFavorite(false) : setIsFavorite(true)
+
+        isFavorite ? 
+        updateFavorites(props.user._id, favoriteItems, props.title, false) :
+        updateFavorites(props.user._id, favoriteItems, props.title, true) 
+    }
+
+
+    useEffect(() => {
+        props.user && setFavoriteItems(favoriteItems.filter(elem => {
+            return elem.user === props.user._id
+        }))
+    }, [])
+
 
     return (
         <>
@@ -146,9 +167,12 @@ export default function Product(props) {
                                 <Button variant="info" className="m-1" 
                                 onClick={handleAdd}>to cart</Button>
                             </Form>
-
-                            <Button variant="secondary" className="m-1" 
-                            onClick={() => {props.onDelete(props.items, props.user._id, props.prodName)}}>to favorites</Button>
+                                <img src={isFavorite ? "/favorite2.svg" : "/unfavorite.svg"} 
+                                height="30" 
+                                className="favorite" 
+                                alt="add favorite" 
+                                title={isFavorite ? "remove from favorites" : "add to favorites"} 
+                                onClick={toggleFavorite} /> 
                             </div>
                         }
                         </div>
