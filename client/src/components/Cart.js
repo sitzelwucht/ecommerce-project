@@ -19,15 +19,17 @@ function Cart(props) {
         props.onHide()
     }
 
-
     // filter localstorage for logged in user's items and get array for cart
     useEffect(() => {
         setUserItems(cartItems.filter(elem => {
             return elem.user === props.user._id
         }))
-        setCounts(getQuantities(userItems))
     }, [cartItems])
 
+    // get simple list of items for cart
+    useEffect(() => {
+        setCounts(getQuantities(userItems))
+    }, [userItems])
 
 
 
@@ -81,7 +83,7 @@ function Cart(props) {
                 </Modal.Body>
 
                 <Modal.Footer>
-                   { userItems.length > 0 && <Button onClick={goToCheckout}>Go to checkout</Button> }
+                   { userItems.length > 0 && <Button variant="danger" onClick={goToCheckout}>Go to checkout</Button> }
                 </Modal.Footer>
             </Modal>            
         </div>

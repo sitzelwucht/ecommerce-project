@@ -190,6 +190,7 @@ td {
 .category-title {
   background: rgb(230, 230, 230);
   color: rgba(20,20,20,.6);
+  margin-bottom: 50px;
   padding: 15px;
   text-align: center;
   border-radius: 50px;

@@ -13,31 +13,31 @@ const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 // app.use(express.static('.'));
 
-const YOUR_DOMAIN = 'http://localhost:3000/checkout';
+// const DOMAIN = 'http://localhost:3000/checkout';
 
-app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'Stubborn Attachments',
-            images: ['https://i.imgur.com/EHyR2nP.png'],
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
+// app.post('/create-checkout-session', async (req, res) => {
+//   const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ['card'],
+//     line_items: [
+//       {
+//         price_data: {
+//           currency: 'usd',
+//           product_data: {
+//             name: 'Stubborn Attachments',
+//             images: ['https://i.imgur.com/EHyR2nP.png'],
+//           },
+//           unit_amount: 2000,
+//         },
+//         quantity: 1,
+//       },
+//     ],
+//     mode: 'payment',
+//     success_url: `${DOMAIN}?success=true`,
+//     cancel_url: `${DOMAIN}?canceled=true`,
+//   });
 
-  res.json({ id: session.id });
-});
+//   res.json({ id: session.id });
+// });
 
 app.listen(4242, () => console.log('Running on port 4242'));
 
@@ -66,6 +66,10 @@ app.use('/api', authRoutes)
 
 const productRoutes = require('./routes/product.routes')
 app.use('/api', productRoutes)
+
+const paymentRoutes = require('./routes/payment.routes')
+app.use('/api', paymentRoutes)
+
 
 app.use((req, res, next) => {
     res.sendFile(__dirname + '/public.index.html')

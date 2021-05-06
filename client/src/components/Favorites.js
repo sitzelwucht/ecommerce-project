@@ -10,17 +10,16 @@ export default function Favorites(props) {
 
     const { addToCart } = useCart()
 
+
     useEffect(() => {
-        console.log(props.user._id)
-        props.user && setFavoriteItems(favoriteItems.filter(elem => {
+        props.user && setFavoriteItems(favorites.filter(elem => {
             return elem.user === props.user._id
         }))
-    }, [])
+    }, [favorites])
 
 
     return (
         <div>
-        {console.log(favoriteItems)}
             <Modal {...props } size="lg" aria-labelledby="contained-modal-title-vcenter"
         centered >
                 <Modal.Header className="d-flex justify-content-between">
@@ -49,7 +48,7 @@ export default function Favorites(props) {
                                     <td>{item.prodPrice}</td>
                                     <td><Button variant="light" 
                                     onClick={() => updateFavorites(props.user._id, favoriteItems, item.prodName, false)}>x</Button></td>
-                                    <td><Button variant="light"
+                                    <td><Button variant="outline-dark"
                                     onClick={() => addToCart(props.user._id, item.prodName, item.prodPrice, 1)}>Add to cart</Button></td>
                                 </tr>
                         })
