@@ -4,23 +4,7 @@ const router = express.Router()
 const ProductModel = require('../models/Product.model')
 
 
-router.post('/newproduct', (req, res) => {
-    const { title, category, description, price, stock } = req.body
-
-    ProductModel.create({ title, category, description, price, stock })
-    .then(product => { res.status(200).json(product) })
-    .catch(err => res.status(500).json(err))
-})
-
-
-router.post('/newcategory', (req, res) => {
-    const { name } = req.body
-
-    CategoryModel.create({ name })
-    .then(category => { res.status(200).json(category) })
-    .catch(err => res.status(500).json(err))
-})
-
+// GET
 
 router.get('/categories', (req, res) => {
     CategoryModel.find()
@@ -50,6 +34,27 @@ router.get('/productsearch/', (req, res) => {
 })
 
 
+// POST
+router.post('/newproduct', (req, res) => {
+    const { title, category, description, price, stock } = req.body
+
+    ProductModel.create({ title, category, description, price, stock })
+    .then(product => { res.status(200).json(product) })
+    .catch(err => res.status(500).json(err))
+})
+
+
+router.post('/newcategory', (req, res) => {
+    const { name } = req.body
+
+    CategoryModel.create({ name })
+    .then(category => { res.status(200).json(category) })
+    .catch(err => res.status(500).json(err))
+})
+
+
+// DELETE
+
 router.delete('/products/:prodId', (req, res) => {
     const id = req.params.prodId
     ProductModel.findByIdAndDelete(id)
@@ -63,6 +68,8 @@ router.delete('/products/:prodId', (req, res) => {
         })
     })
 })
+
+// PATCH
 
 router.patch('/products/:prodId', (req, res) => {
     const id = req.params.prodId
@@ -92,6 +99,18 @@ router.get('/getproduct/:prodId', (req, res) => {
     ProductModel.findById(id)
     .then(result => {
         res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+
+// fetch a JSON object with all products
+router.get('/allproducts', (req, res) => {
+    ProductModel.find()
+    .then(result => {
+        res.status(200).json(JSON.stringify(result))
     })
     .catch(err => {
         res.status(500).json(err)

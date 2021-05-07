@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import { useCart } from '../contexts/CartProvider'
 import { loadStripe } from "@stripe/stripe-js";
-import { Button, NavItem } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import config from '../config'
 
 
@@ -25,7 +26,7 @@ export default function Checkout(props) {
 
     const handleClick = async (e) => {
         const stripe = await stripePromise;
-        const response = await fetch(`${config.API_URL}/create-checkout-session`, {
+        const response = await fetch(`${config.API_URL}/api/create-checkout-session`, {
           method: "POST",
         });
     }
@@ -57,7 +58,12 @@ export default function Checkout(props) {
 
 
     return (
-         message ? (<Message msg={message} /> ) :
+        
+        <>
+        {  !props.user && <Redirect to={'/'} /> }
+
+        {
+            message ? (<Message msg={message} /> ) :
     
         (<div className="w-75 border mx-auto mt-5 p-3">
             <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
@@ -100,6 +106,7 @@ export default function Checkout(props) {
 
                 </div>   
         </div> )
-
+        } 
+        </>
     )
 }

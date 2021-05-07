@@ -5,15 +5,15 @@ import { Nav, Button, Form, FormControl } from 'react-bootstrap'
 export default function AnonymousNav() {
     return (
         <div>
-            <Nav activeKey="/home" className="anon-nav nav d-flex justify-content-between">
-                <Nav.Item>
+            <Nav activeKey="/home" className="anon-nav nav d-flex justify-content-between shadow p-3">
+
+            <Nav.Item className=" d-flex">
+
                 <Link to={'/'}><img src="/logo.svg" height="150" className="m-3" alt="" /></Link>
-                    <Link to={'/login'}>
-                        <Button variant="outline-info" className="m-5">Login</Button>
-                    </Link>
-                <Link to={'/signup'}>
-                    <Button variant="info" className="m-5">Signup</Button>
-                </Link>
+                <div className="buttons">
+                    <Link to={'/login'}><Button variant="outline-info" className="m-5">Login</Button></Link>
+                    <Link to={'/signup'}><Button variant="info" className="m-5">Signup</Button></Link>
+                </div>
             </Nav.Item>
 
             <Nav.Item className="d-flex align-items-center">

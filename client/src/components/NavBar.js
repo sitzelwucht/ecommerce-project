@@ -38,7 +38,7 @@ export default function NavBar(props) {
         <div>
             <Nav className={props.admin ? 
             "d-flex justify-content-between p-4 pt-5 admin-nav" : 
-            "d-flex justify-content-around p-4 user-nav nav"} >
+            "d-flex justify-content-around p-4 user-nav nav "} >
 
             {
                 props.admin ? 
@@ -51,10 +51,10 @@ export default function NavBar(props) {
                     </Nav.Item>
                 </> : 
                 <>
-                    <Nav.Item className="d-flex align-items-center" >
+                    <Nav.Item className="d-flex align-items-center " >
                         <Nav.Link href="/">
                         <img src="/logo.svg" height="85" alt="home" className="m-1 " title="home" />
-                        <Badge variant="info" className="m-3"><h5>{props.user.email}</h5></Badge>
+                        <Badge variant="info" className="m-3 p-2">{props.user.email}</Badge>
                         </Nav.Link>
                     </Nav.Item>
        
@@ -64,17 +64,21 @@ export default function NavBar(props) {
                 
                     <Nav.Item className="d-flex pt-4">
                         <Nav.Link eventKey="link-2" onClick={() => setFavoriteModalShow(true)}>
-                            <img src="/favorite.svg" className="svg-icon" height="40" alt="favorites" title="your favorites" />
+                        <div className="nav-symbols">
+                            <img src="/favorite.svg" className="svg-icon" height="60" alt="favorites" title="your favorites" />
                             {
                             favoriteItems && favoriteItems.length > 0 && <div className="product-count favorite-count">{favoriteItems.length}</div>    
                             }
+                        </div>
                         </Nav.Link>
 
                         <Nav.Link eventKey="link-1" onClick={() => setCartModalShow(true)}>
-                            <img src="/shopping-cart.svg" className="svg-icon" height="40" alt="cart" title="your cart" />
+                            <div className="nav-symbols">
+                                <img src="/shopping-cart.svg" className="svg-icon" height="65" alt="cart" title="your cart" />
                             {
                             items && items.length > 0 && <div className="product-count cart-count">{items.length}</div>    
                             }
+                            </div>
                         </Nav.Link>
                     </Nav.Item>
 

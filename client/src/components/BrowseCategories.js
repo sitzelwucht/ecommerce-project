@@ -17,6 +17,12 @@ export default function BrowseCategories() {
         setCategories(categs)
     }
 
+        
+    const getAllProducts = async () => {
+        const response = await axios.get(`${config.API_URL}/api/allproducts`)
+        const result = await response.data
+        console.log(result)
+    }
 
     useEffect(() => {
         getCategories()

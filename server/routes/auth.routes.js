@@ -4,6 +4,42 @@ const bcrypt = require('bcryptjs')
 const UserModel = require('../models/User.model')
 
 
+const isLoggedIn = (req, res, next) => {
+    if (req.session.loggedInUser) {
+        next()
+    }
+    else {
+        res.status(401).json({
+            message: 'Unauthorized',
+            code: 401
+        })
+    }
+}
+
+
+
+// GET
+
+
+router.get('/user', isLoggedIn, (req, res, next) => {
+    res.status(200).json(req.session.loggedInUser)
+})
+
+
+router.get('/getuser/:id', (req, res) => {
+    const id = req.params.id
+    UserModel.findById(id)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+
+// POST
+
 router.post('/signup', (req, res) => {
     const { firstName, lastName, email, password, password2, isAdmin } = req.body
  
@@ -97,6 +133,14 @@ router.post('/admin-login', (req, res) => {
 })
 
 
+router.post('/logout', (req, res) => {
+    req.session.destroy()
+    res.status(204).json({})
+})
+
+
+// PATCH
+
 router.patch('/edituser/:id', (req, res) => {
     const id = req.params.id
     const { email, firstName, lastName, phone, address, postCode, city } = req.body
@@ -121,39 +165,10 @@ router.patch('/edituser/:id', (req, res) => {
     })
 })
 
-router.get('/getuser/:id', (req, res) => {
-    const id = req.params.id
-    UserModel.findById(id)
-    .then(response => {
-        res.status(200).json(response)
-    })
-    .catch(err => {
-        res.status(500).json(err)
-    })
-})
 
 
 
-router.post('/logout', (req, res) => {
-    req.session.destroy()
-    res.status(204).json({})
-})
 
 
-const isLoggedIn = (req, res, next) => {
-    if (req.session.loggedInUser) {
-        next()
-    }
-    else {
-        res.status(401).json({
-            message: 'Unauthorized',
-            code: 401
-        })
-    }
-}
-
-router.get('/user', isLoggedIn, (req, res, next) => {
-    res.status(200).json(req.session.loggedInUser)
-})
 
 module.exports = router
