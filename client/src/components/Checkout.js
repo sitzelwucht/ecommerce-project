@@ -63,7 +63,7 @@ export default function Checkout(props) {
         {  !props.user && <Redirect to={'/'} /> }
 
         {
-            message ? (<Message msg={message} /> ) :
+        message ? (<Message msg={message} /> ) :
     
         (<div className="w-75 border mx-auto mt-5 p-3">
             <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>

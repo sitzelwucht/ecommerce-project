@@ -9,10 +9,12 @@ import { useFavorites } from '../contexts/FavoriteProvider'
 
 export default function Product(props) {
 
-    const [editMode, setEditMode] = useState(false);
+  
     const { addToCart, cartItems } = useCart()
     const { favorites, updateFavorites } = useFavorites()
-    const [favoriteItems, setFavoriteItems] = useState(favorites)
+
+    const [editMode, setEditMode] = useState(false);
+    const [favoriteItems, setFavoriteItems] = useState([])
 
     const [title, setTitle] = useState(props.title)
     const [description, setDescription] = useState(props.description)
@@ -21,7 +23,7 @@ export default function Product(props) {
     const [updatedProduct, setUpdatedProduct] = useState({...props})
 
     const [quantity, setQuantity] = useState(null)
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(null)
 
 
     // product editing for admins
@@ -55,7 +57,6 @@ export default function Product(props) {
        else {
         alert('Please select quantity')
        }
-        
     }
 
     const toggleFavorite = () => {
@@ -68,14 +69,15 @@ export default function Product(props) {
 
 
     useEffect(() => {
-        props.user && setFavoriteItems(favoriteItems.filter(elem => {
+        props.user && setFavoriteItems(favorites.filter(elem => {
             return elem.user === props.user._id
         }))
-    }, [])
+    }, [favorites])
 
 
     return (
         <>
+        {console.log(favoriteItems)}
             <div className="border m-3 p-3 w-25 product-box">
             {
                 !editMode ? 
@@ -152,27 +154,36 @@ export default function Product(props) {
                         }
                         {
                         props.user && !props.user.isAdmin && 
-                            <div className="d-flex flex-column mx-auto">
-                            <Form className="d-flex">
-                                <Form.Group className="m-1">
-                                    <Form.Control as="select" onChange={(e) => {setQuantity(parseInt(e.target.value))}} name="qtySelect" >
-                                        <option defaultValue >qty</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </Form.Control>
-                                </Form.Group>
-                                <Button variant="info" className="m-1" 
-                                onClick={handleAdd}>to cart</Button>
-                            </Form>
-                                <img src={isFavorite ? "/favorite2.svg" : "/unfavorite.svg"} 
-                                height="30" 
-                                className="favorite" 
-                                alt="add favorite" 
-                                title={isFavorite ? "remove from favorites" : "add to favorites"} 
-                                onClick={toggleFavorite} /> 
+
+                            <div className="product-qty-fave">
+                                <div >
+                                    <img src={favoriteItems.some(elem => { 
+                                        return elem.user === props.user._id && elem.prodName === props.title})  ? 
+                                        "/star.svg" : "/star-unselected.svg"} 
+                                        height="30" 
+                                        className="favorite" 
+                                        alt="add favorite" 
+                                        title={isFavorite ? "remove from favorites" : "add to favorites"} 
+                                        onClick={toggleFavorite} /> 
+                                </div>
+                                <div>
+
+                                    <Form className="d-flex">
+                                        <Form.Group className="m-1">
+                                            <Form.Control as="select" onChange={(e) => {setQuantity(parseInt(e.target.value))}} name="qtySelect" >
+                                                <option defaultValue >qty</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </Form.Control>
+                                        </Form.Group>
+                                        <Button variant="info" className="m-1" 
+                                        onClick={handleAdd}>to cart</Button>
+                                    </Form>
+                                </div>
+
                             </div>
                         }
                         </div>
