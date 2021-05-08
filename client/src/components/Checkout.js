@@ -1,12 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useCart } from '../contexts/CartProvider'
-import { loadStripe } from "@stripe/stripe-js";
 import { Button } from 'react-bootstrap'
 import config from '../config'
-
-
-const stripePromise = loadStripe("pk_test_51IQBs7El6fb6DcQO7RhMclJlifFCggSxFClvtm0jbraStLl1MWaNG5e6ytjQq9iI0Fi0y3ILmpk66ZKg6vMzBBK600W2mV1KUg");
+import StripeCheckout from 'react-stripe-checkout'
 
 
 export default function Checkout(props) {
@@ -14,38 +12,32 @@ export default function Checkout(props) {
     const { cartItems, getQuantities } = useCart()
     const [counts, setCounts] = useState([])
     const [items, setItems] = useState(cartItems)
-    const [message, setMessage] = useState(null);
+
+    const [total, setTotal] = useState(null)
 
 
-    const Message = ({ msg }) => (
-        <section>
-          <p>{message}</p>
-        </section>
-      );
 
 
-    const handleClick = async (e) => {
-        const stripe = await stripePromise;
-        const response = await fetch(`${config.API_URL}/api/create-checkout-session`, {
-          method: "POST",
-        });
+    const makePayment = (token) => {
+        const body = {
+            token, items
+        }
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+
+        return fetch(`${config.API_URL}/api/payment`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(body)
+        })
+        .then(response => {
+            console.log('response :', response)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
-
-
-    useEffect(() => {
-      // Check to see if this is a redirect back from Checkout
-      const query = new URLSearchParams(window.location.search);
-  
-      if (query.get('success')) {
-        setMessage('Order placed! You will receive an email confirmation.');
-      }
-      if (query.get('canceled')) {
-        setMessage(
-          'Order canceled -- continue to shop around and checkout when you\'re ready.'
-        );
-      }
-    }, []);
-  
 
 
     useEffect(() => {
@@ -56,16 +48,21 @@ export default function Checkout(props) {
     }, [])
 
 
+    useEffect(() => {
+        setTotal(counts.map(item => {
+            return parseInt(item.prodPrice * item.quantity)
+            }).reduce((acc, elem) => {
+            return elem + acc}, 0))
+    }, [counts])
+
+
 
     return (
         
         <>
         {  !props.user && <Redirect to={'/'} /> }
 
-        {
-        message ? (<Message msg={message} /> ) :
-    
-        (<div className="w-75 border mx-auto mt-5 p-3">
+        <div className="w-75 border mx-auto mt-5 p-3">
             <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
                 <table className="cart-table">
                     <thead>
@@ -89,24 +86,27 @@ export default function Checkout(props) {
                     </tbody>
                 </table>
              
-                    <div className="highlighted border d-flex m-5 justify-content-center">
-                        <span>Total</span>
-                        <span>{ counts.map(item => {
-                                    return parseInt(item.prodPrice * item.quantity)
-                                    }).reduce((acc, elem) => {
-                                    return elem + acc}, 0)
-                                }€
-                            </span>
+                    <div className="highlighted border d-flex m-5 w-50 mx-auto justify-content-center">
+                        <span>Total:</span>
+                        <span>{total}€</span>
                     </div>
       
                 <div className="d-flex justify-content-center mt-5">
-                    <Button type="button" variant="info" id="checkout-button" role="link" onClick={handleClick}>
+
+
+                    <StripeCheckout 
+                    stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
+                    token={makePayment}
+                    amount={total * 100}
+                    name="Make payment" >
+                    <Button type="button" variant="info" id="checkout-button" role="link" >
                         Checkout
-                    </Button>   
+                    </Button>
+                    </StripeCheckout>   
 
                 </div>   
-        </div> )
-        } 
+        </div> 
+        
         </>
     )
 }

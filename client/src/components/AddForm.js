@@ -133,7 +133,7 @@ function AddForm(props) {
             </Form.Group>
 
             <Form.Group controlId="formBasicPrice">
-                <Form.Label className="font-weight-bold">price</Form.Label>
+                <Form.Label className="font-weight-bold">price (in cents) </Form.Label>
                 <Form.Control type="number" name="price" placeholder="Product price" />
             </Form.Group>
 
