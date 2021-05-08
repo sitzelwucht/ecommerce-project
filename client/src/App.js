@@ -80,6 +80,9 @@ function App(props) {
     .then(() => setLoggedInUser(null), () => {props.history.push('/')})
   }
 
+
+
+  
   useEffect(() => {
     if (!loggedInUser) {
       axios.get(`${config.API_URL}/api/user`, { withCredentials: true })

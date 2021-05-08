@@ -9,7 +9,7 @@ export default function AnonymousNav() {
 
             <Nav.Item className=" d-flex">
 
-                <Link to={'/'}><img src="/logo.svg" height="150" className="m-3" alt="" /></Link>
+                <Link to={'/'}><img src="/logo.svg" height="110" className="m-3" alt="" /></Link>
                 <div className="buttons">
                     <Link to={'/login'}><Button variant="outline-info" className="m-5">Login</Button></Link>
                     <Link to={'/signup'}><Button variant="info" className="m-5">Signup</Button></Link>

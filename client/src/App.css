@@ -15,9 +15,6 @@ a {
   background: rgb(234, 244, 250)!important;
   border: none!important
 }
-h3 {
-  font-weight: 500;
-}
 
 /* Front page and pre-login*/
 
@@ -57,7 +54,9 @@ h3 {
 
 
 /* User nav*/
-
+.user-badge {
+  border-radius: 15px;
+}
 .nav-symbols-container {
   align-items: center;
 }
@@ -185,7 +184,7 @@ td {
 .category-title {
   background: rgb(230, 230, 230);
   color: rgba(20,20,20,.6);
-  margin-bottom: 50px;
+  margin-top: 50px;
   padding: 15px;
   text-align: center;
   border-radius: 50px;
@@ -261,7 +260,7 @@ td {
   height: 100vh;
   width: 30vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: white;
   position: fixed;
 }

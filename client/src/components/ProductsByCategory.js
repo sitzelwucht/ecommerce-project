@@ -54,7 +54,7 @@ function ProductsByCategory(props) {
 
             <div className="mt-5 mx-auto category-title">{props.category}</div>
     
-            <div className="d-flex border m-5 product-container">
+            <div className="d-flex border m-5 product-container mx-auto w-75">
                 {
                     !products.length ? 
                     <div className="p-3">no results</div> : 

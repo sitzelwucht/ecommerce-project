@@ -34,6 +34,30 @@ router.get('/productsearch/', (req, res) => {
 })
 
 
+router.get('/getproduct/:prodId', (req, res) => {
+    const id = req.params.prodId
+    ProductModel.findById(id)
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+
+router.get('/allproducts', (req, res) => {
+    ProductModel.find()
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+
+
 // POST
 router.post('/newproduct', (req, res) => {
     const { title, category, description, price, stock } = req.body
@@ -94,28 +118,7 @@ router.patch('/products/:prodId', (req, res) => {
 })
 
 
-router.get('/getproduct/:prodId', (req, res) => {
-    const id = req.params.prodId
-    ProductModel.findById(id)
-    .then(result => {
-        res.status(200).json(result)
-    })
-    .catch(err => {
-        res.status(500).json(err)
-    })
-})
 
-
-// fetch a JSON object with all products
-router.get('/allproducts', (req, res) => {
-    ProductModel.find()
-    .then(result => {
-        res.status(200).json(JSON.stringify(result))
-    })
-    .catch(err => {
-        res.status(500).json(err)
-    })
-})
 
 
 module.exports = router

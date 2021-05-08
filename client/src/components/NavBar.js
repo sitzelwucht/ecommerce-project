@@ -52,7 +52,7 @@ export default function NavBar(props) {
                     <Nav.Item className="d-flex align-items-center" >
                         <Nav.Link href="/">
                         <img src="/logo.svg" height="85" alt="home" className="m-1 " title="home" />
-                        <Badge variant="info" className="m-3 p-2">{props.user.email}</Badge>
+                        <Badge variant="info" className="m-3 p-2 user-badge">{props.user.email}</Badge>
                         </Nav.Link>
                     </Nav.Item>
                 
