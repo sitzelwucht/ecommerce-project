@@ -37,17 +37,15 @@ export default function NavBar(props) {
     return (
         <div>
             <Nav className={props.admin ? 
-            "d-flex justify-content-between p-4 pt-5 admin-nav nav" : 
+            "d-flex flex-column p-4 pt-5 admin-nav" : 
             "d-flex justify-content-around p-2 user-nav nav "} >
 
             {
                 props.admin ? 
                 <>
-                    <Nav.Item className="d-flex align-items-center">
-                        <Badge variant="info" className="p-1"><h6>{props.user.email}</h6></Badge>
-                    </Nav.Item>
                     <Nav.Item>
                         <h6>ADMIN</h6>
+                        <Badge variant="info" className="p-1"><h6>{props.user.email}</h6></Badge>
                     </Nav.Item>
                 </> : 
                 <>
@@ -56,10 +54,6 @@ export default function NavBar(props) {
                         <img src="/logo.svg" height="85" alt="home" className="m-1 " title="home" />
                         <Badge variant="info" className="m-3 p-2">{props.user.email}</Badge>
                         </Nav.Link>
-                    </Nav.Item>
-       
-                    <Nav.Item className="d-flex align-items-center">
-                        <Nav.Link href="/categories"><Button variant="outline-light">Categories</Button></Nav.Link>
                     </Nav.Item>
                 
                     <Nav.Item className="d-flex pt-4 nav-symbols-container">
@@ -85,12 +79,19 @@ export default function NavBar(props) {
                     <Favorites user={props.user} show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
                     
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />
+
+                    <Nav.Item className="d-flex align-items-center">
+                        <Nav.Link href="/categories"><Button variant="outline-light">Categories</Button></Nav.Link>
+                    </Nav.Item>
                 </>
             } 
-                
+
+ 
+
                     <Nav.Item className="d-flex align-items-center">
                         <Button variant="dark" onClick={props.onLogout} >Log out</Button>
-                    </Nav.Item>  
+                    </Nav.Item>
+
             </Nav>
         </div>
     )

@@ -52,7 +52,7 @@ function ProductsByCategory(props) {
         <div>
             <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
 
-            <div className="mt-5 mx-auto w-25 category-title">{props.category}</div>
+            <div className="mt-5 mx-auto category-title">{props.category}</div>
     
             <div className="d-flex border m-5 product-container">
                 {

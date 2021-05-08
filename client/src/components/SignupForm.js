@@ -43,7 +43,7 @@ export default function SignupForm(props) {
     
     return (<>
             { props.user && <Redirect to={'/'} /> }
-        <div className="signup-bg">
+        <div className="signup-bg bg">
             <Form className="w-50 mx-auto p-5 form" onSubmit={props.onSignup}>
             <h3>SIGN UP</h3>
             { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }

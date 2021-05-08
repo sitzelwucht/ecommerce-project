@@ -9,7 +9,6 @@ import { useFavorites } from '../contexts/FavoriteProvider'
 
 export default function Product(props) {
 
-  
     const { addToCart, cartItems } = useCart()
     const { favorites, updateFavorites } = useFavorites()
 
@@ -77,7 +76,6 @@ export default function Product(props) {
 
     return (
         <>
-        {console.log(favoriteItems)}
             <div className="border m-3 p-3 w-25 product-box">
             {
                 !editMode ? 

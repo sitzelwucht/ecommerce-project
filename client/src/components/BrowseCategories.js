@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Nav, Form, FormControl } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 
@@ -30,9 +30,10 @@ export default function BrowseCategories() {
 
 
     return (
+        <>
         <div>
         <h2 className="mx-auto border text-center w-50 m-3 p-3">Product Categories</h2>
-            <div className="m-10 mt-5 mx-auto w-50 p-3 border d-flex wrap">
+            <div className="m-10 mt-5 mx-auto w-50 p-3 border d-flex flex-wrap">
             {
                 categories.map((item, i) => {
                     return <div className="categories-user" key={i}>
@@ -40,8 +41,19 @@ export default function BrowseCategories() {
                             </div>
                 })
             }
-
             </div>
         </div>
+        <div>
+        <h2 className="mx-auto border text-center w-50 m-3 p-3">Search for product</h2>
+        <div className="m-10 mt-5 mx-auto w-50 p-3 border d-flex flex-wrap">
+            <Nav.Item className="d-flex align-items-center">
+                <Form className="m-5" inline>
+                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button variant="outline-info">Search</Button>
+                </Form>
+            </Nav.Item></div>
+
+        </div>
+        </>
     )
 }

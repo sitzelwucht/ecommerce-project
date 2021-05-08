@@ -15,7 +15,7 @@ export default function AnonymousNav() {
                     <Link to={'/signup'}><Button variant="info" className="m-5">Signup</Button></Link>
                 </div>
             </Nav.Item>
-
+            <div className="d-flex anon-browse-search">
             <Nav.Item className="d-flex align-items-center">
                 <Link to={'/categories'}>
                     <Button variant="dark" className="m-5">Browse</Button>
@@ -27,7 +27,7 @@ export default function AnonymousNav() {
                     <Button variant="outline-info">Search</Button>
                 </Form>
             </Nav.Item>
-
+            </div>
             </Nav>
         </div>
     )

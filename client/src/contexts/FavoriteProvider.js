@@ -26,7 +26,6 @@ export default function FavoriteProvider({children}) {
                 return [...prevFavorites, addedProduct]
                 })
             }
-            else console.log('already included')
         }
         else {
             for (let i = 0; i < favoritesArray.length; i++) {

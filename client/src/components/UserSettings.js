@@ -76,40 +76,40 @@ export default function UserSettings(props) {
             <table className="m-4">
                 <tbody>
                 <tr>
-                    <td className="bold">Email</td>
+                    <td className="font-weight-bold">Email</td>
                     <td>{updatedUser.email}</td>
                 </tr>
                 <tr>
-                    <td className="bold">Firstname</td>
+                    <td className="font-weight-bold">Firstname</td>
                     <td>{updatedUser.firstName}</td>
                 </tr>
                 <tr>
-                    <td className="bold">Lastname</td>
+                    <td className="font-weight-bold">Lastname</td>
                     <td>{updatedUser.lastName}</td>
                 </tr>
                 <tr>
-                    <td className="bold">Phone</td>
+                    <td className="font-weight-bold">Phone</td>
                     {
                         updatedUser.phone ? <td>{updatedUser.phone}</td> :
                         <Button variant="success">add</Button>
                     }   
                 </tr>
                 <tr>
-                    <td className="bold">Street Address</td>
+                    <td className="font-weight-bold">Street Address</td>
                     {
                         updatedUser.address ? <td>{updatedUser.address}</td> :
                         <Button variant="success">add</Button>
                     }  
                 </tr>
                 <tr>
-                    <td className="bold">Post Code</td>
+                    <td className="font-weight-bold">Post Code</td>
                     {
                         updatedUser.postCode ? <td>{updatedUser.postCode}</td> :
                         <Button variant="success">add</Button>
                     }  
                 </tr>
                 <tr>
-                    <td className="bold">City</td>
+                    <td className="font-weight-bold">City</td>
                     {
                         updatedUser.city ? <td>{updatedUser.city}</td> :
                         <Button variant="success">add</Button>

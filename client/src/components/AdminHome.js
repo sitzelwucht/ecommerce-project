@@ -48,9 +48,9 @@ export default function AdminHome(props) {
 
     return (
         <div className="admin-bg">
-            <Card className="w-75 mx-auto transparent">
+            <Card className="w-50 mx-auto">
 
-             <Accordion className="w-100 transparent">
+             <Accordion>
                 <Card className="dark-bg">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">

@@ -8,7 +8,7 @@ export default function LoginForm(props) {
     return (
             <>
             { props.user && <Redirect to={'/'} /> }
-            <div className="login-bg">
+            <div className="login-bg bg">
              <Form className="w-50 mx-auto p-5 form" onSubmit={props.onLogin}>
             <h3>LOG IN</h3>
             { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>} 

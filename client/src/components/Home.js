@@ -37,7 +37,7 @@ export default function Home(props) {
 
 
     return (
-        <div className="user-page-bg">
+        <div className="user-page-bg bg">
 
         <div className="wrapper">
         
