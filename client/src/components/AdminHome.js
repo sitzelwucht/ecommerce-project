@@ -50,8 +50,8 @@ export default function AdminHome(props) {
         <div className="admin-bg">
             <Card className="w-50 mx-auto">
 
-             <Accordion>
-                <Card className="dark-bg">
+             <Accordion className="m-5 accordion-links">
+                <Card>
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
                             Add product
@@ -80,11 +80,13 @@ export default function AdminHome(props) {
                         <ul className="border p-3 mb-3">
                             {
                                 categories.map((item, i) => {
-                                    return <Link to={`/bycategory/${item}`}>
+                                    return <div key={i}>
+                                            <Link to={`/bycategory/${item}`}>
                                                 <Button variant="link">
-                                                <li className="list-group-item category-button" key={i}>{item}</li>
+                                                <li className="list-group-item category-button">{item}</li>
                                                 </Button>
                                             </Link>
+                                            </div>
                                 })
                             }
                         </ul>

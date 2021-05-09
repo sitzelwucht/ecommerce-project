@@ -18,6 +18,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Checkout from './components/Checkout';
 import FavoriteProvider from './contexts/FavoriteProvider';
+import ProductView from './components/ProductView';
 
 
 function App(props) {
@@ -128,6 +129,10 @@ function App(props) {
 
             <Route path="/bycategory/:category" render={(routeProps) => {
               return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} />
+            }} /> 
+
+            <Route path="/product/:id" render={(routeProps) => {
+              return <ProductView user={loggedInUser} id={routeProps.match.params.id} />
             }} /> 
 
             <Route path="/categories" render={(routeProps) => {

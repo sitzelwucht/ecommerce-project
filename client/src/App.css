@@ -54,7 +54,7 @@ a {
 
 
 /* User nav*/
-.user-badge {
+.badge {
   border-radius: 15px;
 }
 .nav-symbols-container {
@@ -253,24 +253,26 @@ td {
   cursor: pointer;
 }
 
+/* Detailed product view */
+
+
 /* admin page */
 
 .admin-nav {
-  background: rgba(32, 32, 32, 0.897);
+  background: rgba(32, 32, 32, 0.3);
   height: 100vh;
-  width: 30vh;
+  width: 12vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   color: white;
   position: fixed;
 }
 .admin-bg {
-  background-image: url('pexels-henry-&-co-2455166.jpg');
   min-height: 100vh;
-  min-width: 70vh;
+  width: 85%;
+  position: absolute;
+  right: 0;
   margin: 0;
-  background-attachment: fixed;
-  background-position: left bottom;
 }
 .nav-link {
   font-size: 20px;
@@ -313,12 +315,13 @@ div.card-body  {
 }
 .card-header {
   border-radius: 15px!important;
-  margin: 25px auto;
-  background: rgba(34, 34, 34, 0.8);
+  margin: 10px auto;
+  background: rgba(20, 113, 129, 0.8);
 }
-.dark-bg {
-  background: rgb(40,40,40);
-  font: white;
+.accordion-links .btn-link{
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 1.3em;
 }
 
 

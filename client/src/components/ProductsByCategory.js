@@ -9,7 +9,12 @@ import { useCart } from '../contexts/CartProvider'
 import { useFavorites } from '../contexts/FavoriteProvider'
 import Product from './Product'
 
+
+
 function ProductsByCategory(props) {
+
+    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "border w-75 mx-auto"
+    const innerBox = "d-flex border m-5 product-container mx-auto w-75"
 
     const history = useHistory();
     const { addToCart, cartItems } = useCart()
@@ -43,18 +48,18 @@ function ProductsByCategory(props) {
     
 
     useEffect(() => {
-        getProducts().then(result => setProducts(result))
-    }, [])
+        return getProducts().then(result => setProducts(result))
+    }, [products])
 
 
 
     return (
-        <div>
-            <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
+        <div className={outerBox}>
+            <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}>back</Button>
 
-            <div className="mt-5 mx-auto category-title">{props.category}</div>
+            <div className="mt-3 mx-auto category-title">{props.category}</div>
     
-            <div className="d-flex border m-5 product-container mx-auto w-75">
+            <div className={innerBox}>
                 {
                     !products.length ? 
                     <div className="p-3">no results</div> : 

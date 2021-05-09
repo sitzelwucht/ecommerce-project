@@ -45,14 +45,14 @@ export default function NavBar(props) {
                 <>
                     <Nav.Item>
                         <h6>ADMIN</h6>
-                        <Badge variant="info" className="p-1"><h6>{props.user.email}</h6></Badge>
+                        <Badge variant="info" className="p-2 badge"><h6>{props.user.email}</h6></Badge>
                     </Nav.Item>
                 </> : 
                 <>
                     <Nav.Item className="d-flex align-items-center" >
                         <Nav.Link href="/">
                         <img src="/logo.svg" height="85" alt="home" className="m-1 " title="home" />
-                        <Badge variant="info" className="m-3 p-2 user-badge">{props.user.email}</Badge>
+                        <Badge variant="info" className="m-3 p-2 badge">{props.user.email}</Badge>
                         </Nav.Link>
                     </Nav.Item>
                 

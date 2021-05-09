@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Form, Badge } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
@@ -48,6 +49,7 @@ export default function Product(props) {
 
     }
 
+
     const handleAdd = (e) => {
         e.preventDefault()
         if (quantity) {
@@ -57,6 +59,7 @@ export default function Product(props) {
         alert('Please select quantity')
        }
     }
+
 
     const toggleFavorite = () => {
         isFavorite ? setIsFavorite(false) : setIsFavorite(true)
@@ -81,8 +84,9 @@ export default function Product(props) {
                 !editMode ? 
                     <>
                         <div className="product-title text-center">{updatedProduct.title}</div>
-                        <div>{updatedProduct.description}</div>
-                        <h5 className="text-right">{updatedProduct.price} EUR</h5>
+                        {/* <div>{updatedProduct.description}</div> */}
+                        <Link to={`/product/${props.id}`}><Button variant="outline-secondary" className="mt-3">more...</Button></Link>
+                        <h5 className="text-right">{updatedProduct.price / 100} EUR</h5>
                         <div className="text-right"><div>Stock:</div>
                         {
                             updatedProduct.stock > 100 && 
@@ -146,7 +150,7 @@ export default function Product(props) {
                         {
                         props.user && props.user.isAdmin && !editMode &&
                             <>
-                            <Button variant="danger" className="m-1" onClick={() => {props.onDelete(props._id)}}>delete</Button>
+                            <Button variant="danger" className="m-1" onClick={() => {props.onDelete(props.id)}}>delete</Button>
                             <Button variant="success" className="m-1" onClick={() => setEditMode(true)}>edit</Button>
                             </>
                         }

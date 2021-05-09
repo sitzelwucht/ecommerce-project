@@ -33,7 +33,7 @@ export default function Favorites(props) {
                     
                         <table className="cart-table">
                             <thead>
-                                <tr>
+                                <tr className="font-weight-bold">
                                     <td>Product</td>
                                     <td>Price</td>
                                     <td></td>
