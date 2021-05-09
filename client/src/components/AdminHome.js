@@ -67,7 +67,7 @@ export default function AdminHome(props) {
                     </Accordion.Collapse>
                 </Card>
 
-                <Card className="dark-bg mx-auto">
+                <Card className="mx-auto">
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="1">
                             Browse by category
@@ -77,7 +77,7 @@ export default function AdminHome(props) {
                     <Accordion.Collapse eventKey="1">
                         <Card.Body>
                     
-                        <ul className="border p-3 mb-3">
+                        <ul className="p-3 mb-3">
                             {
                                 categories.map((item, i) => {
                                     return <div key={i}>

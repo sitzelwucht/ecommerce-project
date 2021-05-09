@@ -310,13 +310,13 @@ div.card {
   background: rgba(117, 117, 117, 0)
 }
 div.card-body  {
-  background: rgba(220,220,220, .7);
+  background: rgba(220,220,220, .3);
   margin: 35px!important
 }
 .card-header {
   border-radius: 15px!important;
   margin: 10px auto;
-  background: rgba(20, 113, 129, 0.8);
+  background: rgba(126, 126, 126, 0.8);
 }
 .accordion-links .btn-link{
   text-transform: uppercase;

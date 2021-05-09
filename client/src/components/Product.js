@@ -85,7 +85,7 @@ export default function Product(props) {
                     <>
                         <div className="product-title text-center">{updatedProduct.title}</div>
                         {/* <div>{updatedProduct.description}</div> */}
-                        <Link to={`/product/${props.id}`}><Button variant="outline-secondary" className="mt-3">more...</Button></Link>
+                        <div className="m-3"><Link to={`/product/${props.id}`}>more...</Link></div>
                         <h5 className="text-right">{updatedProduct.price / 100} EUR</h5>
                         <div className="text-right"><div>Stock:</div>
                         {

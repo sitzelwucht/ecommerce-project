@@ -16,8 +16,6 @@ export default function Checkout(props) {
     const [total, setTotal] = useState(null)
 
 
-
-
     const makePayment = (token) => {
         const body = {
             token, items
@@ -50,7 +48,7 @@ export default function Checkout(props) {
 
     useEffect(() => {
         setTotal(counts.map(item => {
-            return parseInt(item.prodPrice * item.quantity)
+            return Number(item.prodPrice/100) * item.quantity
             }).reduce((acc, elem) => {
             return elem + acc}, 0))
     }, [counts])
@@ -79,7 +77,7 @@ export default function Checkout(props) {
                     return <tr className="m-3 product-line" key={i}>
                             <td>{item.prodName}</td>
                             <td>{item.quantity}</td>
-                            <td>{item.prodPrice * item.quantity}€</td>
+                            <td>{item.prodPrice/100 * item.quantity}€</td>
                         </tr>
                     })
                     }    
@@ -97,7 +95,7 @@ export default function Checkout(props) {
                     <StripeCheckout 
                     stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
                     token={makePayment}
-                    amount={total * 100}
+                    amount={total}
                     name="Make payment" >
                     <Button type="button" variant="info" id="checkout-button" role="link" >
                         Checkout

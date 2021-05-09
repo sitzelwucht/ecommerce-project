@@ -7,11 +7,12 @@ import { useCart } from '../contexts/CartProvider'
 import { useFavorites } from '../contexts/FavoriteProvider'
 
 
-const outerBox = "m-5 border w-75 mx-auto"
-const innerBox = "border w-75 m-3 mx-auto"
+
 
 function ProductView(props) {
 
+    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "m-5 border w-50 mx-auto"
+    const innerBox = "border w-75 m-3 mx-auto"
     const history = useHistory();
     const { addToCart, cartItems } = useCart()
     const { favorites, updateFavorites } = useFavorites()
@@ -39,14 +40,18 @@ function ProductView(props) {
              product && <div className={innerBox}>
                             <h3 className="text-center product-title">{product.title}</h3>
                             <div className="m-3">
-                                <div>{product.description}</div>
-                                <div>{product.price}</div>
-                                <div>{product.description}</div>
+                                <div className="d-flex justify-content-between m-3">
+                                    <div>{product.description}</div>
+                                    <div>{product.price / 100}</div>
+                                </div>
                             </div>
+                            
+                            { props.user && !props.user.isAdmin && 
                             <div className="d-flex justify-content-around m-3">
                                 <Button variant="danger">Add to favorites</Button>
                                 <Button variant="success">Add to cart</Button>
                             </div>
+                            }
                         </div>
          }
         </div>
