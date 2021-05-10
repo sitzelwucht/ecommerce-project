@@ -13,20 +13,20 @@ function AddForm(props) {
 
 
     // display alert for 1.5 seconds
-    const handleSuccessAlert = () => {
-        setShowSuccessAlert(true)
-        setTimeout(() => {
-            setShowSuccessAlert(false)
-        }, 1500)
+    const handleAlert = (bool) => {
+        if(bool) {
+            setShowSuccessAlert(true)
+            setTimeout(() => {
+                setShowSuccessAlert(false)
+            }, 1500);
+        }
+        else {
+            setShowErrorAlert(true)
+            setTimeout(() => {
+                setShowErrorAlert(false)
+            }, 1500);
+        }
     }
-
-    const handleErrorAlert = () => {
-        setShowErrorAlert(true)
-        setTimeout(() => {
-            setShowErrorAlert(false)
-        }, 1500)
-    }
-
 
     async function getCategories() {
         const response = await axios.get(`${config.API_URL}/api/categories`)
@@ -46,13 +46,13 @@ function AddForm(props) {
        
         axios.post(`${config.API_URL}/api/newcategory`, newCategory)
         .then(response => {
-            handleSuccessAlert()
+            handleAlert(true)
             setUpdatedCategs(() => {
                 getCategories().then(result => setUpdatedCategs(result))
             })
             props.history.push('/')
         })
-        .catch(err => handleErrorAlert())
+        .catch(err => handleAlert(false))
     }
 
 
@@ -67,10 +67,10 @@ function AddForm(props) {
             stock: e.target.stock.value,
         }
         axios.post(`${config.API_URL}/api/newproduct`, newProduct)
-        .then(response => handleSuccessAlert())
+        .then(response => handleAlert(true))
         .catch(err => {
             console.log(err)
-            handleErrorAlert()
+            handleAlert(false)
         })
 
     }
