@@ -280,7 +280,8 @@ td {
   font-weight: 400
 }
 .category-button {
-  background: rgb(73, 73, 73)
+  background: rgb(73, 73, 73);
+  padding: 8px;
 }
 .category-button:hover {
   background: rgb(43, 43, 43)
@@ -306,20 +307,17 @@ td {
   font-size: 20px;
   color: rgba(131, 131, 131, 0.9);
 }
-div.card {
-  background: rgba(117, 117, 117, 0)
-}
+
 div.card-body  {
-  background: rgba(220,220,220, .3);
   margin: 35px!important
 }
 .card-header {
   border-radius: 15px!important;
+  padding: 7px;
   margin: 10px auto;
   background: rgba(126, 126, 126, 0.8);
 }
 .accordion-links .btn-link{
-  text-transform: uppercase;
   letter-spacing: .08em;
   font-size: 1.3em;
 }

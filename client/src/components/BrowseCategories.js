@@ -9,8 +9,10 @@ export default function BrowseCategories() {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
     const [searchResults, setSearchResults] = useState([])
+    const [prodsByCateg, setProdsByCateg] = useState([])
 
 
+    // get all categories and put them in a state
     const getCategories = async () => {
         const response = await axios.get(`${config.API_URL}/api/categories`)
         const data = await response.data
@@ -20,12 +22,27 @@ export default function BrowseCategories() {
         setCategories(categs)
     }
 
-        
+    // get the product counts in each category
+    const getProductsByCategory = async () => {
+        const arr = []
+        let counts = {}
+        let props = [...categories]
+        for (var i = 0; i < props.length; i++) {
+            const response = await axios.get(`${config.API_URL}/api/bycategory/${props[i]}`)
+            const result = await response.data.length
+            counts[props[i]] = result;
+       }
+        for (let item of Object.entries(counts)) {
+                arr.push(item)
+        }
+        setProdsByCateg(arr)
+    }
+
     const getAllProducts = async () => {
         const response = await axios.get(`${config.API_URL}/api/allproducts`)
-        const result = response.data
-        const list = result.map(item => {
-            return {name: item.title, description: item.description }
+        const result = await response.data
+        const list = await result.map(item => {
+            return {name: item.title, description: item.description, category: item.category }
         })
 
         setProducts(list)
@@ -51,7 +68,13 @@ export default function BrowseCategories() {
     useEffect(() => {
         getCategories()
         getAllProducts()
+        getProductsByCategory()
     }, [])
+
+
+    useEffect(() => {
+        getProductsByCategory()
+    }, [prodsByCateg])
 
 
     return (
@@ -60,9 +83,12 @@ export default function BrowseCategories() {
             <h2 className="mx-auto border mt-3 text-center w-50 mt-5 p-3">Product Categories</h2>
             <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap">
             {
-                categories.map((item, i) => {
+                !prodsByCateg.length ? <div>loading...</div> :
+                prodsByCateg.map((item, i) => {
                     return <div className="categories-user" key={i}>
-                                <Link to={`/bycategory/${item}`}><Button variant="link">{item}</Button></Link>
+                                <Link to={`/bycategory/${item[0]}`}><Button variant="link">{item[0]} ({item[1]})
+                            
+                                </Button></Link>
                             </div>
                 })
             }

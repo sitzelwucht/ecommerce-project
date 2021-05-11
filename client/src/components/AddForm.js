@@ -142,7 +142,7 @@ function AddForm(props) {
                 <Form.Control type="number" name="stock" placeholder="Product stock" />
             </Form.Group>
 
-            <Button variant="light" type="submit">
+            <Button variant="dark" type="submit">
                 Submit
             </Button>
         </Form>

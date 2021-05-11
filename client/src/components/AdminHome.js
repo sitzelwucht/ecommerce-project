@@ -10,7 +10,7 @@ export default function AdminHome(props) {
 
     const [categories, setCategories] = useState([])
     const [searchResults, setSearchResults] = useState([])
-
+    const [noResults, setNoResults] = useState(false)
 
     // fetch categories
     const getCategories = async () => {
@@ -36,7 +36,10 @@ export default function AdminHome(props) {
         })
 
         setSearchResults(products)
-        
+        setNoResults(false)
+        if (!products.length) {
+            setNoResults(true)
+        }
     }
 
 
@@ -77,7 +80,7 @@ export default function AdminHome(props) {
                     <Accordion.Collapse eventKey="1">
                         <Card.Body>
                     
-                        <ul className="p-3 mb-3">
+                        <ul className="p-1 mb-1 d-flex flex-wrap">
                             {
                                 categories.map((item, i) => {
                                     return <div key={i}>
@@ -112,13 +115,17 @@ export default function AdminHome(props) {
                                 </InputGroup>
                         </Form>  
                         
-                        {
+                        {   noResults ? <div className="m-5">no results</div> :
                             searchResults.map((item, i) => {
-                            return <div className="m-3">
-                                    <h4 key={i}>{item.title}</h4>
-                                    <div key={i}>{item.description}</div>
-                                    </div>
+                            return <div className="border mt-5">
+                                    <Link to={`/product/${item._id}`}>
+                                            <div className="m-3">
+                                            <h4 key={i}>{item.title}</h4>
+                                            <div key={i}>{item.description}</div>
+                                            </div>
+                                    </Link>
                                     
+                                </div>
                             })
 
                         }
