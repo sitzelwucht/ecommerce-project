@@ -57,10 +57,10 @@ export default function Checkout(props) {
 
     return (
         
-        <>
+        <div>
         {  !props.user && <Redirect to={'/'} /> }
 
-        <div className="w-75 border mx-auto mt-5 p-3">
+        <div className="w-50 border mx-auto mt-5 p-3 ">
             <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
                 <table className="cart-table">
                     <thead>
@@ -95,7 +95,7 @@ export default function Checkout(props) {
                     <StripeCheckout 
                     stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
                     token={makePayment}
-                    amount={total}
+                    amount={total*100}
                     name="Make payment" >
                     <Button type="button" variant="info" id="checkout-button" role="link" >
                         Checkout
@@ -105,6 +105,6 @@ export default function Checkout(props) {
                 </div>   
         </div> 
         
-        </>
+        </div>
     )
 }

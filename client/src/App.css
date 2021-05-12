@@ -3,6 +3,7 @@
 body, html {
   margin: 0;
   padding: 0;
+  /* font-family: 'Source Sans Pro' */
 }
 div {
   font-weight: 300;
@@ -19,15 +20,18 @@ a {
 /* Front page and pre-login*/
 
 .frontpage-img {
-  z-index: 0;
+  z-index: -1;
   position: absolute;
   margin-left: 30%;
 }
- .jumbo {
+ .jumbotron {
    z-index: 5;
-   background: rgba(200,200,200,.7);
+   background: rgba(61, 61, 61, 0.2)!important;
    position: absolute;
+   width: 100%;
   top: 10;
+  font-family: 'Source Sans Pro';
+  
  }
  .nav {
   font-family: 'Montserrat'!important;
@@ -44,12 +48,12 @@ a {
   background-attachment: fixed;
  }
  .signup-bg {
-   background-image: url('pexels-axel-vandenhirtz-929280.jpg');
-   background-position: right center;
+   background: radial-gradient(ellipse at top, #808fe4, transparent),
+   radial-gradient(ellipse at bottom, #21949c, transparent);
  }
  .login-bg {
-  background-image: url('pexels-miguel-á-padriñán-255379.jpg');
-  background-position: right top;
+  background: radial-gradient(ellipse at top, #ce95c2, transparent),
+            radial-gradient(ellipse at bottom, #474899, transparent);
 }
 
 
@@ -114,8 +118,8 @@ a {
 /* user page */
 
 .user-page-bg {
-  background-image: url('pexels-negative-space-34090.jpg');
-  background-position: center top;
+  background: radial-gradient(ellipse at top, #8ce4bb, transparent),
+  radial-gradient(ellipse at bottom, #294c97, transparent);
 }
 .wrapper {
   display: flex;
@@ -161,7 +165,7 @@ a {
   padding: 25px;
 }
 .blur-bg {
-  background: rgba(220, 220, 220, 0.3);
+  background: rgba(220, 220, 220, 0.1);
   backdrop-filter: blur(4px);
 }
 .quote {
@@ -253,6 +257,11 @@ td {
   cursor: pointer;
 }
 
+.checkout-bg {
+  background: radial-gradient(ellipse at top, #b1c2ba, transparent),
+  radial-gradient(ellipse at bottom, #4b505a, transparent);
+}
+
 /* Detailed product view */
 
 
@@ -321,7 +330,16 @@ div.card-body  {
   letter-spacing: .08em;
   font-size: 1.3em;
 }
-
+.product-search a {
+  color: rgb(221, 134, 122)!important;
+}
+.product-search a:hover {
+  color: rgb(219, 99, 69)!important;
+  text-decoration: none;
+}
+.product-search:hover {
+  background: rgba(235, 235, 235, 0.6)
+}
 
 @media screen and (max-width: 1250px) {
 
@@ -361,6 +379,11 @@ div.card-body  {
   .anon-browse-search {
     display: flex;
     flex-direction: column;
+    background: rgba(40,40,40,.5)!important
+  }
+  .landing-browse-search {
+    background: rgba(40,40,40,.5)!important;
+    border: 2px solid red;
   }
 }
 

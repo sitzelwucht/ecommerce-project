@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Button, Nav, Form, FormControl, Carousel } from 'react-bootstrap'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Home from './Home'
 import AdminHome from './AdminHome'
@@ -16,9 +17,16 @@ export default function Landing(props) {
 
             { !props.user &&
                 <div>
-                <img src="/logo4.png" className="frontpage-img" alt="" />
-                    <Jumbotron className="mt-5">
-                        <p>Welcome to random eCommerce Website</p>
+                <img src="/cube.png" className="frontpage-img m-5" alt="" />
+                    <Jumbotron className="mt-5 text-center">
+                        <h1 className="font-weight-bold">Welcome to random eCommerce Website</h1>
+
+   
+                            <Link to={'/categories'}>
+                                <Button variant="dark" className="btn-lg m-5">Browse</Button>
+                            </Link>
+           
+
                     </Jumbotron>
                     <div className="text-center p-3 w-100" 
                         style={{

@@ -16,11 +16,11 @@ export default function AnonymousNav() {
                 </div>
             </Nav.Item>
             <div className="d-flex anon-browse-search">
-            <Nav.Item className="d-flex align-items-center">
+            {/* <Nav.Item className="d-flex align-items-center">
                 <Link to={'/categories'}>
                     <Button variant="dark" className="m-5">Browse</Button>
                 </Link>
-            </Nav.Item>
+            </Nav.Item> */}
             <Nav.Item className="d-flex align-items-center">
                 <Form className="m-5" inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />

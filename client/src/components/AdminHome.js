@@ -117,11 +117,15 @@ export default function AdminHome(props) {
                         
                         {   noResults ? <div className="m-5">no results</div> :
                             searchResults.map((item, i) => {
-                            return <div className="border mt-5">
+                            return <div className="border mt-5 product-search">
                                     <Link to={`/product/${item._id}`}>
                                             <div className="m-3">
-                                            <h4 key={i}>{item.title}</h4>
-                                            <div key={i}>{item.description}</div>
+                                                <div className="d-flex justify-content-between">
+                                                    <h4 key={i}>{item.title}</h4>
+                                                    <div>{item.category}</div>
+                                                </div>
+                                                <div>{item.description}</div>
+           
                                             </div>
                                     </Link>
                                     
