@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, Button, Form, FormControl } from 'react-bootstrap'
+import { Nav, Button } from 'react-bootstrap'
 import SearchBar from './SearchBar'
 
 export default function AnonymousNav() {
     return (
         <div>
-            <Nav activeKey="/home" className="anon-nav nav d-flex justify-content-between shadow p-3">
+            <Nav fill activeKey="/home" className="anon-nav nav d-flex justify-content-between shadow p-3">
 
             <Nav.Item className=" d-flex">
 
@@ -16,11 +16,12 @@ export default function AnonymousNav() {
                     <Link to={'/signup'}><Button variant="info" className="m-5">Signup</Button></Link>
                 </div>
             </Nav.Item>
-            <div className="d-flex anon-browse-search">
-            <Nav.Item className="d-flex align-items-center">
+
+
+            <Nav.Item className="d-flex align-items-center mr-5">
                 <SearchBar />
             </Nav.Item>
-            </div>
+
             </Nav>
         </div>
     )

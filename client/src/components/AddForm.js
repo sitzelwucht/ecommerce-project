@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom'
 import { Form, Button, Alert, InputGroup, FormControl } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
+import { Image } from 'cloudinary-react'
+import Loader from './Loader'
+
 
 function AddForm(props) {
 
@@ -11,22 +14,33 @@ function AddForm(props) {
     const [categs, setCategs] = useState([])
     const [updatedCategs, setUpdatedCategs] = useState(null)
 
+    const [cloudinaryId, setCloudinaryId] = useState(null)
+    const [imageUrl, setImageUrl] = useState(null)
+    const [isLoading, setIsLoading] = useState(null)
+
 
     // display alert for 1.5 seconds
     const handleAlert = (bool) => {
-        if(bool) {
-            setShowSuccessAlert(true)
-            setTimeout(() => {
-                setShowSuccessAlert(false)
-            }, 1500);
-        }
-        else {
-            setShowErrorAlert(true)
-            setTimeout(() => {
-                setShowErrorAlert(false)
-            }, 1500);
-        }
+        bool ? setShowSuccessAlert(true) : setShowErrorAlert(true)
+        setTimeout(() => {
+            bool ? setShowSuccessAlert(false) : setShowErrorAlert(false)
+        }, 1500)
+       
     }
+
+    const uploadImage = files => {
+        setIsLoading(true)
+        const formData = new FormData()
+        formData.append('file', files[0])
+        formData.append('upload_preset', 'kcutxuxu')
+        axios.post('https://api.cloudinary.com/v1_1/dew5980fy/image/upload', formData)
+        .then(response => {
+            setCloudinaryId(response.data.public_id)
+            setImageUrl(response.data.url)
+            setIsLoading(true)
+        })
+    }
+
 
     async function getCategories() {
         const response = await axios.get(`${config.API_URL}/api/categories`)
@@ -105,22 +119,26 @@ function AddForm(props) {
 
             <Form onSubmit={handleAdd} className="border p-3">
 
-            <Form.Group controlId="formBasicProductCategory">
-                <Form.Label className="font-weight-bold">category</Form.Label>
+                <Form.Group controlId="formBasicProductCategory">
+                    <Form.Label className="font-weight-bold">category</Form.Label>
 
-                <Form.Control as="select" name="categorySelect" default="select product category" >
-                <option selected disabled hidden>select product category</option>
-                {
-                    categs && categs.map((item, i) => {
-                        return <option key={i}>{item}</option>
-                    })
-                }
-  
+                    <Form.Control as="select" name="categorySelect" default="select product category" >
+                    <option selected disabled hidden>select product category</option>
+                    {
+                        categs && categs.map((item, i) => {
+                            return <option key={i}>{item}</option>
+                        })
+                    }
                 </Form.Control>
-                
+                </Form.Group>
 
+                <Form.Group controlId="formBasicImage"> 
+                    <Form.Control type="file" onChange={(e) => {uploadImage(e.target.files)}} />
+                        <Form.Label className="font-weight-bold">Image url</Form.Label>
+                        <Form.Control name="imageUrl" type="text" value={imageUrl} />
+ 
      
-            </Form.Group>
+                </Form.Group>
 
             <Form.Group controlId="formBasicProductName">
                 <Form.Label className="font-weight-bold">name</Form.Label>
@@ -146,6 +164,10 @@ function AddForm(props) {
                 Submit
             </Button>
         </Form>
+        <div>
+        { !isLoading ? <Image style={{height: '200px'}} cloudName="dew5980fy" publicId={cloudinaryId} /> : <Loader /> }
+        </div>
+
         </div>
     )
 }

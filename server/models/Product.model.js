@@ -8,7 +8,6 @@ let ProductSchema = new Schema({
         required: true
     },
     category: {
-        // type: mongoose.Schema.Types.ObjectId,
         type: String,
         ref: 'Category'
     },
@@ -23,6 +22,9 @@ let ProductSchema = new Schema({
     stock: {
         type: Number,
         required: true,
+    },
+    imageUrl: {
+        type: String
     }
 })
 

@@ -52,10 +52,39 @@ a {
    radial-gradient(ellipse at bottom, #21949c, transparent);
  }
  .login-bg {
-  background: radial-gradient(ellipse at top, #ce95c2, transparent),
-            radial-gradient(ellipse at bottom, #474899, transparent);
+  background: radial-gradient(ellipse at top, #cfa1c5, transparent),
+            radial-gradient(ellipse at bottom, #7b83c4, transparent);
 }
 
+.search-bar-dropdown {
+  margin: 52px;
+  z-index: 12
+}
+
+.anon-search {
+  display: flex!important;
+  flex-direction: row-reverse;
+  justify-content: space-between!important;
+  border-radius: 5px;
+  background: rgb(213, 235, 243);
+  font-size: 1.2em;
+  padding: 12px;
+  align-items: center;
+}
+
+.anon-search input {
+  background: rgb(213, 235, 243);
+  border: none;
+  outline: none;
+}
+
+.list-group button {
+  background: rgb(240, 251, 255);
+}
+
+.list-group a:hover {
+  text-decoration: none;
+}
 
 /* User nav*/
 .badge {
@@ -324,7 +353,8 @@ div.card-body  {
   border-radius: 15px!important;
   padding: 7px;
   margin: 10px auto;
-  background: rgba(126, 126, 126, 0.8);
+  background: rgba(122, 122, 122, 0.8);
+  border: rgb(88, 88, 88) 1px solid;
 }
 .accordion-links .btn-link{
   letter-spacing: .08em;
@@ -366,6 +396,7 @@ div.card-body  {
 
   /* ANONYMOUS NAV */
 
+
   .anon-nav * {
     padding: 5px!important;
     margin: 1px!important;
@@ -376,15 +407,9 @@ div.card-body  {
     flex-direction: column;
     align-items: center;
   }
-  .anon-browse-search {
-    display: flex;
-    flex-direction: column;
-    background: rgba(40,40,40,.5)!important
-  }
-  .landing-browse-search {
-    background: rgba(40,40,40,.5)!important;
-    border: 2px solid red;
-  }
+
+
+
 }
 
 @media screen and (max-width: 1000px) {

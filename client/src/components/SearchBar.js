@@ -38,19 +38,27 @@ export default function SearchBar(props) {
     }, [])
 
     return (
-        <div className="search-bar-dropdown">
-        {console.log(searchResults)}
-            <input type="text" className="form-control" placeholder="Search" onChange={handleKeywordSearch}/>
-            <ul className="list-group">
-            {
-                searchResults.length && searchResults.map((item, i) => {
-                    return <Link to={`/product/${item.id}`}>
-                    <button type="button"
-                    className="list-group-item list-group-item-action d-flex justify-content-between">{item.name} <i>({item.category})</i></button></Link>
-                })
-            }
-                
-            </ul>
+        <div className="search-bar-dropdown ">
+
+            <form>
+            <div className="anon-search">
+                <label for="search">
+                    <img src="/loupe.png" height="20" alt="" />
+                </label>
+
+                <input type="text" id="search" className="d-flex justify-content-between" placeholder="Search" onChange={handleKeywordSearch} />
+                </div>
+                <ul className="list-group">
+                {
+                    !searchResults.length ? null : searchResults.map((item, i) => {
+                        return <Link to={`/product/${item.id}`}>
+                        <button type="button"
+                        className="list-group-item list-group-item-action d-flex justify-content-between">{item.name} <i>({item.category})</i></button></Link>
+                    })
+                }
+                    
+                </ul>
+            </form>
         </div>
     )
 }
