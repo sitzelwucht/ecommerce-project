@@ -3,7 +3,6 @@
 body, html {
   margin: 0;
   padding: 0;
-  /* font-family: 'Source Sans Pro' */
 }
 div {
   font-weight: 300;
@@ -31,6 +30,7 @@ a {
    width: 100%;
   top: 10;
   font-family: 'Source Sans Pro';
+  font-family: 'Montserrat';
   
  }
  .nav {
@@ -347,7 +347,7 @@ td {
 }
 
 div.card-body  {
-  margin: 35px!important
+  margin: 15px!important
 }
 .card-header {
   border-radius: 15px!important;

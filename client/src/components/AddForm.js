@@ -19,7 +19,7 @@ function AddForm(props) {
     const [isLoading, setIsLoading] = useState(null)
 
 
-    // display alert for 1.5 seconds
+    // display failure/success alert for 1.5 seconds
     const handleAlert = (bool) => {
         bool ? setShowSuccessAlert(true) : setShowErrorAlert(true)
         setTimeout(() => {
@@ -41,17 +41,7 @@ function AddForm(props) {
         })
     }
 
-
-    async function getCategories() {
-        const response = await axios.get(`${config.API_URL}/api/categories`)
-        const categories = await response.data
-        const names = categories.map((item) => {
-            return item.name
-        })
-        return names
-    }
-
-
+    // add new category
     const handleAddCategory = (e) => {
         e.preventDefault()
         const newCategory = {
@@ -62,7 +52,7 @@ function AddForm(props) {
         .then(response => {
             handleAlert(true)
             setUpdatedCategs(() => {
-                getCategories().then(result => setUpdatedCategs(result))
+                props.getCategories().then(result => setUpdatedCategs(result))
             })
             props.history.push('/')
         })
@@ -70,7 +60,7 @@ function AddForm(props) {
     }
 
 
-
+    // add new product
     const handleAdd = (e) => {
         e.preventDefault()
         const newProduct = {
@@ -91,14 +81,14 @@ function AddForm(props) {
 
 
     useEffect(() => {
-        getCategories().then(result => {
+        props.onGetCategs().then(result => {
             setCategs(result)
         })
     }, [])
 
 
     useEffect(() => {
-        getCategories().then(result => {
+        props.onGetCategs().then(result => {
             setCategs(result)
         })
     }, [updatedCategs])

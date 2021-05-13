@@ -12,18 +12,6 @@ export default function AdminHome(props) {
     const [searchResults, setSearchResults] = useState([])
     const [noResults, setNoResults] = useState(false)
 
-    // fetch categories
-    const getCategories = async () => {
-        const response = await axios.get(`${config.API_URL}/api/categories`)
-        const categories = await response.data
-        const names = categories.map((item) => {
-            return item.name
-        })
-        return names
-    }
-
-
-
     const handleKeywordSearch = async (e) => {
         e.preventDefault()
         setSearchResults([])
@@ -45,7 +33,7 @@ export default function AdminHome(props) {
 
     // put categories in the state 
     useEffect(() => {
-       getCategories().then(result => setCategories(result))
+       props.getCategories().then(result => setCategories(result))
     }, [])
 
 
@@ -64,7 +52,7 @@ export default function AdminHome(props) {
                     <Accordion.Collapse eventKey="0">
                         <Card.Body>
                     
-                            <AddForm categories={categories} />
+                            <AddForm categories={categories} onGetCategs={props.getCategories} />
                     
                         </Card.Body>
                     </Accordion.Collapse>

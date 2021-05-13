@@ -11,7 +11,7 @@ export default function Landing(props) {
 
     return (
         <>
-            { props.user && props.user.isAdmin && <AdminHome user={props.user} />}
+            { props.user && props.user.isAdmin && <AdminHome user={props.user} getCategories={props.getCategories} />}
 
             { props.user && !props.user.isAdmin && <Home user={props.user}/> }
 

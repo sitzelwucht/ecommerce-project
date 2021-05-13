@@ -19,7 +19,7 @@ import SignupForm from './components/SignupForm';
 import Checkout from './components/Checkout';
 import FavoriteProvider from './contexts/FavoriteProvider';
 import ProductView from './components/ProductView';
-
+import NotFound from './components/NotFound'
 
 function App(props) {
   
@@ -82,6 +82,15 @@ function App(props) {
   }
 
 
+  // fetch list of all categories' names
+  async function getCategories() {
+    const response = await axios.get(`${config.API_URL}/api/categories`)
+    const categories = await response.data
+    const names = categories.map((item) => {
+        return item.name
+    })
+    return names
+}
 
   
   useEffect(() => {
@@ -104,7 +113,7 @@ function App(props) {
         {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
           <Switch>
             <Route exact path="/" render={() => {
-              return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} />
+              return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} getCategories={getCategories} />
             }} />
             
             <Route path="/login" render={(routeProps) => {
@@ -124,7 +133,7 @@ function App(props) {
             }} />
             
             <Route path="/adminhome" render={() => {
-              return <AdminHome onLogout={handleLogout} user={loggedInUser} />
+              return <AdminHome onLogout={handleLogout} user={loggedInUser} getCategories={getCategories} />
             }} />
 
             <Route path="/bycategory/:category" render={(routeProps) => {
@@ -142,6 +151,7 @@ function App(props) {
             <Route path="/checkout" render={(routeProps) => {
               return <Checkout user={loggedInUser} />
             }} /> 
+             <Route component={NotFound} />
           </Switch>
 
         </>
