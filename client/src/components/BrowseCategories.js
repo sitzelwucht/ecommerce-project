@@ -79,10 +79,11 @@ export default function BrowseCategories(props) {
 
     return (
         <>
-        <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+        <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
+        <div className="subcontainer">
             <div>
-                <h2 className="mx-auto border mt-3 text-center w-50 mt-5 p-3">Product Categories</h2>
-                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap">
+                <h2 className="mx-auto border text-center w-50 mt-5 p-3">Product Categories</h2>
+                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap product-container">
                 {
                     !prodsByCateg.length ? <div>loading...</div> :
                     prodsByCateg.map((item, i) => {
@@ -99,7 +100,7 @@ export default function BrowseCategories(props) {
             <div>
                 <h2 className="mx-auto border text-center w-50 mt-5 p-3">Search for product</h2>
                 <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex">
-                <Nav.Item className="d-flex align-items-center">
+                <Nav.Item className="d-flex align-items-center ">
                     <Form  inline>
                         <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2" />
                     </Form>
@@ -114,6 +115,7 @@ export default function BrowseCategories(props) {
                         })
                     }
                 </div>
+            </div>
             </div>
         </div>
         </>

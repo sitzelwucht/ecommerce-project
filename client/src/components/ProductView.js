@@ -34,26 +34,28 @@ function ProductView(props) {
 
 
     return (
-        <div className={outerBox}>
-        <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
-         {
-             product && <div className={innerBox}>
-                            <h3 className="text-center product-title">{product.title}</h3>
-                            <div className="m-3">
-                                <div className="d-flex justify-content-between m-3">
-                                    <div>{product.description}</div>
-                                    <div>{product.price / 100}</div>
+        <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+            <div className={outerBox}>
+            <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
+            {
+                product && <div className={innerBox}>
+                                <h3 className="text-center product-title">{product.title}</h3>
+                                <div className="m-3">
+                                    <div className="d-flex justify-content-between m-3">
+                                        <div>{product.description}</div>
+                                        <div>{product.price / 100}</div>
+                                    </div>
                                 </div>
+                                
+                                { props.user && !props.user.isAdmin && 
+                                <div className="d-flex justify-content-around m-3">
+                                    <Button variant="danger">Add to favorites</Button>
+                                    <Button variant="success">Add to cart</Button>
+                                </div>
+                                }
                             </div>
-                            
-                            { props.user && !props.user.isAdmin && 
-                            <div className="d-flex justify-content-around m-3">
-                                <Button variant="danger">Add to favorites</Button>
-                                <Button variant="success">Add to cart</Button>
-                            </div>
-                            }
-                        </div>
-         }
+            }
+            </div>
         </div>
     )
 }

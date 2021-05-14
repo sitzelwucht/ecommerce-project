@@ -45,7 +45,7 @@ export default function SignupForm(props) {
             { props.user && <Redirect to={'/'} /> }
 
         <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
-            <div className="signup-bg bg">
+            <div className="subcontainer">
                 <Form className="w-50 mx-auto p-5 form" onSubmit={props.onSignup}>
                 <h3 className="text-center">SIGN UP</h3>
                 { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }

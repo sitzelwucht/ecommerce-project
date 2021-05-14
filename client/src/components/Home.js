@@ -38,8 +38,9 @@ export default function Home(props) {
 
     return (
 
-        <div className="container">
-            <div className="user-page-bg">
+        <div className="container-max">
+
+            <div className="subcontainer border">
 
             <div className="wrapper">
             
@@ -53,7 +54,7 @@ export default function Home(props) {
                 <div className="w-100 welcome">
                 { !props.user && <Redirect to={'/'} /> }
 
-                    <Container className="m-5 w-75 blur-bg">
+                    <Container className="m-5">
                     {
                         showWelcome &&
                         <>

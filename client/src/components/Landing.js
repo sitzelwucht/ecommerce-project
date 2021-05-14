@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Nav, Form, FormControl } from 'react-bootstrap'
-import Jumbotron from 'react-bootstrap/Jumbotron'
 import Home from './Home'
 import AdminHome from './AdminHome'
 
@@ -16,19 +15,19 @@ export default function Landing(props) {
             { props.user && !props.user.isAdmin && <Home user={props.user}/> }
 
             { !props.user &&
-                <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
-                <Link to={'/categories'}>
-                        <Button variant="dark" className="btn-lg m-5">Browse</Button>
-                    </Link>
-                    <div className="d-flex align-items-center">
+                <div className={ props.shrinkNav ? "container-max  landing" : "container-shrink  landing" }>
+
+                    <div className="d-flex align-items-center justify-content-center w-50 mx-auto mt-5">
+                    <div className=" w-25">
                         <h1 className="welcome-msg">Welcome to random eCommerce Website</h1>
-                        <img src="/feather.png" className="frontpage-img m-5" alt="" />
+                        <Link to={'/categories'}>
+                            <Button variant="dark" className="btn-lg m-5">Browse</Button>
+                        </Link>
                     </div>
-              
-                    
-
-    
-
+                    <div className=" w-25">
+                        <img src="/feather.png" height="300" className="frontpage-img m-5" alt="" />
+                        </div>
+                    </div>
 
                 </div>
             }

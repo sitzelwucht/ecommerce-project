@@ -57,52 +57,54 @@ export default function Checkout(props) {
 
     return (
         
-        <div>
+        <div className="container-max">
         {  !props.user && <Redirect to={'/'} /> }
 
-        <div className="w-50 border mx-auto mt-5 p-3 ">
-            <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
-                <table className="cart-table">
-                    <thead>
-                        <tr className="font-weight-bold">
-                            <td>Product</td>
-                            <td>Quantity</td>
-                            <td>Subtotal</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                    !counts ? <div>loading...</div> :
-                    counts.map((item, i) => {
-                    return <tr className="m-3 product-line" key={i}>
-                            <td>{item.prodName}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.prodPrice/100 * item.quantity}€</td>
-                        </tr>
-                    })
-                    }    
-                    </tbody>
-                </table>
-             
-                    <div className="highlighted border d-flex m-5 w-50 mx-auto justify-content-center">
-                        <span>Total:</span>
-                        <span>{total}€</span>
-                    </div>
-      
-                <div className="d-flex justify-content-center mt-5">
+        <div className="blur-bg">
+            <div className="w-50 border mx-auto mt-5 p-3 ">
+                <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
+                    <table className="cart-table">
+                        <thead>
+                            <tr className="font-weight-bold">
+                                <td>Product</td>
+                                <td>Quantity</td>
+                                <td>Subtotal</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {
+                        !counts ? <div>loading...</div> :
+                        counts.map((item, i) => {
+                        return <tr className="m-3 product-line" key={i}>
+                                <td>{item.prodName}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.prodPrice/100 * item.quantity}€</td>
+                            </tr>
+                        })
+                        }    
+                        </tbody>
+                    </table>
+                
+                        <div className="highlighted border d-flex m-5 w-50 mx-auto justify-content-center">
+                            <span>Total:</span>
+                            <span>{total}€</span>
+                        </div>
+        
+                    <div className="d-flex justify-content-center mt-5">
 
 
-                    <StripeCheckout 
-                    stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
-                    token={makePayment}
-                    amount={total*100}
-                    name="Make payment" >
-                    <Button type="button" variant="info" id="checkout-button" role="link" >
-                        Checkout
-                    </Button>
-                    </StripeCheckout>   
+                        <StripeCheckout 
+                        stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
+                        token={makePayment}
+                        amount={total*100}
+                        name="Make payment" >
+                        <Button type="button" variant="info" id="checkout-button" role="link" >
+                            Checkout
+                        </Button>
+                        </StripeCheckout>   
 
-                </div>   
+                    </div>   
+            </div>
         </div> 
         
         </div>

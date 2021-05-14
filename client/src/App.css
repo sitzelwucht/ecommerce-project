@@ -13,7 +13,7 @@ a {
   color: rgba(20,20,20,.9)!important;
 }
 .form-control {
-  background: rgb(234, 244, 250)!important;
+  background: rgb(228, 243, 243)!important;
   border: none!important
 }
 .nav {
@@ -52,21 +52,34 @@ a {
   bottom: 0;
   min-height: 80vh;
   max-height: 80vh;
-  background: rgb(255, 218, 207)!important;
   min-width: 100vw;
   transition: max-height 1s, min-height 1s;
+  background-image: url('Background\ 25.jpg');
+  background-position: bottom center;
+
 }
 .container-shrink {
-  background: rgb(247, 209, 247);
   position: absolute;
   bottom: 0;
   min-height: 60vh;
   max-height: 60vh;
   min-width: 100vw;
   transition: max-height 1s, min-height 1s;
+  background-image: url('Background\ 25.jpg');
+  background-position: top left;
 }
 
-  .welcome-msg {
+.subcontainer {
+  background: rgba(230,230,230, .2);
+  border: 1px solid transparent;
+  background-attachment: fixed;
+  backdrop-filter: blur(8px);
+  width: 70%;
+  margin: auto;
+  height: 100%;
+}
+
+.welcome-msg {
   letter-spacing: .05em;
   color: rgba(40,40,40,.8)
 }
@@ -105,21 +118,8 @@ a {
   backdrop-filter: blur(8px);
 }
 
- .signup-bg {
-   background: radial-gradient(ellipse at top, #808fe4, transparent),
-   radial-gradient(ellipse at bottom, #21949c, transparent);
-   margin: 0;
-   background-attachment: fixed;
- }
- .login-bg {
-  margin: 0!important;
-  background: radial-gradient(ellipse at top, #cfa1c5, transparent),
-            radial-gradient(ellipse at bottom, #7b83c4, transparent);
-  margin: 0;
-  background-attachment: fixed;
-}
 
-
+/* USER PAGE*/
 
 /* User nav*/
 .user-nav {
@@ -184,17 +184,9 @@ a {
 
 /* user page */
 
-.user-page-bg {
-  width: 100%;
-  background: radial-gradient(ellipse at top, #8ce4bb, transparent),
-  radial-gradient(ellipse at bottom, #294c97, transparent);
-  margin: 0;
-  background-attachment: fixed;
-}
 .wrapper {
   display: flex;
   justify-content: space-between;
-  width: 85%;
   margin: auto;
   font-family: 'Source Sans Pro';
 }
@@ -206,7 +198,7 @@ a {
   background: rgba(201, 201, 201, 0.3);
   min-width: 20%;
   max-width: 20%;
-  height: 80vh;
+  max-height: 50vh;
   transition: all .5s ease-in;
 }
 .home-nav-btn * {
@@ -231,15 +223,13 @@ a {
 .user-frontpage-header {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  padding: 25px;
+  padding: 20px;
 }
 .blur-bg {
-  background: rgba(220, 220, 220, 0.1);
-  backdrop-filter: blur(4px);
+  background: rgba(207, 207, 207, 0.1);
+  backdrop-filter: blur(15px);
 }
 .quote {
-  background: rgba(209, 209, 209, 0.089);
   width: 70%;
   margin: 60px!important;
   text-align: center;
@@ -277,7 +267,9 @@ td {
 }
 
 /* Product view */
-
+.product-container {
+  background: white!important;
+}
 .product-box {
   border-radius: 12px;
 }

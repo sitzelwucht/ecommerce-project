@@ -13,8 +13,8 @@ import Product from './Product'
 
 function ProductsByCategory(props) {
 
-    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "border w-75 mx-auto"
-    const innerBox = "d-flex border m-5 product-container mx-auto w-75"
+    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "w-75 mx-auto"
+    const innerBox = "d-flex border m-5 product-container mx-auto"
 
     const history = useHistory();
     const { addToCart, cartItems } = useCart()
@@ -54,11 +54,13 @@ function ProductsByCategory(props) {
 
 
     return (
-        <div className="container">
+        <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
+        <div className="subcontainer">
+        <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
             <div className={outerBox}>
-                <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}>back</Button>
+                
 
-                <div className="mt-3 mx-auto category-title">{props.category}</div>
+                <div className="mt-1 mx-auto category-title">{props.category}</div>
         
                 <div className={innerBox}>
                     {
@@ -84,6 +86,7 @@ function ProductsByCategory(props) {
                     }
 
                 </div>
+            </div>
             </div>
         </div>
     )
