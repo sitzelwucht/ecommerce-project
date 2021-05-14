@@ -81,7 +81,7 @@ export default function NavBar(props) {
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />
 
                     <Nav.Item className="d-flex align-items-center">
-                        <Nav.Link href="/categories"><Button variant="outline-light">Categories</Button></Nav.Link>
+                        <Nav.Link href="/categories"><Button variant="outline-light">Browse</Button></Nav.Link>
                     </Nav.Item>
                 </>
             } 

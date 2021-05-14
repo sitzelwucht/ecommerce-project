@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Button, Form, FormControl, InputGroup, Accordion } from 'react-bootstrap'
+import { Card, Button, Form, FormControl, InputGroup, Accordion, Nav } from 'react-bootstrap'
 import AddForm from './AddForm'
 import axios from 'axios'
 import config from '../config'
@@ -39,6 +39,7 @@ export default function AdminHome(props) {
 
     return (
         <div className="admin-bg">
+
             <Card className="w-50 mx-auto">
 
              <Accordion className="m-5 accordion-links">
@@ -97,7 +98,7 @@ export default function AdminHome(props) {
                         <Card.Body>
                     
                         <Form inline onSubmit={handleKeywordSearch}>
-                                <InputGroup>
+                                <InputGroup className="mx-auto">
                                     <FormControl type="text" name="input" placeholder="Search" />
                                     <InputGroup.Append><Button type="submit" variant="dark">Go</Button></InputGroup.Append>
                                 </InputGroup>

@@ -107,9 +107,10 @@ function AddForm(props) {
             </Form>  
 
 
+            
             <Form onSubmit={handleAdd} className="border p-3">
-
-                <Form.Group controlId="formBasicProductCategory">
+            
+                <Form.Group controlId="formBasicProductCategory" >
                     <Form.Label className="font-weight-bold">category</Form.Label>
 
                     <Form.Control as="select" name="categorySelect" default="select product category" >
@@ -121,14 +122,22 @@ function AddForm(props) {
                     }
                 </Form.Control>
                 </Form.Group>
+                <div className="d-flex border">
+                    <div className="d-flex flex-column p-3 w-50">
+                    <Form.Group controlId="formBasicImage"> 
+                    <Form.Label className="font-weight-bold">product image</Form.Label>
+                        <Form.Control type="file" onChange={(e) => {uploadImage(e.target.files)}} />
+                            <Form.Label className="font-weight-bold">Image url</Form.Label>
+                            <Form.Control name="imageUrl" type="text" value={imageUrl} />
+                    </Form.Group>
+                    </div>
+                    <div>
+                        <div>
+                    { !isLoading ? <Image style={{height: '200px'}} cloudName="dew5980fy" publicId={cloudinaryId} /> : <Loader /> }
+                        </div>
+                    </div>
 
-                <Form.Group controlId="formBasicImage"> 
-                    <Form.Control type="file" onChange={(e) => {uploadImage(e.target.files)}} />
-                        <Form.Label className="font-weight-bold">Image url</Form.Label>
-                        <Form.Control name="imageUrl" type="text" value={imageUrl} />
- 
-     
-                </Form.Group>
+                </div>
 
             <Form.Group controlId="formBasicProductName">
                 <Form.Label className="font-weight-bold">name</Form.Label>
@@ -154,9 +163,7 @@ function AddForm(props) {
                 Submit
             </Button>
         </Form>
-        <div>
-        { !isLoading ? <Image style={{height: '200px'}} cloudName="dew5980fy" publicId={cloudinaryId} /> : <Loader /> }
-        </div>
+
 
         </div>
     )

@@ -54,34 +54,36 @@ function ProductsByCategory(props) {
 
 
     return (
-        <div className={outerBox}>
-            <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}>back</Button>
+        <div className="container">
+            <div className={outerBox}>
+                <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}>back</Button>
 
-            <div className="mt-3 mx-auto category-title">{props.category}</div>
-    
-            <div className={innerBox}>
-                {
-                    !products.length ? 
-                    <div className="p-3">no results</div> : 
-                    products.map((item, i) => {
-                    return <Product 
-                            key={i}
-                            category={props.category}
-                            user={props.user}
-                            title={item.title}
-                            description={item.description}
-                            price={item.price}
-                            stock={item.stock} 
-                            id={item._id}
-                            onDelete={handleDelete}
-                            onAdd={addToCart}
-                            items={cartItems}
-                            favorites={favorites}
-                            />
-                 
-                    })
-                }
+                <div className="mt-3 mx-auto category-title">{props.category}</div>
+        
+                <div className={innerBox}>
+                    {
+                        !products.length ? 
+                        <div className="p-3">no products in this category</div> : 
+                        products.map((item, i) => {
+                        return <Product 
+                                key={i}
+                                category={props.category}
+                                user={props.user}
+                                title={item.title}
+                                description={item.description}
+                                price={item.price}
+                                stock={item.stock} 
+                                id={item._id}
+                                onDelete={handleDelete}
+                                onAdd={addToCart}
+                                items={cartItems}
+                                favorites={favorites}
+                                />
+                    
+                        })
+                    }
 
+                </div>
             </div>
         </div>
     )

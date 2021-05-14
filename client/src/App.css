@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Codystar&family=Exo:wght@300&family=Raleway:wght@300&family=Ubuntu:wght@300&display=swap');
 
 body, html {
   margin: 0;
@@ -15,53 +16,69 @@ a {
   background: rgb(234, 244, 250)!important;
   border: none!important
 }
+.nav {
+  font-family: 'Ubuntu'!important;
+  background: rgb(40,40,40);
+}
+
 
 /* Front page and pre-login*/
+/* ANON NAV*/
 
-.frontpage-img {
-  z-index: -1;
+.anon-nav {
+  min-height: 40vh!important;
+  max-height: 40vh!important;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  transition: max-height 1s, min-height 1s;
+}
+.anon-nav > * {
+  margin-top: 60px;
+}
+
+.anon-nav-shrink {
+  margin-top: 0!important;
+  min-height: 20vh!important;
+  max-height: 20vh!important;
+  width: 100vw;
+  position: fixed;
+  transition: max-height 1s, min-height 1s;
+}
+.container-max {
+  z-index: -6;
+  padding: 0;
   position: absolute;
-  margin-left: 30%;
+  bottom: 0;
+  min-height: 80vh;
+  max-height: 80vh;
+  background: rgb(255, 218, 207)!important;
+  min-width: 100vw;
+  transition: max-height 1s, min-height 1s;
 }
- .jumbotron {
-   z-index: 5;
-   background: rgba(61, 61, 61, 0.2)!important;
-   position: absolute;
-   width: 100%;
-  top: 10;
-  font-family: 'Source Sans Pro';
-  font-family: 'Montserrat';
-  
- }
- .nav {
-  font-family: 'Montserrat'!important;
-  height: 20vh;
-  background: rgb(20,20,20);
- }
- .form {
-  background: rgba(230,230,230, .5);
-  backdrop-filter: blur(8px);
- }
- .bg {
-  height: 80vh;
-  margin: 0;
-  background-attachment: fixed;
- }
- .signup-bg {
-   background: radial-gradient(ellipse at top, #808fe4, transparent),
-   radial-gradient(ellipse at bottom, #21949c, transparent);
- }
- .login-bg {
-  background: radial-gradient(ellipse at top, #cfa1c5, transparent),
-            radial-gradient(ellipse at bottom, #7b83c4, transparent);
+.container-shrink {
+  background: rgb(247, 209, 247);
+  position: absolute;
+  bottom: 0;
+  min-height: 60vh;
+  max-height: 60vh;
+  min-width: 100vw;
+  transition: max-height 1s, min-height 1s;
 }
+
+  .welcome-msg {
+  letter-spacing: .05em;
+  color: rgba(40,40,40,.8)
+}
+ 
 
 .search-bar-dropdown {
-  margin: 52px;
-  z-index: 12
+  z-index: 12;
+  overflow: visible;
 }
 
 .anon-search {
+  margin-top: 50px;
   display: flex!important;
   flex-direction: row-reverse;
   justify-content: space-between!important;
@@ -71,22 +88,43 @@ a {
   padding: 12px;
   align-items: center;
 }
-
 .anon-search input {
   background: rgb(213, 235, 243);
   border: none;
   outline: none;
 }
-
 .list-group button {
   background: rgb(240, 251, 255);
 }
-
 .list-group a:hover {
   text-decoration: none;
 }
 
+ .form {
+  background: rgba(230,230,230, .5);
+  backdrop-filter: blur(8px);
+}
+
+ .signup-bg {
+   background: radial-gradient(ellipse at top, #808fe4, transparent),
+   radial-gradient(ellipse at bottom, #21949c, transparent);
+   margin: 0;
+   background-attachment: fixed;
+ }
+ .login-bg {
+  margin: 0!important;
+  background: radial-gradient(ellipse at top, #cfa1c5, transparent),
+            radial-gradient(ellipse at bottom, #7b83c4, transparent);
+  margin: 0;
+  background-attachment: fixed;
+}
+
+
+
 /* User nav*/
+.user-nav {
+  height: 20vh;
+}
 .badge {
   border-radius: 15px;
 }
@@ -147,8 +185,11 @@ a {
 /* user page */
 
 .user-page-bg {
+  width: 100%;
   background: radial-gradient(ellipse at top, #8ce4bb, transparent),
   radial-gradient(ellipse at bottom, #294c97, transparent);
+  margin: 0;
+  background-attachment: fixed;
 }
 .wrapper {
   display: flex;
@@ -350,12 +391,17 @@ div.card-body  {
   margin: 15px!important
 }
 .card-header {
-  border-radius: 15px!important;
-  padding: 7px;
+  border-radius: 8px!important;
+  padding: 0;
   margin: 10px auto;
-  background: rgba(122, 122, 122, 0.8);
-  border: rgb(88, 88, 88) 1px solid;
+  border: 1px solid rgba(172, 172, 172, 0.8);
+  font-size: 1.5em;
+  font-family: 'Montserrat';
 }
+.card-header .btn-link {
+  color: rgb(58, 58, 58);
+}
+
 .accordion-links .btn-link{
   letter-spacing: .08em;
   font-size: 1.3em;

@@ -4,7 +4,7 @@ import { Button, Nav, Form, FormControl } from 'react-bootstrap'
 import axios from 'axios'
 import config from '../config'
 
-export default function BrowseCategories() {
+export default function BrowseCategories(props) {
 
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
@@ -79,39 +79,41 @@ export default function BrowseCategories() {
 
     return (
         <>
-        <div>
-            <h2 className="mx-auto border mt-3 text-center w-50 mt-5 p-3">Product Categories</h2>
-            <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap">
-            {
-                !prodsByCateg.length ? <div>loading...</div> :
-                prodsByCateg.map((item, i) => {
-                    return <div className="categories-user" key={i}>
-                                <Link to={`/bycategory/${item[0]}`}><Button variant="link">{item[0]} ({item[1]})
-                            
-                                </Button></Link>
-                            </div>
-                })
-            }
-            </div>
-        </div>
-
-        <div>
-            <h2 className="mx-auto border text-center w-50 mt-5 p-3">Search for product</h2>
-            <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex">
-            <Nav.Item className="d-flex align-items-center">
-                <Form  inline>
-                    <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2" />
-                </Form>
-            </Nav.Item></div>
-            <div className="m-10 mt-1 mx-auto w-50 p-3">
+        <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+            <div>
+                <h2 className="mx-auto border mt-3 text-center w-50 mt-5 p-3">Product Categories</h2>
+                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap">
                 {
-                    searchResults.length > 0 && searchResults.map((item, i) => {
-                        return <div className="border m-1 p-3">
-                            <h4>{item.name}</h4>
-                            <div>{item.description}</div>
-                        </div>
+                    !prodsByCateg.length ? <div>loading...</div> :
+                    prodsByCateg.map((item, i) => {
+                        return <div className="categories-user" key={i}>
+                                    <Link to={`/bycategory/${item[0]}`}><Button variant="link">{item[0]} ({item[1]})
+                                
+                                    </Button></Link>
+                                </div>
                     })
                 }
+                </div>
+            </div>
+
+            <div>
+                <h2 className="mx-auto border text-center w-50 mt-5 p-3">Search for product</h2>
+                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex">
+                <Nav.Item className="d-flex align-items-center">
+                    <Form  inline>
+                        <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2" />
+                    </Form>
+                </Nav.Item></div>
+                <div className="m-10 mt-1 mx-auto w-50 p-3">
+                    {
+                        searchResults.length > 0 && searchResults.map((item, i) => {
+                            return <div className="border m-1 p-3">
+                                <h4>{item.name}</h4>
+                                <div>{item.description}</div>
+                            </div>
+                        })
+                    }
+                </div>
             </div>
         </div>
         </>
