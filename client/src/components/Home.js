@@ -40,59 +40,59 @@ export default function Home(props) {
 
         <div className="container-max">
 
-            <div className="subcontainer border">
+            <div className="subcontainer">
 
-            <div className="wrapper">
-            
-                <nav className="home-navbar">
-                    <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>User Settings</Button></div>
-                    <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>Purchase History</Button></div>
-                    <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>Other</Button></div>
-                </nav>
+                <div className="wrapper w-75">
+                
+                    <nav className="home-navbar">
+                        <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>User Settings</Button></div>
+                        <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>Purchase History</Button></div>
+                        <div className="home-nav-btn"><Button variant="link" onClick={handleShowSettings}>Other</Button></div>
+                    </nav>
 
 
-                <div className="w-100 welcome">
-                { !props.user && <Redirect to={'/'} /> }
+                    <div className="w-100 welcome">
+                    { !props.user && <Redirect to={'/'} /> }
 
-                    <Container className="m-5">
-                    {
-                        showWelcome &&
-                        <>
-                        <header className="user-frontpage-header">
-                            <h3>{
-                                hours >= 6 && hours < 12 && 'Good morning'
-                            }
-                            { 
-                                hours >= 12 && hours < 18 && 'Good afternoon'
-                            }
-                            {
-                                hours >= 18 && hours <= 23 && 'Good evening'
-                            }
-                            {
-                                hours < 6 && 'Good night'
-                            }
-                            , {props.user.firstName}</h3>
-                            <Clock />
-
-                        </header>
-                        <div>
-                            { quote &&
-                            <div className="quote">
-                            <div className="font-italic">{quote.quote}</div>
-                            <div className="font-weight-bold">- { quote.author ? quote.author : 'anonymous'}</div>
-                            </div>
-                            }
-                        </div>
-                        </>
-                    }
-
+                        <Container className="m-5">
                         {
-                        showSettings && <UserSettings user={props.user}/>
-                    }
-    
-                    </Container>
-            
-                </div>
+                            showWelcome &&
+                            <>
+                            <header className="user-frontpage-header">
+                                <h3>{
+                                    hours >= 6 && hours < 12 && 'Good morning'
+                                }
+                                { 
+                                    hours >= 12 && hours < 18 && 'Good afternoon'
+                                }
+                                {
+                                    hours >= 18 && hours <= 23 && 'Good evening'
+                                }
+                                {
+                                    hours < 6 && 'Good night'
+                                }
+                                , {props.user.firstName}</h3>
+                                <Clock />
+
+                            </header>
+                            <div>
+                                { quote &&
+                                <div className="quote">
+                                <div className="font-italic">{quote.quote}</div>
+                                <div className="font-weight-bold">- { quote.author ? quote.author : 'anonymous'}</div>
+                                </div>
+                                }
+                            </div>
+                            </>
+                        }
+
+                            {
+                            showSettings && <UserSettings user={props.user}/>
+                        }
+        
+                        </Container>
+                
+                    </div>
                 </div>
             </div>
         </div>

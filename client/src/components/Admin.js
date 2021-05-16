@@ -23,7 +23,7 @@ export default function Admin(props) {
 
     return (
         <>
-            <div>
+            <div className="container-max">
                 { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
 
                 { !props.user && 
@@ -31,6 +31,8 @@ export default function Admin(props) {
                     <header className="border w-100 d-flex justify-content-between" >
                         <h2 className="m-5">ADMIN</h2>
                        <Link to="/"><Button variant="outlined-dark" className="m-5">back</Button></Link>
+                    
+                    
                     </header>
                     <div className="mx-auto" style={{width: "400px"}}>
                         <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in as admin</Button>

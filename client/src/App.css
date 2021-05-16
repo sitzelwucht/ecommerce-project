@@ -48,18 +48,17 @@ a {
 .container-max {
   z-index: -6;
   padding: 0;
-  position: absolute;
   bottom: 0;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 85vh;
+  max-height: 85vh;
   min-width: 100vw;
   transition: max-height 1s, min-height 1s;
   background-image: url('Background\ 25.jpg');
   background-position: bottom center;
-
+  background-attachment: fixed;
+  position: fixed;
 }
 .container-shrink {
-  position: absolute;
   bottom: 0;
   min-height: 60vh;
   max-height: 60vh;
@@ -67,21 +66,26 @@ a {
   transition: max-height 1s, min-height 1s;
   background-image: url('Background\ 25.jpg');
   background-position: top left;
+  background-attachment: fixed;
+  position: fixed;
 }
 
 .subcontainer {
+  position: absolute;
+  bottom: 0;
   background: rgba(230,230,230, .2);
   border: 1px solid transparent;
-  background-attachment: fixed;
   backdrop-filter: blur(8px);
-  width: 70%;
+  width: 100vw;
+  max-height: 85vh;
   margin: auto;
   height: 100%;
+  overflow:auto;
 }
 
 .welcome-msg {
   letter-spacing: .05em;
-  color: rgba(40,40,40,.8)
+  color: rgba(240,240,240,.8)
 }
  
 
@@ -123,7 +127,7 @@ a {
 
 /* User nav*/
 .user-nav {
-  height: 20vh;
+  height: 15vh;
 }
 .badge {
   border-radius: 15px;
@@ -188,6 +192,7 @@ a {
   display: flex;
   justify-content: space-between;
   margin: auto;
+  width: 60%!important;
   font-family: 'Source Sans Pro';
 }
 .home-navbar {
@@ -198,7 +203,6 @@ a {
   background: rgba(201, 201, 201, 0.3);
   min-width: 20%;
   max-width: 20%;
-  max-height: 50vh;
   transition: all .5s ease-in;
 }
 .home-nav-btn * {
@@ -266,9 +270,22 @@ td {
   background: rgb(30, 30, 30);
 }
 
+/* browse view*/
+.browse-title {
+  margin:auto;
+  background: rgba(230,230,230, .5);
+  font-family: 'Ubuntu';
+  /* font-family: 'Codystar' */
+}
+
 /* Product view */
+
 .product-container {
   background: white!important;
+  padding-bottom: 60px;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
 }
 .product-box {
   border-radius: 12px;
@@ -291,6 +308,10 @@ td {
   border-radius: 4px;
   font-size: 1.7em;
   letter-spacing: .04em;
+}
+
+.product-view {
+  background: white;
 }
 .stock {
   font-size: 1.1em;
@@ -408,6 +429,22 @@ div.card-body  {
 .product-search:hover {
   background: rgba(235, 235, 235, 0.6)
 }
+
+::-webkit-scrollbar-track
+{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar
+{
+  width: 15px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  background-color: rgba(40,40,40, .6);
+}
+
 
 @media screen and (max-width: 1250px) {
 

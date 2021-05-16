@@ -109,9 +109,9 @@ function AddForm(props) {
 
             
             <Form onSubmit={handleAdd} className="border p-3">
-            
+                Fields marked with * are mandatory
                 <Form.Group controlId="formBasicProductCategory" >
-                    <Form.Label className="font-weight-bold">category</Form.Label>
+                    <Form.Label className="font-weight-bold">category *</Form.Label>
 
                     <Form.Control as="select" name="categorySelect" default="select product category" >
                     <option selected disabled hidden>select product category</option>
@@ -122,7 +122,27 @@ function AddForm(props) {
                     }
                 </Form.Control>
                 </Form.Group>
-                <div className="d-flex border">
+               
+            <Form.Group controlId="formBasicProductName">
+                <Form.Label className="font-weight-bold">name *</Form.Label>
+                <Form.Control type="text" name="title" placeholder="Enter product name" />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicDescription">
+                <Form.Label className="font-weight-bold">description *</Form.Label>
+                <Form.Control type="text" name="description" placeholder="Product description" />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPrice">
+                <Form.Label className="font-weight-bold">price (in cents) *</Form.Label>
+                <Form.Control type="number" name="price" placeholder="Product price" />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicStock">
+                <Form.Label className="font-weight-bold">stock *</Form.Label>
+                <Form.Control type="number" name="stock" placeholder="Product stock" />
+            </Form.Group>
+            <div className="d-flex">
                     <div className="d-flex flex-column p-3 w-50">
                     <Form.Group controlId="formBasicImage"> 
                     <Form.Label className="font-weight-bold">product image</Form.Label>
@@ -133,31 +153,11 @@ function AddForm(props) {
                     </div>
                     <div>
                         <div>
-                    { !isLoading ? <Image style={{height: '200px'}} cloudName="dew5980fy" publicId={cloudinaryId} /> : <Loader /> }
+                    { !isLoading ? <Image style={{height: '175px'}} cloudName="dew5980fy" publicId={cloudinaryId} /> : <Loader /> }
                         </div>
                     </div>
 
                 </div>
-
-            <Form.Group controlId="formBasicProductName">
-                <Form.Label className="font-weight-bold">name</Form.Label>
-                <Form.Control type="text" name="title" placeholder="Enter product name" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicDescription">
-                <Form.Label className="font-weight-bold">description</Form.Label>
-                <Form.Control type="text" name="description" placeholder="Product description" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPrice">
-                <Form.Label className="font-weight-bold">price (in cents) </Form.Label>
-                <Form.Control type="number" name="price" placeholder="Product price" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicStock">
-                <Form.Label className="font-weight-bold">stock</Form.Label>
-                <Form.Control type="number" name="stock" placeholder="Product stock" />
-            </Form.Group>
 
             <Button variant="dark" type="submit">
                 Submit

@@ -46,7 +46,7 @@ export default function Favorites(props) {
                         favoriteItems.map((item, i) => {
                             return <tr key={i}>
                                     <td>{item.prodName}</td>
-                                    <td>{item.prodPrice}</td>
+                                    <td>{item.prodPrice / 100}</td>
                                     <td><Button variant="light" 
                                     onClick={() => updateFavorites(props.user._id, favoriteItems, item.prodName, false)}>x</Button></td>
                                     <td><Button variant="outline-dark"

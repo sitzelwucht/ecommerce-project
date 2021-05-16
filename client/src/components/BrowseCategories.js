@@ -42,7 +42,7 @@ export default function BrowseCategories(props) {
         const response = await axios.get(`${config.API_URL}/api/allproducts`)
         const result = await response.data
         const list = await result.map(item => {
-            return {name: item.title, description: item.description, category: item.category }
+            return {id: item._id, name: item.title, description: item.description, category: item.category }
         })
 
         setProducts(list)
@@ -82,7 +82,7 @@ export default function BrowseCategories(props) {
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
         <div className="subcontainer">
             <div>
-                <h2 className="mx-auto border text-center w-50 mt-5 p-3">Product Categories</h2>
+                <h2 className="browse-title w-50 mt-5 p-3">Product Categories</h2>
                 <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap product-container">
                 {
                     !prodsByCateg.length ? <div>loading...</div> :
@@ -98,7 +98,7 @@ export default function BrowseCategories(props) {
             </div>
 
             <div>
-                <h2 className="mx-auto border text-center w-50 mt-5 p-3">Search for product</h2>
+                <h2 className="browse-title w-50 mt-5 p-3">Search for product</h2>
                 <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex">
                 <Nav.Item className="d-flex align-items-center ">
                     <Form  inline>
@@ -108,11 +108,16 @@ export default function BrowseCategories(props) {
                 <div className="m-10 mt-1 mx-auto w-50 p-3">
                     {
                         searchResults.length > 0 && searchResults.map((item, i) => {
-                            return <div className="border m-1 p-3">
-                                <h4>{item.name}</h4>
-                                <div>{item.description}</div>
+
+                            return <div className="border w-50 m-1 p-3">
+                                <div className="d-flex align-items-baseline justify-content-between">
+                                    <h4>{item.name}</h4> <span>{item.category}</span> 
+                                </div>
+                                <div>{item.description}
+                                <Link to={`/product/${item.id}`}><Button variant="link">More...</Button></Link></div>
                             </div>
                         })
+
                     }
                 </div>
             </div>

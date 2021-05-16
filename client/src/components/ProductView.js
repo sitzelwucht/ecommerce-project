@@ -12,7 +12,7 @@ import { useFavorites } from '../contexts/FavoriteProvider'
 function ProductView(props) {
 
     const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "m-5 border w-50 mx-auto"
-    const innerBox = "border w-75 m-3 mx-auto"
+    const innerBox = "border w-75 m-3 mx-auto product-view"
     const history = useHistory();
     const { addToCart, cartItems } = useCart()
     const { favorites, updateFavorites } = useFavorites()

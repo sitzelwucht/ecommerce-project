@@ -57,7 +57,7 @@ function Cart(props) {
                                 counts.map((item, i) => {
                                     return <tr className="m-3 product-line" key={i}>
                                             <td>{item.prodName}</td>
-                                            <td>{(item.prodPrice / 100) * item.quantity}</td>
+                                            <td>{((item.prodPrice / 100) * item.quantity).toFixed(2)}</td>
                                             <td>
                                             <Button variant="light" className="m-1" 
                                             onClick={() => {updateProductQty(userItems, props.user._id, item.prodName, item.prodPrice, false)}}>-</Button>
@@ -74,7 +74,7 @@ function Cart(props) {
                                         counts.map(item => {
                                             return parseInt(item.prodPrice) * item.quantity / 100
                                             }).reduce((acc, elem) => {
-                                            return elem + acc}, 0)
+                                            return elem + acc}, 0).toFixed(2)
                                     }€</td>
                                 </tr>
                             </tbody>

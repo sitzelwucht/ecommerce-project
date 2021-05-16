@@ -56,11 +56,15 @@ function ProductsByCategory(props) {
     return (
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
         <div className="subcontainer">
-        <Button variant="outlined-link" className="m-5" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
+      
             <div className={outerBox}>
                 
+                <div className="d-flex mt-5">
 
-                <div className="mt-1 mx-auto category-title">{props.category}</div>
+                    <Button variant="outlined-link" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
+                    <div className="mt-1 mx-auto category-title">{props.category}</div>
+                </div>
+                
         
                 <div className={innerBox}>
                     {
