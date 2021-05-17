@@ -79,6 +79,7 @@ function ProductsByCategory(props) {
                                 description={item.description}
                                 price={item.price}
                                 stock={item.stock} 
+                                imageUrl={item.imageUrl}
                                 id={item._id}
                                 onDelete={handleDelete}
                                 onAdd={addToCart}

@@ -34,18 +34,25 @@ function ProductView(props) {
 
 
     return (
-        <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+        <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
+        <div className="subcontainer">
             <div className={outerBox}>
             <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
             {
                 product && <div className={innerBox}>
                                 <h3 className="text-center product-title">{product.title}</h3>
-                                <div className="m-3">
-                                    <div className="d-flex justify-content-between m-3">
-                                        <div>{product.description}</div>
-                                        <div>{product.price / 100}</div>
+
+                                <div className="m-3 d-flex justify-content-between">
+
+                                    <div className="border">
+                                        <img src={product.imageUrl} height="250" alt="product"/>
                                     </div>
-                                    <div><img src={product.imageUrl} height="250" alt="product"/></div>
+
+                                    <div className="d-flex m-3 flex-column text-right">
+                                        <div className="mb-5">{product.description}</div>
+                                        <h2>{product.price / 100}</h2>
+                                    </div>
+
                                 </div>
                                 
                                 { props.user && !props.user.isAdmin && 
@@ -56,6 +63,7 @@ function ProductView(props) {
                                 }
                             </div>
             }
+            </div>
             </div>
         </div>
     )

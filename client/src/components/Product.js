@@ -79,42 +79,52 @@ export default function Product(props) {
 
     return (
         <>
-            <div className="border m-3 p-3 w-25 product-box">
+            <div className="border m-3 p-3 w-25 product-box ">
             {
                 !editMode ? 
-                    <>
+                    <div>
                         <div className="product-title text-center">{updatedProduct.title}</div>
-                        {/* <div>{updatedProduct.description}</div> */}
-                        <div className="m-3"><Link to={`/product/${props.id}`}>more...</Link></div>
-                        <h5 className="text-right">{updatedProduct.price / 100} EUR</h5>
-                        <div className="text-right"><div>Stock:</div>
-                        {
-                            updatedProduct.stock > 100 && 
-                            <Badge className="stock darkgreen"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
-                            In Stock</Badge> 
-                        }
-                        {
-                            updatedProduct.stock > 50 && updatedProduct.stock <= 100 && 
-                            <Badge className="stock green"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
-                            Available </Badge>
-                        }
-                        {
-                            updatedProduct.stock > 20 && updatedProduct.stock <= 50 && 
-                            <Badge className="stock yellow"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>}  
-                            Some Available </Badge>
-                        }
-                        {
-                            updatedProduct.stock <= 20 && 
-                            <Badge className="stock orange"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
-                            Low stock </Badge>
-                        }
-                        {
-                            updatedProduct.stock <= 0 && 
-                            <Badge className="stock red"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
-                            Out of stock </Badge>
-                        }
+                        {/* <div>{updatedProduct.description}</div> */}             
+                        
+                        <div className="d-flex justify-content-between">
+                            <div className="product-box-left">
+                                <div className="m-3"><Link to={`/product/${props.id}`}>more...</Link></div>
+                                <div><img src={updatedProduct.imageUrl} height="100" alt="" /></div> 
+                            </div>
+
+                            <div className="product-box-right">
+                                <h5 className="text-right">{updatedProduct.price / 100} EUR</h5>
+                                <div className="text-right">
+                       
+                                {
+                                    updatedProduct.stock > 100 && 
+                                    <Badge className="stock darkgreen"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                                    In Stock</Badge> 
+                                }
+                                {
+                                    updatedProduct.stock > 50 && updatedProduct.stock <= 100 && 
+                                    <Badge className="stock green"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                                    Available </Badge>
+                                }
+                                {
+                                    updatedProduct.stock > 20 && updatedProduct.stock <= 50 && 
+                                    <Badge className="stock yellow"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>}  
+                                    Some Available </Badge>
+                                }
+                                {
+                                    updatedProduct.stock <= 20 && 
+                                    <Badge className="stock orange"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                                    Low stock </Badge>
+                                }
+                                {
+                                    updatedProduct.stock <= 0 && 
+                                    <Badge className="stock red"> {props.user && props.user.isAdmin && <h5>{updatedProduct.stock} —</h5>} 
+                                    Out of stock </Badge>
+                                }
+                                </div>
+                            </div>
                         </div>
-                    </> :
+                    </div> :
                     <Form onSubmit={handleEdit}>
                     <Form.Group controlId="formBasicCategory">
                             <Form.Control type="text" name="category" defaultValue={props.category} hidden />

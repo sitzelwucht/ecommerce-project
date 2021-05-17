@@ -293,7 +293,15 @@ td {
 .product-box > * {
   padding: 10px;
 }
+.product-box-left {
 
+}
+.product-box-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
 .product-qty-fave {
   display: flex;
   justify-content: space-between!important;
