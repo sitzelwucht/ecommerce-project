@@ -37,7 +37,7 @@ function AddForm(props) {
         .then(response => {
             setCloudinaryId(response.data.public_id)
             setImageUrl(response.data.url)
-            setIsLoading(true)
+            setIsLoading(false)
         })
     }
 
@@ -69,14 +69,16 @@ function AddForm(props) {
             description: e.target.description.value,
             price: e.target.price.value,
             stock: e.target.stock.value,
+            imageUrl: e.target.imageUrl.value
         }
         axios.post(`${config.API_URL}/api/newproduct`, newProduct)
-        .then(response => handleAlert(true))
+        .then(response => {
+            handleAlert(true)
+        })
         .catch(err => {
             console.log(err)
             handleAlert(false)
         })
-
     }
 
 

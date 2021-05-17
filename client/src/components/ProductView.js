@@ -45,6 +45,7 @@ function ProductView(props) {
                                         <div>{product.description}</div>
                                         <div>{product.price / 100}</div>
                                     </div>
+                                    <div><img src={product.imageUrl} height="250" alt="product"/></div>
                                 </div>
                                 
                                 { props.user && !props.user.isAdmin && 

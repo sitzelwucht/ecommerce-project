@@ -60,9 +60,9 @@ router.get('/allproducts', (req, res) => {
 
 // POST
 router.post('/newproduct', (req, res) => {
-    const { title, category, description, price, stock } = req.body
+    const { title, category, description, price, stock, imageUrl } = req.body
 
-    ProductModel.create({ title, category, description, price, stock })
+    ProductModel.create({ title, category, description, price, stock, imageUrl })
     .then(product => { res.status(200).json(product) })
     .catch(err => res.status(500).json(err))
 })
