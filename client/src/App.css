@@ -12,13 +12,35 @@ div {
 a {
   color: rgba(20,20,20,.9)!important;
 }
-.form-control {
-  background: rgb(228, 243, 243)!important;
-  border: none!important
+input:focus, input.form-control:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
 }
+.form-control  {
+  background: transparent!important;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid grey!important;
+  border-radius: 0 !important
+}
+
+.btn {
+  border-radius: 0!important;
+}
+
+.btn-danger {
+  background: rgb(172, 35, 35)
+}
+.btn-info {
+  background: rgb(39, 109, 126)
+}
+
 .nav {
   font-family: 'Ubuntu'!important;
-  background: rgb(40,40,40);
+  background: rgb(24, 24, 24);
 }
 
 
@@ -73,7 +95,7 @@ a {
 .subcontainer {
   position: absolute;
   bottom: 0;
-  background: rgba(230,230,230, .4);
+  background: rgba(230,230,230, .6);
   border: 1px solid transparent;
   backdrop-filter: blur(8px);
   width: 100vw;
@@ -92,24 +114,34 @@ a {
 .search-bar-dropdown {
   z-index: 12;
   overflow: visible;
-  max-height: 60px;
+  max-height: 50px;
 }
 
 .anon-search {
   display: flex!important;
   flex-direction: row-reverse;
   justify-content: space-between!important;
-  border-radius: 5px;
-  background: rgb(213, 235, 243);
+  background: rgb(205, 225, 233);
   font-size: 1.2em;
   padding: 12px;
   align-items: center;
 }
 .anon-search input {
-  background: rgb(213, 235, 243);
+  background: rgb(205, 225, 233);
   border: none;
   outline: none;
 }
+
+.anon-search img {
+  margin-right: 2px;
+}
+
+.anon-search img:first-child {
+  margin-right: 22px;
+}
+
+
+
 .white-bg {
   background: white;
   padding: 5px;
@@ -134,6 +166,7 @@ a {
 /* User nav*/
 .user-nav {
   height: 15vh;
+
 }
 .badge {
   border-radius: 15px;
@@ -273,7 +306,7 @@ td {
   margin: 10px;
 }
 .categories-user .btn-link:hover {
-  background: rgb(30, 30, 30);
+  background: rgb(92, 92, 92);
 }
 
 /* browse view*/
@@ -282,6 +315,12 @@ td {
   background: rgba(230,230,230, .5);
   font-family: 'Ubuntu';
   /* font-family: 'Codystar' */
+}
+
+.browse-search {
+  background: transparent!important;
+  border-bottom: 1px solid grey!important;
+  border-radius: 0 !important
 }
 
 /* Product view */
@@ -299,9 +338,7 @@ td {
 .product-box > * {
   padding: 10px;
 }
-.product-box-left {
 
-}
 .product-box-right {
   display: flex;
   flex-direction: column;
@@ -392,11 +429,11 @@ td {
   font-weight: 400
 }
 .category-button {
-  background: rgb(73, 73, 73);
+  background: rgb(92, 92, 92);
   padding: 8px;
 }
 .category-button:hover {
-  background: rgb(43, 43, 43)
+  background: rgb(70, 70, 70)
 }
 .btn-link {
   color: rgb(235, 235, 235);

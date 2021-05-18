@@ -11,8 +11,8 @@ export default function AnonymousNav(props) {
 
                     <Link to={'/'}><img src="/logo.png" height={props.shrink ? "110" : "220" } className="m-3" alt="" /></Link>
                     <div className="buttons">
-                        <Link to={'/login'}><Button variant="outline-info" className="m-5">Login</Button></Link>
-                        <Link to={'/signup'}><Button variant="info" className="m-5">Signup</Button></Link>
+                        <Link to={'/login'}><Button variant="outline-light" className="m-5">Login</Button></Link>
+                        <Link to={'/signup'}><Button variant="light" className="m-5">Signup</Button></Link>
                     </div>
                 </Nav.Item>
 

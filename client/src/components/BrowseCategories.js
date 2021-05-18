@@ -81,7 +81,7 @@ export default function BrowseCategories(props) {
         <>
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
         <div className="subcontainer">
-            <div>
+            <div className="pt-5">
                 <h2 className="browse-title w-50 mt-5 p-3">Product Categories</h2>
                 <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap product-container">
                 {
@@ -99,10 +99,10 @@ export default function BrowseCategories(props) {
 
             <div>
                 <h2 className="browse-title w-50 mt-5 p-3">Search for product</h2>
-                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex">
+                <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex product-view">
                 <Nav.Item className="d-flex align-items-center ">
                     <Form  inline>
-                        <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2" />
+                        <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2 browse-search" />
                     </Form>
                 </Nav.Item></div>
                 <div className="m-10 mt-1 mx-auto w-50 p-3">

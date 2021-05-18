@@ -14,7 +14,7 @@ import Product from './Product'
 function ProductsByCategory(props) {
 
     const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "w-75 mx-auto"
-    const innerBox = "d-flex border m-5 product-container mx-auto"
+    const innerBox = "d-flex m-5 product-container mx-auto"
 
     const history = useHistory();
     const { addToCart, cartItems } = useCart()

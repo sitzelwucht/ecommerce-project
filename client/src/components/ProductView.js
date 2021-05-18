@@ -11,8 +11,8 @@ import { useFavorites } from '../contexts/FavoriteProvider'
 
 function ProductView(props) {
 
-    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "m-5 border w-50 mx-auto"
-    const innerBox = "border w-75 m-3 mx-auto product-view"
+    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "m-5 pb-3 w-50 mx-auto product-view"
+    const innerBox = "border w-75 m-3 pt-5 mx-auto product-view"
 
     const history = useHistory();
 
@@ -44,10 +44,14 @@ function ProductView(props) {
                     product && <div className={innerBox}>
                                     <h3 className="text-center product-title">{product.title}</h3>
 
-                                    <div className="m-3 d-flex justify-content-between">
+                                    <div className="m-3 d-flex justify-content-around">
 
-                                        <div className="border">
-                                            <img src={product.imageUrl} height="250" alt="product"/>
+                                        <div className="border d-flex flex-column justify-content-center">
+                                            {
+                                                product.imageUrl 
+                                                ? <img src={product.imageUrl} height="250" alt="product"/> 
+                                                : <div>No image available</div>
+                                            }
                                         </div>
 
                                         <div className="d-flex m-3 flex-column text-right">
