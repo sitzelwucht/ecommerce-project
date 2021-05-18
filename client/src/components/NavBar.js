@@ -77,13 +77,13 @@ export default function NavBar(props) {
                         </Nav.Link>
                     </Nav.Item>
 
-                    <Nav.Item className="pt-4">
-                        <SearchBar />
-                    </Nav.Item>
-                    
                     <Favorites user={props.user} show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
                     
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />
+
+                    <Nav.Item className="d-flex flex-column justify-content-center">
+                        <SearchBar />
+                    </Nav.Item>
 
                     <Nav.Item className="d-flex align-items-center">
                         <Nav.Link href="/categories"><Button variant="outline-light">Browse</Button></Nav.Link>

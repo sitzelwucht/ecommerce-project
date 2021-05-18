@@ -11,8 +11,10 @@ export default function LoginForm(props) {
             <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
             
                 <div className="subcontainer">
-                    <Form className="w-50 mx-auto p-5 form" onSubmit={props.onLogin}>
-                        <h3 className="text-center">LOG IN</h3>
+                    <div className="w-25 mx-auto mt-5 p-5">
+                    <h2 className="text-center p-3">LOG IN</h2>
+                    <Form className=" form" onSubmit={props.onLogin}>
+                       
                         { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>} 
                 
 
@@ -33,10 +35,11 @@ export default function LoginForm(props) {
                         <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
                         </Form.Group>
 
-                        <Button variant="dark" type="submit">
+                        <Button variant="dark" type="submit" className="mt-3">
                         Submit
                         </Button>
                     </Form>
+                </div>
                 </div>
             </div>
         </>

@@ -55,9 +55,6 @@ input:focus, input.form-control:focus {
   justify-content: space-between;
   transition: max-height 1s, min-height 1s;
 }
-.anon-nav > * {
-  margin-top: 60px;
-}
 
 .anon-nav-shrink {
   margin-top: 0!important;
@@ -104,7 +101,13 @@ input:focus, input.form-control:focus {
   height: 100%;
   overflow:auto;
 }
-
+.subcontainer h2 {
+  font-family: 'Codystar';
+  color: white;
+  margin: 0;
+  padding: 10px;
+  background: rgb(30,30,30)
+}
 .welcome-msg {
   letter-spacing: .05em;
   color: rgba(240,240,240,.8)
@@ -123,7 +126,7 @@ input:focus, input.form-control:focus {
   justify-content: space-between!important;
   background: rgb(205, 225, 233);
   font-size: 1.2em;
-  padding: 12px;
+  padding: 10px;
   align-items: center;
 }
 .anon-search input {
@@ -156,6 +159,7 @@ input:focus, input.form-control:focus {
 }
 
  .form {
+   padding: 35px;
   background: rgba(230,230,230, .5);
   backdrop-filter: blur(8px);
 }
@@ -166,8 +170,8 @@ input:focus, input.form-control:focus {
 /* User nav*/
 .user-nav {
   height: 15vh;
-
 }
+
 .badge {
   border-radius: 15px;
 }
@@ -314,7 +318,6 @@ td {
   margin:auto;
   background: rgba(230,230,230, .5);
   font-family: 'Ubuntu';
-  /* font-family: 'Codystar' */
 }
 
 .browse-search {

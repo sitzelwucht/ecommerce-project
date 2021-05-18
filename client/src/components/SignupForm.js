@@ -45,9 +45,12 @@ export default function SignupForm(props) {
             { props.user && <Redirect to={'/'} /> }
 
         <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+            
             <div className="subcontainer">
-                <Form className="w-50 mx-auto p-5 form" onSubmit={props.onSignup}>
-                <h3 className="text-center">SIGN UP</h3>
+            <div className="w-25 mx-auto mt-5 p-5">
+            <h2 className="text-center p-3">SIGN UP</h2>
+                <Form className=" form" onSubmit={props.onSignup}>
+                
                 { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }
                 <Form.Group controlId="formBasicName">
                         <Form.Label>First name</Form.Label>
@@ -84,11 +87,12 @@ export default function SignupForm(props) {
                     <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">
+                    <Button variant="dark" type="submit" className="mt-3">
                         Submit
                     </Button>
                     </Form>
                 </div>
+            </div>
             </div>
         </>
     )
