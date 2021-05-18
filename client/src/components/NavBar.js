@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Nav, Button, Badge } from 'react-bootstrap'
 import Cart from './Cart'
 import Favorites from './Favorites'
+import SearchBar from './SearchBar'
 import { useCart } from '../contexts/CartProvider'
 import { useFavorites } from '../contexts/FavoriteProvider'
 
@@ -76,6 +77,10 @@ export default function NavBar(props) {
                         </Nav.Link>
                     </Nav.Item>
 
+                    <Nav.Item className="pt-4">
+                        <SearchBar />
+                    </Nav.Item>
+                    
                     <Favorites user={props.user} show={favoriteModalShow} onHide={() => setFavoriteModalShow(false)} />
                     
                     <Cart user={props.user} show={cartModalShow} onHide={() => setCartModalShow(false)} />

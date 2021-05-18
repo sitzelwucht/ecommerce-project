@@ -89,7 +89,10 @@ export default function Product(props) {
                         <div className="d-flex justify-content-between">
                             <div className="product-box-left">
                                 <div className="m-3"><Link to={`/product/${props.id}`}>more...</Link></div>
-                                <div><img src={updatedProduct.imageUrl} height="100" alt="" /></div> 
+                                <div>
+                                    { updatedProduct.imageUrl ? <img src={updatedProduct.imageUrl} height="100" alt="" /> : <span>no image available</span>
+                                    }
+                                </div> 
                             </div>
 
                             <div className="product-box-right">

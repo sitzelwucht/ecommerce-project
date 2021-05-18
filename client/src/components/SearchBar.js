@@ -7,6 +7,7 @@ export default function SearchBar(props) {
 
     const [products, setProducts] = useState([])
     const [searchResults, setSearchResults] = useState([])
+    const [noInput, setNoInput] = useState(true)
 
     const getAllProducts = async () => {
         const response = await axios.get(`${config.API_URL}/api/allproducts`)
@@ -25,10 +26,14 @@ export default function SearchBar(props) {
         let filteredProducts = products.filter(item => {
             return item.name.toLowerCase().includes(input)
           })
-
+        setNoInput(false)
          setSearchResults(filteredProducts)
         
         if (!input) {
+            setNoInput(true)
+        }
+
+        if(!searchResults) {
             setSearchResults([])
         }
     }
@@ -50,11 +55,11 @@ export default function SearchBar(props) {
                 </div>
                 <ul className="list-group">
                 {
-                    !searchResults.length ? null : searchResults.map((item, i) => {
+                    noInput ? null : (!searchResults.length ? <div className="white-bg">(no results)</div> : searchResults.map((item, i) => {
                         return <Link to={`/product/${item.id}`}>
                         <button type="button"
                         className="list-group-item list-group-item-action d-flex justify-content-between">{item.name} <i>({item.category})</i></button></Link>
-                    })
+                    }))
                 }
                     
                 </ul>

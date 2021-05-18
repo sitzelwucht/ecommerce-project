@@ -60,10 +60,10 @@ export default function Checkout(props) {
         <div className="container-max">
         {  !props.user && <Redirect to={'/'} /> }
 
-        <div className="blur-bg">
+        <div className="subcontainer">
             <div className="w-50 border mx-auto mt-5 p-3 ">
                 <h1 className="text-center category-title w-50 mx-auto ">checkout</h1>
-                    <table className="cart-table">
+                    <table className="checkout-table">
                         <thead>
                             <tr className="font-weight-bold">
                                 <td>Product</td>
@@ -85,26 +85,45 @@ export default function Checkout(props) {
                         </tbody>
                     </table>
                 
-                        <div className="highlighted border d-flex m-5 w-50 mx-auto justify-content-center">
-                            <span>Total:</span>
-                            <span>{total}€</span>
+                    <div className="product-view d-flex">
+
+                        <div className="border w-50 p-3 text-left">
+                            <h5>Shipping address:</h5>
+                            { !props.user ? <span>loading...</span> :
+                            <>
+                                <div>{props.user.firstName} {props.user.lastName}</div>
+                                <div>{props.user.postCode} {props.user.city}</div>
+                                <div>{props.user.address}</div>
+                                <br />
+                                <div><span>Phone </span>{props.user.phone}</div>
+                                <div><span>Email </span>{props.user.email}</div>
+                            </>
+                            }
+
                         </div>
-        
-                    <div className="d-flex justify-content-center mt-5">
+                        <div className="border w-50 p-1">
+                            <div className="highlighted border d-flex m-5 w-50 mx-auto justify-content-center">
+                                <span>Total:</span>
+                                <span>{total}€</span>
+                            </div>
+                    
 
+                            <div className="d-flex justify-content-center mt-5 ">
+                                <StripeCheckout 
+                                stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
+                                token={makePayment}
+                                amount={total*100}
+                                name="Make payment" >
+                                <Button type="button" variant="info" id="checkout-button" role="link" >
+                                    Checkout
+                                </Button>
+                                </StripeCheckout>   
 
-                        <StripeCheckout 
-                        stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
-                        token={makePayment}
-                        amount={total*100}
-                        name="Make payment" >
-                        <Button type="button" variant="info" id="checkout-button" role="link" >
-                            Checkout
-                        </Button>
-                        </StripeCheckout>   
-
-                    </div>   
+                            </div>
+                        </div>
+                </div>   
             </div>
+        
         </div> 
         
         </div>

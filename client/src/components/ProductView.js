@@ -13,7 +13,9 @@ function ProductView(props) {
 
     const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "m-5 border w-50 mx-auto"
     const innerBox = "border w-75 m-3 mx-auto product-view"
+
     const history = useHistory();
+
     const { addToCart, cartItems } = useCart()
     const { favorites, updateFavorites } = useFavorites()
 
@@ -35,35 +37,35 @@ function ProductView(props) {
 
     return (
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
-        <div className="subcontainer">
-            <div className={outerBox}>
-            <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
-            {
-                product && <div className={innerBox}>
-                                <h3 className="text-center product-title">{product.title}</h3>
+            <div className="subcontainer">
+                <div className={outerBox}>
+                <Button variant="outlined-link" className="m-3" onClick={() => history.goBack()}>back</Button>
+                {
+                    product && <div className={innerBox}>
+                                    <h3 className="text-center product-title">{product.title}</h3>
 
-                                <div className="m-3 d-flex justify-content-between">
+                                    <div className="m-3 d-flex justify-content-between">
 
-                                    <div className="border">
-                                        <img src={product.imageUrl} height="250" alt="product"/>
+                                        <div className="border">
+                                            <img src={product.imageUrl} height="250" alt="product"/>
+                                        </div>
+
+                                        <div className="d-flex m-3 flex-column text-right">
+                                            <div className="mb-5">{product.description}</div>
+                                            <h2>{product.price / 100}</h2>
+                                        </div>
+
                                     </div>
-
-                                    <div className="d-flex m-3 flex-column text-right">
-                                        <div className="mb-5">{product.description}</div>
-                                        <h2>{product.price / 100}</h2>
+                                    
+                                    { props.user && !props.user.isAdmin && 
+                                    <div className="d-flex justify-content-around m-3">
+                                        <Button variant="danger">Add to favorites</Button>
+                                        <Button variant="success">Add to cart</Button>
                                     </div>
-
+                                    }
                                 </div>
-                                
-                                { props.user && !props.user.isAdmin && 
-                                <div className="d-flex justify-content-around m-3">
-                                    <Button variant="danger">Add to favorites</Button>
-                                    <Button variant="success">Add to cart</Button>
-                                </div>
-                                }
-                            </div>
-            }
-            </div>
+                }
+                </div>
             </div>
         </div>
     )

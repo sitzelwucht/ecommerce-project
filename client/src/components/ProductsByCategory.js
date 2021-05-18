@@ -55,43 +55,43 @@ function ProductsByCategory(props) {
 
     return (
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
-        <div className="subcontainer">
-      
-            <div className={outerBox}>
-                
-                <div className="d-flex mt-5">
-
-                    <Button variant="outlined-link" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
-                    <div className="mt-1 mx-auto category-title">{props.category}</div>
-                </div>
-                
+            <div className="subcontainer">
         
-                <div className={innerBox}>
-                    {
-                        !products.length ? 
-                        <div className="p-3">no products in this category</div> : 
-                        products.map((item, i) => {
-                        return <Product 
-                                key={i}
-                                category={props.category}
-                                user={props.user}
-                                title={item.title}
-                                description={item.description}
-                                price={item.price}
-                                stock={item.stock} 
-                                imageUrl={item.imageUrl}
-                                id={item._id}
-                                onDelete={handleDelete}
-                                onAdd={addToCart}
-                                items={cartItems}
-                                favorites={favorites}
-                                />
+                <div className={outerBox}>
                     
-                        })
-                    }
+                    <div className="d-flex mt-5">
 
+                        <Button variant="outlined-link" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
+                        <div className="mt-1 mx-auto category-title">{props.category}</div>
+                    </div>
+                    
+            
+                    <div className={innerBox}>
+                        {
+                            !products.length ? 
+                            <div className="p-3">no products in this category</div> : 
+                            products.map((item, i) => {
+                            return <Product 
+                                    key={i}
+                                    category={props.category}
+                                    user={props.user}
+                                    title={item.title}
+                                    description={item.description}
+                                    price={item.price}
+                                    stock={item.stock} 
+                                    imageUrl={item.imageUrl}
+                                    id={item._id}
+                                    onDelete={handleDelete}
+                                    onAdd={addToCart}
+                                    items={cartItems}
+                                    favorites={favorites}
+                                    />
+                        
+                            })
+                        }
+
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )
