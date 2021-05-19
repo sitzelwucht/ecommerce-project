@@ -8,7 +8,7 @@ export default function SignupForm(props) {
     const [passwordMessage, setPasswordMessage] = useState()
     const [passwordConfMessage, setPasswordConfMessage] = useState()
     const [showMsg, setShowMsg] = useState(false)
-
+    const [showErrorMsg, setShowErrorMsg] = useState(false)
     
     const passwordRef = useRef()
 
@@ -39,6 +39,9 @@ export default function SignupForm(props) {
         setShowMsg(true)
     }, [passwordConfMessage])
 
+    useEffect(() => {
+        props.errorMsg ? setShowErrorMsg(true) : setShowErrorMsg(false)
+    }, [props])
 
     
     return (<>
@@ -51,7 +54,7 @@ export default function SignupForm(props) {
             <h2 className="text-center p-3">SIGN UP</h2>
                 <Form className=" form" onSubmit={props.onSignup}>
                 
-                { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }
+                { showErrorMsg && <Alert variant="danger" onClick={() => {setShowErrorMsg(false)}} dismissible>{props.errorMsg}</Alert> }
                     <Form.Group controlId="formBasicName">
                         <Form.Label>First name</Form.Label>
                         <Form.Control type="text" name="firstName" placeholder="first name" />

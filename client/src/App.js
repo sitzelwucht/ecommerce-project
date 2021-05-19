@@ -53,13 +53,13 @@ function App(props) {
       e.preventDefault()
       const user = {
         email: e.target.email.value,
-        password: e.target.password.value,
-        isAdmin: e.target.isAdmin.value
+        password: e.target.password.value
       }
 
       axios.post(`${config.API_URL}/api/admin-login`, user, { withCredentials: true })
       .then(response => {
        setLoggedInUser(response.data)
+       props.history.push('/')
       })
       .catch(err => setError(err.response.data.errorMsg))
   }
@@ -138,8 +138,7 @@ function App(props) {
               return <LoginForm 
               user={loggedInUser} 
               onLogin={handleLogin} 
-              isAdmin="false" 
-              errorMsg={props.errorMsg} 
+              errorMsg={error}
               shrinkNav={shrinkNav} />
             }} /> 
             
@@ -148,7 +147,7 @@ function App(props) {
               user={loggedInUser} 
               onSignup={handleSignup} 
               isAdmin="false"  
-              errorMsg={props.errorMsg} 
+              errorMsg={error} 
               shrinkNav={shrinkNav} />
             }} /> 
 
@@ -158,7 +157,7 @@ function App(props) {
               onLogin={handleAdminLogin} 
               onSignup={handleSignup} 
               errorMsg={error} 
-              shrinkNav={shrinkNav} 
+              shrinkNav={shrinkNav}
               />
             }} />
 

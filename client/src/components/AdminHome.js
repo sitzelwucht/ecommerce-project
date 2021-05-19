@@ -39,7 +39,6 @@ export default function AdminHome(props) {
 
     return (
         <div className="admin-bg">
-
             <Card className="w-50 mx-auto">
 
              <Accordion className="m-5 accordion-links">

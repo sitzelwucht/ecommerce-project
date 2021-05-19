@@ -73,7 +73,7 @@ router.post('/signup', (req, res) => {
 
 
 router.post('/login', (req, res) => {
-    const { email, password, isAdmin } = req.body
+    const { email, password } = req.body
 
     UserModel.findOne({ email })
     .then(userData => {
@@ -104,8 +104,7 @@ router.post('/login', (req, res) => {
 
 
 router.post('/admin-login', (req, res) => {
-    const { email, password, isAdmin } = req.body
-
+    const { email, password } = req.body
 
     UserModel.findOne({ email })
     .then(userData => {

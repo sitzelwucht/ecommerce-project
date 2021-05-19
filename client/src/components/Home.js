@@ -39,7 +39,6 @@ export default function Home(props) {
     return (
 
         <div className="container-max">
-
             <div className="subcontainer">
 
                 <div className="wrapper w-75">

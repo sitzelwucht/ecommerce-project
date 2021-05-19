@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
 import AdminHome from './AdminHome'
 import { Button, Form, Alert } from 'react-bootstrap'
 
@@ -51,8 +49,8 @@ export default function Admin(props) {
 
     return (
         <>
+
         { props.user && <Redirect to={'/'} /> }
-        { props.user && props.user.isAdmin && <AdminHome user={props.user}/> }
 
         <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
 
@@ -60,8 +58,6 @@ export default function Admin(props) {
 
             { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
             
-          
-             
                     <div className="admin-enter">
                         <div><h2 >ADMIN</h2></div>
 
@@ -73,24 +69,22 @@ export default function Admin(props) {
                             variant="light" 
                             onClick={handleShowSignup}>New admin user</Button>
                         </div>
-
+                        { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>}
                         { showLogin && 
                         <div className=" admin-form ">
                             <Form className="d-flex" onSubmit={props.onLogin} >
 
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" name="email" placeholder="Enter email" />
-                                </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Control type="email" name="email" placeholder="email" />
+                            </Form.Group>
             
                             <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" name="password" placeholder="Password" />
+                                <Form.Control type="password" name="password" placeholder="password" />
                             </Form.Group>
-
+{/* 
                             <Form.Group controlId="admin">
                             <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
-                            </Form.Group>
+                            </Form.Group> */}
 
                                 <Button variant="link" type="submit" >
                                     Submit
@@ -104,19 +98,16 @@ export default function Admin(props) {
                             <Form className="d-flex" onSubmit={props.onSignup}>
                     
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
                                 <Form.Control type="email" name="email" placeholder="email"  />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" name="password" ref={passwordRef} placeholder="password" onChange={handlePasswordInput} />
                                 <Form.Text className="text-muted">                    
                                 { passwordMessage && <Alert  variant="warning">{passwordMessage}</Alert> }</Form.Text>
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword2">
-                                <Form.Label>Confirm Password</Form.Label>
                                 <Form.Control type="password" name="password2" placeholder="confirm password" onChange={handlePasswordConfirmation}/>
                                 <Form.Text className="text-muted">                    
                                 { passwordConfMessage && <Alert  variant="warning">{passwordConfMessage}</Alert> }</Form.Text>

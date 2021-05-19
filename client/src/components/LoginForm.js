@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 
 export default function LoginForm(props) {
 
+    const [showErrorMsg, setShowErrorMsg] = useState(false)
+    
 
+    useEffect(() => {
+        props.errorMsg ? setShowErrorMsg(true) : setShowErrorMsg(false)
+    }, [props])
+
+    
     return (
             <>
             { props.user && <Redirect to={'/'} /> }
@@ -16,8 +23,8 @@ export default function LoginForm(props) {
                     <h2 className="text-center p-3">LOG IN</h2>
                     
                     <Form className=" form" onSubmit={props.onLogin}>
-                       
-                        { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>} 
+                        
+                        { showErrorMsg && <Alert variant="danger" onClick={() => {setShowErrorMsg(false)}} dismissible>{props.errorMsg}</Alert> } 
                 
 
                         <Form.Group controlId="formBasicEmail">
@@ -34,7 +41,7 @@ export default function LoginForm(props) {
                         </Form.Group>
 
                         <Form.Group controlId="admin">
-                        <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
+                        <input type="hidden" id="isAdmin" name="isAdmin" />
                         </Form.Group>
 
                         <Button variant="dark" type="submit" className="mt-3">
