@@ -18,10 +18,10 @@ export default function Landing(props) {
                 <div className={ props.shrinkNav ? "container-max  landing" : "container-shrink  landing" }>
 
                     <div className="d-flex align-items-center justify-content-center w-50 mx-auto mt-5">
-                    <div className=" w-25">
+                    <div className=" w-25 mt-5 py-5">
                         <h1 className="welcome-msg">Welcome to random eCommerce Website</h1>
                         <Link to={'/categories'}>
-                            <Button variant="dark" className="btn-lg m-5">Browse</Button>
+                            <Button variant="dark" className="btn-lg m-5" onClick={props.onAction}>Browse</Button>
                         </Link>
                     </div>
                     <div className=" w-25">

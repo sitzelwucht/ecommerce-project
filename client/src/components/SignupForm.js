@@ -52,16 +52,16 @@ export default function SignupForm(props) {
                 <Form className=" form" onSubmit={props.onSignup}>
                 
                 { props.errorMsg && <Alert variant="danger" >{props.errorMsg}</Alert> }
-                <Form.Group controlId="formBasicName">
+                    <Form.Group controlId="formBasicName">
                         <Form.Label>First name</Form.Label>
                         <Form.Control type="text" name="firstName" placeholder="first name" />
-        
                     </Form.Group>
+
                     <Form.Group controlId="formBasicLastname">
                         <Form.Label>Last name</Form.Label>
                         <Form.Control type="text" name="lastName" placeholder="last name" />
-
                     </Form.Group>
+
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name="email" placeholder="email"  />
@@ -72,8 +72,6 @@ export default function SignupForm(props) {
                         <Form.Control type="password" name="password" ref={passwordRef} placeholder="password" onChange={handlePasswordInput} />
                         <Form.Text className="text-muted">                    
                         { passwordMessage && <Alert  variant="warning">{passwordMessage}</Alert> }</Form.Text>
-                        
-                    
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword2">

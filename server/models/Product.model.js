@@ -5,7 +5,8 @@ require('./Category.model.js')
 let ProductSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     category: {
         type: String,

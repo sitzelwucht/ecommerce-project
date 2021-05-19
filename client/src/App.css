@@ -43,11 +43,32 @@ input:focus, input.form-control:focus {
   background: rgb(24, 24, 24);
 }
 
+.admin-enter {
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  background: rgba(20,20,20,.2);
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.admin-enter  div {
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.admin-enter  button {
+  margin: 15px;
+}
 
 /* Front page and pre-login*/
 /* ANON NAV*/
 
 .anon-nav {
+
   min-height: 40vh!important;
   max-height: 40vh!important;
   align-items: flex-start;
@@ -55,7 +76,6 @@ input:focus, input.form-control:focus {
   justify-content: space-between;
   transition: max-height 1s, min-height 1s;
 }
-
 .anon-nav-shrink {
   margin-top: 0!important;
   min-height: 20vh!important;
@@ -160,10 +180,15 @@ input:focus, input.form-control:focus {
 
  .form {
    padding: 35px;
-  background: rgba(230,230,230, .5);
+  background: rgba(230,230,230, .3);
   backdrop-filter: blur(8px);
 }
 
+.admin-form {
+  margin: 0!important;
+  padding: 15px;
+  background-color: rgba(20,20,20,.9);
+}
 
 /* USER PAGE*/
 

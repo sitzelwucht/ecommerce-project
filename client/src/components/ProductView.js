@@ -56,7 +56,7 @@ function ProductView(props) {
 
                                         <div className="d-flex m-3 flex-column text-right">
                                             <div className="mb-5">{product.description}</div>
-                                            <h2>{product.price / 100}</h2>
+                                            <h3>{product.price / 100}</h3>
                                         </div>
 
                                     </div>

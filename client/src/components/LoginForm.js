@@ -11,8 +11,10 @@ export default function LoginForm(props) {
             <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
             
                 <div className="subcontainer">
+
                     <div className="w-25 mx-auto mt-5 p-5">
                     <h2 className="text-center p-3">LOG IN</h2>
+                    
                     <Form className=" form" onSubmit={props.onLogin}>
                        
                         { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>} 

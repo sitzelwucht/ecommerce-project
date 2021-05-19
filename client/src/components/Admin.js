@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import AdminHome from './AdminHome'
-import { Button } from 'react-bootstrap'
+import { Button, Form, Alert } from 'react-bootstrap'
 
 export default function Admin(props) {
 
 
     const [showSignup, setShowSignup] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
+    const [passwordMessage, setPasswordMessage] = useState()
+    const [passwordConfMessage, setPasswordConfMessage] = useState()
+
+    const [showMsg, setShowMsg] = useState(false)
+
+    
+    const passwordRef = useRef()
 
     const handleShowSignup = () => {
         setShowSignup(true)
@@ -21,35 +28,113 @@ export default function Admin(props) {
         setShowSignup(false)
     }
 
+
+        // check if password matches requirements
+        const handlePasswordInput = (e) => {
+            let regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+            let input = e.target.value
+            if (!regex.test(input)) {
+                setPasswordMessage('password must contain 8 characters, 1 number, 1 uppercase letter')
+            }
+            else setPasswordMessage(null)
+        } 
+    
+        // check if passwords match
+        const handlePasswordConfirmation = (e) => {
+            let input = e.target.value
+            if (input !== passwordRef.current.value) {
+                setPasswordConfMessage('passwords do not match')
+            }
+            else setPasswordConfMessage(null)
+        } 
+    
+
     return (
         <>
-            <div className="container-max">
-                { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
+        { props.user && <Redirect to={'/'} /> }
+        { props.user && props.user.isAdmin && <AdminHome user={props.user}/> }
 
-                { !props.user && 
-                    <>
-                    <header className="border w-100 d-flex justify-content-between" >
-                        <h2 className="m-5">ADMIN</h2>
-                       <Link to="/"><Button variant="outlined-dark" className="m-5">back</Button></Link>
+        <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
+
+            <div className="subcontainer">
+
+            { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
+            
+          
+             
+                    <div className="admin-enter">
+                        <div><h2 >ADMIN</h2></div>
+
+                        <div style={{width: "400px"}}>
+                            <Button 
+                            variant="info" 
+                            onClick={handleShowLogin}>Log in as admin</Button>
+                            <Button 
+                            variant="light" 
+                            onClick={handleShowSignup}>New admin user</Button>
+                        </div>
+
+                        { showLogin && 
+                        <div className=" admin-form ">
+                            <Form className="d-flex" onSubmit={props.onLogin} >
+
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control type="email" name="email" placeholder="Enter email" />
+                                </Form.Group>
+            
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" name="password" placeholder="Password" />
+                            </Form.Group>
+
+                            <Form.Group controlId="admin">
+                            <input type="hidden" id="isAdmin" name="isAdmin" value={props.isAdmin} />
+                            </Form.Group>
+
+                                <Button variant="link" type="submit" >
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div>
+                    }
+
+                    { showSignup && 
+                        <div className="form admin-form mx-auto">
+                            <Form className="d-flex" onSubmit={props.onSignup}>
                     
-                    
-                    </header>
-                    <div className="mx-auto" style={{width: "400px"}}>
-                        <Button className="m-3" variant="info" onClick={handleShowLogin}>Log in as admin</Button>
-                        <Button variant="light" onClick={handleShowSignup}>New admin user</Button>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" name="email" placeholder="email"  />
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" name="password" ref={passwordRef} placeholder="password" onChange={handlePasswordInput} />
+                                <Form.Text className="text-muted">                    
+                                { passwordMessage && <Alert  variant="warning">{passwordMessage}</Alert> }</Form.Text>
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword2">
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control type="password" name="password2" placeholder="confirm password" onChange={handlePasswordConfirmation}/>
+                                <Form.Text className="text-muted">                    
+                                { passwordConfMessage && <Alert  variant="warning">{passwordConfMessage}</Alert> }</Form.Text>
+                            </Form.Group>
+
+
+                            <Button variant="link" type="submit" >
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div>
+                    }
+
                     </div>
+                </div>
+            </div> 
 
-                { showLogin && <LoginForm onLogin={props.onLogin} isAdmin errorMsg={props.errorMsg} /> }
-
-                { showSignup && <SignupForm onSignup={props.onSignup} isAdmin errorMsg={props.errorMsg} /> }
-                    </>
-                
-                }
-
-            </div>
-
-
-            { props.user && props.user.isAdmin && <AdminHome user={props.user}/> }
+            
         </>
     )
 }

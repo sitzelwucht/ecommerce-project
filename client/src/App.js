@@ -33,15 +33,6 @@ function App(props) {
       setShrinkNav(true)
     }
 
-    useEffect(() => {
-      // setShrinkNav(false)
-        window.addEventListener('click', handleClickingEvent)
-
-        return () => {
-            window.removeEventListener('click', handleClickingEvent)
-        }
-    }, [])
-
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -124,24 +115,51 @@ function App(props) {
       <CartProvider>
       <FavoriteProvider>
         <>
-        {!loggedInUser && !shrinkNav ? <AnonymousNav /> : !loggedInUser && <AnonymousNav shrink />}
-        {loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/>}
-        {loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin />}
+        { !loggedInUser && !shrinkNav ? 
+        <AnonymousNav onAction={handleClickingEvent} shrinkNav={shrinkNav} /> 
+        : !loggedInUser && <AnonymousNav shrinkNav={shrinkNav}  /> }
+
+        { loggedInUser && !loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser}/> }
+        { loggedInUser && loggedInUser.isAdmin && <NavBar onLogout={handleLogout} user={loggedInUser} admin /> }
+
           <Switch>
             <Route exact path="/" render={() => {
-              return <Landing onLogin={handleLogin} onSignup={handleSignup} errorMsg={error} user={loggedInUser} getCategories={getCategories} shrinkNav={shrinkNav} />
+              return <Landing 
+              onLogin={handleLogin} 
+              onSignup={handleSignup} 
+              errorMsg={error} 
+              user={loggedInUser} 
+              getCategories={getCategories} 
+              shrinkNav={shrinkNav} 
+              onAction={handleClickingEvent} />
             }} />
             
             <Route path="/login" render={(routeProps) => {
-              return <LoginForm user={loggedInUser} onLogin={handleLogin} isAdmin="false" errorMsg={props.errorMsg} shrinkNav={shrinkNav} />
+              return <LoginForm 
+              user={loggedInUser} 
+              onLogin={handleLogin} 
+              isAdmin="false" 
+              errorMsg={props.errorMsg} 
+              shrinkNav={shrinkNav} />
             }} /> 
             
             <Route path="/signup" render={(routeProps) => {
-              return <SignupForm user={loggedInUser} onSignup={handleSignup} isAdmin="false"  errorMsg={props.errorMsg} shrinkNav={shrinkNav} />
+              return <SignupForm 
+              user={loggedInUser} 
+              onSignup={handleSignup} 
+              isAdmin="false"  
+              errorMsg={props.errorMsg} 
+              shrinkNav={shrinkNav} />
             }} /> 
 
             <Route path="/admin" render={() => {
-              return <Admin  user={loggedInUser} onLogin={handleAdminLogin} onSignup={handleSignup} errorMsg={error} />
+              return <Admin  
+              user={loggedInUser} 
+              onLogin={handleAdminLogin} 
+              onSignup={handleSignup} 
+              errorMsg={error} 
+              shrinkNav={shrinkNav} 
+              />
             }} />
 
             <Route path="/home" render={() => {
@@ -149,23 +167,36 @@ function App(props) {
             }} />
             
             <Route path="/adminhome" render={() => {
-              return <AdminHome onLogout={handleLogout} user={loggedInUser} getCategories={getCategories} />
+              return <AdminHome 
+              onLogout={handleLogout} 
+              user={loggedInUser} 
+              getCategories={getCategories} />
             }} />
 
             <Route path="/bycategory/:category" render={(routeProps) => {
-              return <ProductsByCategory user={loggedInUser} category={routeProps.match.params.category} shrinkNav={shrinkNav} />
+              return <ProductsByCategory 
+              user={loggedInUser} 
+              category={routeProps.match.params.category} 
+              shrinkNav={shrinkNav} />
             }} /> 
 
             <Route path="/product/:id" render={(routeProps) => {
-              return <ProductView user={loggedInUser} id={routeProps.match.params.id} shrinkNav={shrinkNav} />
+              return <ProductView 
+              user={loggedInUser} 
+              id={routeProps.match.params.id} 
+              shrinkNav={shrinkNav} />
             }} /> 
 
             <Route path="/categories" render={(routeProps) => {
-              return <BrowseCategories user={loggedInUser} shrinkNav={shrinkNav} />
+              return <BrowseCategories 
+              user={loggedInUser} 
+              shrinkNav={shrinkNav} />
             }} /> 
 
             <Route path="/checkout" render={(routeProps) => {
-              return <Checkout user={loggedInUser} shrinkNav={shrinkNav} />
+              return <Checkout 
+              user={loggedInUser} 
+              shrinkNav={shrinkNav} />
             }} /> 
              <Route component={NotFound} shrinkNav={shrinkNav} />
           </Switch>
