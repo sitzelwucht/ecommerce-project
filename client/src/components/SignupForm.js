@@ -54,7 +54,10 @@ export default function SignupForm(props) {
             <h2 className="text-center p-3">SIGN UP</h2>
                 <Form className=" form" onSubmit={props.onSignup}>
                 
-                { showErrorMsg && <Alert variant="danger" onClick={() => {setShowErrorMsg(false)}} dismissible>{props.errorMsg}</Alert> }
+                { showErrorMsg && <Alert variant="danger" onClick={() => {
+                    setShowErrorMsg(false)
+                    props.onResetError()
+                    }} dismissible>{props.errorMsg}</Alert> }
                     <Form.Group controlId="formBasicName">
                         <Form.Label>First name</Form.Label>
                         <Form.Control type="text" name="firstName" placeholder="first name" />

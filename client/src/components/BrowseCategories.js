@@ -80,7 +80,7 @@ export default function BrowseCategories(props) {
     return (
         <>
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
-        <div className="subcontainer">
+        <div className={  props.user && !props.user.isAdmin ? "subcontainer" : null }>
             <div className="pt-5">
                 <h2 className="browse-title w-50 mt-5 p-3">Product Categories</h2>
                 <div className="m-10 mt-1 mx-auto w-50 p-3 border d-flex flex-wrap product-container">

@@ -24,13 +24,18 @@ import NotFound from './components/NotFound'
 function App(props) {
   
   const [loggedInUser, setLoggedInUser] = useState()
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
   const [shrinkNav, setShrinkNav] = useState(false)
 
 
     // decrease navbar height when an element on page is clicked
     const handleClickingEvent = () => {
       setShrinkNav(true)
+    }
+
+    // reset error message after dismissing the error alert
+    const handleResetError = () => {
+      setError(null)
     }
 
 
@@ -139,6 +144,7 @@ function App(props) {
               user={loggedInUser} 
               onLogin={handleLogin} 
               errorMsg={error}
+              onResetError={handleResetError}
               shrinkNav={shrinkNav} />
             }} /> 
             
@@ -148,6 +154,7 @@ function App(props) {
               onSignup={handleSignup} 
               isAdmin="false"  
               errorMsg={error} 
+              onResetError={handleResetError}
               shrinkNav={shrinkNav} />
             }} /> 
 
@@ -157,6 +164,7 @@ function App(props) {
               onLogin={handleAdminLogin} 
               onSignup={handleSignup} 
               errorMsg={error} 
+              onResetError={handleResetError}
               shrinkNav={shrinkNav}
               />
             }} />

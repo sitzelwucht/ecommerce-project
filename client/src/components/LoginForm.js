@@ -24,7 +24,10 @@ export default function LoginForm(props) {
                     
                     <Form className=" form" onSubmit={props.onLogin}>
                         
-                        { showErrorMsg && <Alert variant="danger" onClick={() => {setShowErrorMsg(false)}} dismissible>{props.errorMsg}</Alert> } 
+                        { showErrorMsg && <Alert variant="danger" onClick={() => {
+                            setShowErrorMsg(false)
+                            props.onResetError()
+                            }} dismissible>{props.errorMsg}</Alert> } 
                 
 
                         <Form.Group controlId="formBasicEmail">

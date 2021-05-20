@@ -10,6 +10,7 @@ export default function Admin(props) {
     const [showLogin, setShowLogin] = useState(false)
     const [passwordMessage, setPasswordMessage] = useState()
     const [passwordConfMessage, setPasswordConfMessage] = useState()
+    const [showErrorMsg, setShowErrorMsg] = useState(false)
 
     const [showMsg, setShowMsg] = useState(false)
 
@@ -27,24 +28,29 @@ export default function Admin(props) {
     }
 
 
-        // check if password matches requirements
-        const handlePasswordInput = (e) => {
-            let regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
-            let input = e.target.value
-            if (!regex.test(input)) {
-                setPasswordMessage('password must contain 8 characters, 1 number, 1 uppercase letter')
-            }
-            else setPasswordMessage(null)
-        } 
-    
-        // check if passwords match
-        const handlePasswordConfirmation = (e) => {
-            let input = e.target.value
-            if (input !== passwordRef.current.value) {
-                setPasswordConfMessage('passwords do not match')
-            }
-            else setPasswordConfMessage(null)
-        } 
+    // check if password matches requirements
+    const handlePasswordInput = (e) => {
+        let regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+        let input = e.target.value
+        if (!regex.test(input)) {
+            setPasswordMessage('password must contain 8 characters, 1 number, 1 uppercase letter')
+        }
+        else setPasswordMessage(null)
+    } 
+
+    // check if passwords match
+    const handlePasswordConfirmation = (e) => {
+        let input = e.target.value
+        if (input !== passwordRef.current.value) {
+            setPasswordConfMessage('passwords do not match')
+        }
+        else setPasswordConfMessage(null)
+    } 
+
+
+    useEffect(() => {
+        props.errorMsg ? setShowErrorMsg(true) : setShowErrorMsg(false)
+    }, [props])
     
 
     return (
@@ -69,7 +75,11 @@ export default function Admin(props) {
                             variant="light" 
                             onClick={handleShowSignup}>New admin user</Button>
                         </div>
-                        { props.errorMsg && <Alert variant="danger">{props.errorMsg}</Alert>}
+
+                        { showErrorMsg && <Alert variant="danger" onClick={() => {
+                            setShowErrorMsg(false)
+                            props.onResetError()
+                            }} dismissible>{props.errorMsg}</Alert>}
                         { showLogin && 
                         <div className=" admin-form ">
                             <Form className="d-flex" onSubmit={props.onLogin} >

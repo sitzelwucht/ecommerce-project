@@ -13,7 +13,7 @@ import Product from './Product'
 
 function ProductsByCategory(props) {
 
-    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto" : "w-75 mx-auto"
+    const outerBox = props.user && props.user.isAdmin ? "w-50 mx-auto " : "w-75 mx-auto"
     const innerBox = "d-flex m-5 product-container mx-auto"
 
     const history = useHistory();
@@ -56,12 +56,12 @@ function ProductsByCategory(props) {
     return (
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
             <div className="subcontainer">
-        
+           
+
                 <div className={outerBox}>
                     
                     <div className="d-flex mt-5">
-
-                        <Button variant="outlined-link" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
+                    <Button variant="outlined-link" onClick={() => history.goBack()}><img src="/back.png" height="35" className="svg-icon" alt="back" /></Button>
                         <div className="mt-1 mx-auto category-title">{props.category}</div>
                     </div>
                     

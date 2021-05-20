@@ -363,6 +363,8 @@ td {
 }
 .product-box {
   border-radius: 12px;
+  width: 30%!important;
+
 }
 .product-box > * {
   padding: 10px;

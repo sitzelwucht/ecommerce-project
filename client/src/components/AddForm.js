@@ -98,9 +98,6 @@ function AddForm(props) {
 
     return (
         <div>
-        { showSuccessAlert && <Alert variant="success">Product added</Alert> }
-        { showErrorAlert && <Alert variant="danger">Adding failed</Alert> }
-
             <Form inline className="border p-3 mb-3" onSubmit={handleAddCategory}>
                     <InputGroup>
                         <FormControl type="text" name="category" placeholder="add new product category" />
@@ -149,8 +146,8 @@ function AddForm(props) {
                     <Form.Group controlId="formBasicImage"> 
                     <Form.Label className="font-weight-bold">product image</Form.Label>
                         <Form.Control type="file" onChange={(e) => {uploadImage(e.target.files)}} />
-                            <Form.Label className="font-weight-bold">Image url</Form.Label>
-                            <Form.Control name="imageUrl" type="text" value={imageUrl} />
+                            {/* <Form.Label className="font-weight-bold">Image url</Form.Label> */}
+                            <Form.Control name="imageUrl" type="hidden" value={imageUrl} />
                     </Form.Group>
                     </div>
                     <div>
@@ -165,7 +162,8 @@ function AddForm(props) {
                 Submit
             </Button>
         </Form>
-
+        { showSuccessAlert && <Alert variant="success">Product added</Alert> }
+        { showErrorAlert && <Alert variant="danger">Adding failed</Alert> }
 
         </div>
     )

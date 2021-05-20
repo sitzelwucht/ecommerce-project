@@ -83,14 +83,16 @@ export default function Product(props) {
             {
                 !editMode ? 
                     <div>
-                        <div className="product-title text-center">{updatedProduct.title}</div>
-                        {/* <div>{updatedProduct.description}</div> */}             
+                        <div className="product-title text-center">{updatedProduct.title}</div>          
                         
                         <div className="d-flex justify-content-between">
                             <div className="product-box-left">
-                                <div className="m-3"><Link to={`/product/${props.id}`}>more...</Link></div>
+                                <div className="mt-3 mb-3 p-3">
+                                    <div>{updatedProduct.description.slice(0, 100)}... <Link to={`/product/${props.id}`}>more</Link></div>   
+                                   
+                                </div>
                                 <div>
-                                    { updatedProduct.imageUrl ? <img src={updatedProduct.imageUrl} height="100" alt="" /> : <span>no image available</span>
+                                    { updatedProduct.imageUrl ? <img src={updatedProduct.imageUrl} width="220" alt="" /> : <span>no image available</span>
                                     }
                                 </div> 
                             </div>
