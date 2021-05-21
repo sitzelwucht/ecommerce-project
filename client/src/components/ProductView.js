@@ -5,7 +5,7 @@ import config from '../config'
 import { Button } from 'react-bootstrap'
 import { useCart } from '../contexts/CartProvider'
 import { useFavorites } from '../contexts/FavoriteProvider'
-
+import LoginPrompt from './LoginPrompt'
 
 
 
@@ -20,7 +20,8 @@ function ProductView(props) {
     const { favorites, updateFavorites } = useFavorites()
 
     const [product, setProduct] = useState()
-    
+    const [modalShow, setModalShow] = useState()
+     
 
     const getInfo = async () => {
         const response = await axios.get(`${config.API_URL}/api/getproduct/${props.id}`)
@@ -56,11 +57,15 @@ function ProductView(props) {
 
                                         <div className="d-flex m-3 flex-column text-right">
                                             <div className="mb-5">{product.description}</div>
-                                            <h3>{product.price / 100}</h3>
+                                            <Button variant="outline-dark" onClick={() => {setModalShow(true)}}>
+                                                <h3>{product.price / 100}€</h3>
+                                            </Button>
                                         </div>
 
                                     </div>
-                                    
+
+                                    <LoginPrompt show={modalShow} onHide={() => {setModalShow(false)}}/>
+
                                     { props.user && !props.user.isAdmin && 
                                     <div className="d-flex justify-content-around m-3">
                                         <Button variant="danger">Add to favorites</Button>

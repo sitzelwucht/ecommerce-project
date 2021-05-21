@@ -6,7 +6,7 @@ import axios from 'axios'
 import config from '../config'
 import { useCart } from '../contexts/CartProvider'
 import { useFavorites } from '../contexts/FavoriteProvider'
-
+import LoginPrompt from './LoginPrompt'
 
 export default function Product(props) {
 
@@ -25,6 +25,7 @@ export default function Product(props) {
     const [quantity, setQuantity] = useState(null)
     const [isFavorite, setIsFavorite] = useState(null)
 
+    const [modalShow, setModalShow] = useState()
 
     // product editing for admins
     const handleEdit = (e) => {
@@ -98,7 +99,9 @@ export default function Product(props) {
                             </div>
 
                             <div className="product-box-right">
-                                <h5 className="text-right">{updatedProduct.price / 100} EUR</h5>
+                                <Button variant="outline-dark" className="mb-3" onClick={() => {setModalShow(true)}}><h5 className="text-right">
+                                {updatedProduct.price / 100}€</h5>
+                                </Button>
                                 <div className="text-right">
                        
                                 {
@@ -128,6 +131,7 @@ export default function Product(props) {
                                 }
                                 </div>
                             </div>
+                            <LoginPrompt show={modalShow} onHide={() => {setModalShow(false)}}/>
                         </div>
                     </div> :
                     <Form onSubmit={handleEdit}>

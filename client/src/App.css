@@ -199,7 +199,7 @@ input:focus, input.form-control:focus {
 }
 
 .badge {
-  border-radius: 15px;
+  border-radius: 0!important;
 }
 .nav-symbols-container {
   align-items: center;

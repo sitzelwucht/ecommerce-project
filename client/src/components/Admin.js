@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import AdminHome from './AdminHome'
 import { Button, Form, Alert } from 'react-bootstrap'
 
 export default function Admin(props) {
@@ -61,9 +60,7 @@ export default function Admin(props) {
         <div className={ props.shrinkNav ? "container-max" : "container-shrink" }>
 
             <div className="subcontainer">
-
-            { props.user && !props.user.isAdmin && <h4>Please log in as admin to use this page</h4> }
-            
+       
                     <div className="admin-enter">
                         <div><h2 >ADMIN</h2></div>
 
@@ -80,6 +77,7 @@ export default function Admin(props) {
                             setShowErrorMsg(false)
                             props.onResetError()
                             }} dismissible>{props.errorMsg}</Alert>}
+                            
                         { showLogin && 
                         <div className=" admin-form ">
                             <Form className="d-flex" onSubmit={props.onLogin} >

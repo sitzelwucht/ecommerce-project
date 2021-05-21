@@ -35,6 +35,7 @@ function Cart(props) {
 
     return (
         <div>
+         {console.log(props.history)}
             <Modal {...props } size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
                 <Modal.Header className="d-flex justify-content-between">
                     <h2>Cart</h2>
