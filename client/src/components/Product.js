@@ -89,7 +89,7 @@ export default function Product(props) {
                         <div className="d-flex justify-content-between">
                             <div className="product-box-left">
                                 <div className="mt-3 mb-3 p-3">
-                                    <div>{updatedProduct.description.slice(0, 100)}... <Link to={`/product/${props.id}`}>more</Link></div>   
+                                    <div>{updatedProduct.description.slice(0, 100)}... <Link to={`/product/${props.id}`} className="font-weight-bold">more</Link></div>   
                                    
                                 </div>
                                 <div>
@@ -99,9 +99,11 @@ export default function Product(props) {
                             </div>
 
                             <div className="product-box-right">
-                                <Button variant="outline-dark" className="mb-3" onClick={() => {setModalShow(true)}}><h5 className="text-right">
-                                {updatedProduct.price / 100}€</h5>
+
+                                <Button variant="dark" className="mb-3" onClick={() => {setModalShow(true)}}>
+                                    <h5 className="text-right">{updatedProduct.price / 100}€</h5>
                                 </Button>
+
                                 <div className="text-right">
                        
                                 {
@@ -165,7 +167,7 @@ export default function Product(props) {
             }
                        
      
-            <div className="d-flex flex-row bd-highlight mx-auto mt-2">
+            <div className="d-flex flex-row mx-auto mt-5 p-3">
                         {
                         props.user && props.user.isAdmin && !editMode &&
                             <>

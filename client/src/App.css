@@ -161,10 +161,8 @@ input:focus, input.form-control:focus {
 }
 
 .anon-search img:first-child {
-  margin-right: 22px;
+  margin-right: 15px;
 }
-
-
 
 .white-bg {
   background: white;

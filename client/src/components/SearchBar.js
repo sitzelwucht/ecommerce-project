@@ -66,7 +66,7 @@ export default function SearchBar(props) {
             <form>
                 <div className="anon-search">
                     <label for="search">
-                        <img src="/cancel.png" height="20" alt="" onClick={handleInputClear} />
+                        { !noInput && <img src="/cancel.png" height="20" alt="" onClick={handleInputClear} />}
                         <img src="/loupe.png" height="25" alt="" />
                     </label>
 
