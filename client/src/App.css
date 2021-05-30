@@ -69,9 +69,9 @@ input:focus, input.form-control:focus {
 /* ANON NAV*/
 
 .anon-nav {
-
   min-height: 40vh!important;
   max-height: 40vh!important;
+  width: 100vw;
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
@@ -99,15 +99,14 @@ input:focus, input.form-control:focus {
   position: fixed;
 }
 .container-shrink {
-  bottom: 0;
+  top: 40vh;
   min-height: 60vh;
-  max-height: 60vh;
   min-width: 100vw;
   transition: max-height 1s, min-height 1s;
   background-image: url('Background\ 25.jpg');
   background-position: top left;
   background-attachment: fixed;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .subcontainer {
@@ -164,6 +163,9 @@ input:focus, input.form-control:focus {
   margin-right: 15px;
 }
 
+.search-list > div {
+  background: rgba(207, 207, 207, 0.596)
+}
 .white-bg {
   background: white;
   padding: 5px;

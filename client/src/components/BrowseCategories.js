@@ -79,6 +79,7 @@ export default function BrowseCategories(props) {
 
     return (
         <>
+        {console.log()}
         <div className={ !props.user ? (props.shrinkNav ? "container-max" : "container-shrink") : "container-max" }>
         <div className={  props.user && !props.user.isAdmin ? "subcontainer" : null }>
             <div className="pt-5">
@@ -105,7 +106,7 @@ export default function BrowseCategories(props) {
                         <FormControl type="text" placeholder="type to search" onChange={handleKeywordSearch} className="mr-sm-2 browse-search" />
                     </Form>
                 </Nav.Item></div>
-                <div className="m-10 mt-1 mx-auto w-50 p-3">
+                <div className="search-list m-10 mt-1 mx-auto w-50 p-3">
                     {
                         searchResults.length > 0 && searchResults.map((item, i) => {
 
@@ -113,7 +114,7 @@ export default function BrowseCategories(props) {
                                 <div className="d-flex align-items-baseline justify-content-between">
                                     <h4>{item.name}</h4> <span>{item.category}</span> 
                                 </div>
-                                <div>{item.description}
+                                <div>{item.description.substr(0,50)}
                                 <Link to={`/product/${item.id}`}><Button variant="link">More...</Button></Link></div>
                             </div>
                         })
